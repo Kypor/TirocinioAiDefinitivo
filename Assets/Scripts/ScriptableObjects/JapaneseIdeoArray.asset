@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ideos:
   - ideosPartitions:
-    - {fileID: 21300000, guid: cd925fb50e11c27459221adf5d545481, type: 3}
-    - {fileID: 21300000, guid: 0feda298c1cc3994298b7cfe345437bc, type: 3}
+    - {fileID: 0}

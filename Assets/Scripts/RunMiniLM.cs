@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.InferenceEngine;
 using UnityEngine;
+using TMPro;
 
 public class RunMiniLM : MonoBehaviour
 {
@@ -11,11 +12,10 @@ public class RunMiniLM : MonoBehaviour
     const BackendType backend = BackendType.GPUCompute;
 
     //string string1 = "That is a happy person"; // similarity = 1
-
-    string string1 = "なつ";
-
+    public TMP_InputField tMP_InputField;
+    public float[] scores;
     //Choose a string to compare with string1:
-    string string2 = "なつ";
+    public CharacterBehaviour characterBehaviour;
     //string string2 = "That is a happy dog"; // similarity = 0.695
     //string string2 = "That is a very happy person"; // similarity = 0.943
     //string string2 = "Today is a sunny day"; // similarity = 0.257
@@ -36,22 +36,28 @@ public class RunMiniLM : MonoBehaviour
         //tokens = vocabAsset.text.Split("\r\n");
         tokens = File.ReadAllLines("Assets/vocab.txt");
 
-
+        scores = new float[characterBehaviour.actionsList.Count];
         engine = CreateMLModel();
 
         dotScore = CreateDotScoreModel();
 
-        var tokens1 = GetTokens(string1);
-        var tokens2 = GetTokens(string2);
 
-        using Tensor<float> embedding1 = GetEmbedding(tokens1);
-        using Tensor<float> embedding2 = GetEmbedding(tokens2);
-
-        float score = GetDotScore(embedding1, embedding2);
-
-        Debug.Log("Similarity Score: " + score);
+        tMP_InputField.onEndEdit.AddListener(delegate { Paolo(); });
     }
+    public void Paolo()
+    {
+        var tokens1 = GetTokens(tMP_InputField.text);
+        using Tensor<float> embedding1 = GetEmbedding(tokens1);
+        for (int i = 0; i < characterBehaviour.actionsList.Count; i++)
+        {
+            var tokens2 = GetTokens(characterBehaviour.actionsList[i].sentence);
+            using Tensor<float> embedding2 = GetEmbedding(tokens2);
+            float score = GetDotScore(embedding1, embedding2);
+            scores[i] = score;
+        }
+        characterBehaviour.Utility(scores[GetMaxIndex(scores)], GetMaxIndex(scores));         
 
+    }
     float GetDotScore(Tensor<float> A, Tensor<float> B)
     {
         dotScore.Schedule(A, B);
@@ -146,6 +152,20 @@ public class RunMiniLM : MonoBehaviour
         Debug.Log("Tokenized sentence = " + s);
 
         return ids;
+    }
+    public int GetMaxIndex(float[] array)
+    {
+        int maxIndex = 0;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > array[maxIndex])
+            {
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
     }
 
     void OnDestroy()

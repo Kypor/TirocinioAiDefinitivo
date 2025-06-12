@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Whisper.Utils;
 using Button = UnityEngine.UI.Button;
-using Toggle = UnityEngine.UI.Toggle;
 using TMPro;
 using System.Text.RegularExpressions;
 using System.Collections;
@@ -28,12 +27,9 @@ namespace Whisper.Samples
         public Text outputText;
         public TextMeshProUGUI randomWord;
 
-        //public Text timeText;
         public Dropdown languageDropdown;
-        //public Toggle translateToggle;
-        //public Toggle vadToggle;
-        //public ScrollRect scroll;
 
+        private int randomWordIdex;
         private string _buffer;
 
         private void Awake()
@@ -97,17 +93,23 @@ namespace Whisper.Samples
             //     text += $"\n\nLanguage: {res.Language}";
 
             outputText.text = text;
-            text = Regex.Replace(text, "[、，゠＝…‥。.,?!]", "");
-            if (randomWord.text.Equals(text.ToLower()))
+            text = Regex.Replace(text, "[、，゠＝…‥。.,?! ]", "");
+            bool found = false;
+            for (int i = 0; i < 3; i++)
             {
-
-                StartCoroutine(Coroutine());
+                if (text.ToLower().Equals(JapaneseWords.paroleConPronunce[randomWordIdex].pronunce[i]))
+                {
+                    StartCoroutine(RightWordCoroutine());
+                    found = true;
+                    break;
+                }
             }
-            else
+            if(!found)
             {
+                UnityEngine.Debug.Log(randomWord.text);
                 UnityEngine.Debug.Log("stupido idiota");
             }
-            // UiUtils.ScrollDown(scroll);
+            
         }
 
         private void OnLanguageChanged(int ind)
@@ -115,18 +117,6 @@ namespace Whisper.Samples
             var opt = languageDropdown.options[ind];
             whisper.language = opt.text;
         }
-
-        private void OnTranslateChanged(bool translate)
-        {
-            whisper.translateToEnglish = translate;
-        }
-
-        // private void OnProgressHandler(int progress)
-        // {
-        //     if (!timeText)
-        //         return;
-        //     timeText.text = $"Progress: {progress}%";
-        // }
 
         private void OnNewSegment(WhisperSegment segment)
         {
@@ -140,11 +130,13 @@ namespace Whisper.Samples
 
         private string GetRandomWord()
         {
-            return JapaneseWords.Words[Random.Range(0, JapaneseWords.Words.Length)];
+            randomWordIdex = Random.Range(0, JapaneseWords.paroleConPronunce.Count);
+            UnityEngine.Debug.Log(randomWordIdex);
+            return JapaneseWords.paroleConPronunce[randomWordIdex].pronunce[0];
 
         }
 
-        private IEnumerator Coroutine()
+        private IEnumerator RightWordCoroutine()
         {
             randomWord.color = Color.green;
             UnityEngine.Debug.Log("bravo coglione");
