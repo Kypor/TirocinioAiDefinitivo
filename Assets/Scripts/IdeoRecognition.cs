@@ -111,7 +111,7 @@ public class IdeoRecognition : MonoBehaviour
         screenshot.ReadPixels(new Rect(startX, startY, width, height), 0, 0);
         screenshot.Apply();
         testPicture = screenshot;
-        RunAiDigit(testPicture);
+        RunAiIdeo(testPicture);
         // solo per vedere il risutalto inutile sta parte 
         Sprite screenshotSprite = Sprite.Create(screenshot, new Rect(0, 0, screenshot.width, screenshot.height), new Vector2(0.5f, 0.5f));
         screenshotCanva.enabled = true;
