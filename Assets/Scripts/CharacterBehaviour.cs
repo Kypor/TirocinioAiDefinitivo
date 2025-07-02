@@ -27,6 +27,8 @@ public class CharacterBehaviour : MonoBehaviour
     [SerializeField] Transform grabbingPoint;
     [SerializeField] Transform defaultPosition;
 
+    bool inHand = false;
+
     private Animator animator;
 
 
@@ -52,11 +54,11 @@ public class CharacterBehaviour : MonoBehaviour
             default:
             case State.Idle:
                 Debug.Log("idle");
-                animator.SetFloat("Speed", 0f);
+                animator.SetBool("isWalking", false);
                 break;
             case State.Moving:
                 Debug.Log("Moving");
-                animator.SetFloat("Speed", 2f);
+                animator.SetBool("isWalking", true);
                 agent.SetDestination(goalObject.transform.position);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
@@ -67,14 +69,22 @@ public class CharacterBehaviour : MonoBehaviour
                 Debug.Log("Puzzled");
                 break;
             case State.BringObject:
-                agent.SetDestination(goalObject.transform.position);
-                animator.SetFloat("Speed", 2f);
-                if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
+                if (inHand == false)
                 {
-                    Grab(goalObject);
-                    state = State.BringObjectToPlayer;
+                    agent.SetDestination(goalObject.transform.position);
+                    animator.SetBool("isWalking", true);
+                    if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
+                    {
+                        Grab(goalObject);
+                        state = State.Idle;
+                        //state = State.BringObjectToPlayer;
+                    }
+                    
+
                 }
+                
                 break;
+                
             case State.BringObjectToPlayer:
                 agent.SetDestination(defaultPosition.position);
                 if (Vector3.Distance(transform.position, defaultPosition.position) <= 1f)
@@ -83,8 +93,8 @@ public class CharacterBehaviour : MonoBehaviour
                     state = State.Idle;
                 }
                 break;
-            
-            
+
+
         }
     }
     /// <summary>
@@ -114,6 +124,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     private void Grab(GameObject gameObject)
     {
+        inHand = true;
         var rb = gameObject.GetComponent<Rigidbody>();
 
         rb.useGravity = false;
@@ -127,7 +138,7 @@ public class CharacterBehaviour : MonoBehaviour
         var rb = gameObject.GetComponent<Rigidbody>();
 
         rb.useGravity = true;
-        
+
         //gameObject.transform.position = defaultPosition.position;
     }
     // public void OnOrderGiven(string prompt)

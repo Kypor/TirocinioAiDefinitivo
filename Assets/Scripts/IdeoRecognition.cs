@@ -37,7 +37,7 @@ public class IdeoRecognition : MonoBehaviour
         worker = new Worker(runtimeModel, BackendType.GPUCompute);
 
         //RunAiIdeo(testPicture);
-        //RunAiDigit(testPicture);
+        RunAiDigit(testPicture);
     }
     void Update()
     {
@@ -67,9 +67,11 @@ public class IdeoRecognition : MonoBehaviour
 
     public void RunAiDigit(Texture2D picture)
     {
-        using Tensor<float> inputTensor = TextureConverter.ToTensor(picture, 28, 28, 1);
+        using Tensor<float> inputImage = TextureConverter.ToTensor(picture, 28, 28, 1);
 
-        worker.Schedule(inputTensor);
+        
+
+        worker.Schedule(inputImage);
 
         Tensor<float> outputTensor = worker.PeekOutput() as Tensor<float>;
 
@@ -111,7 +113,7 @@ public class IdeoRecognition : MonoBehaviour
         screenshot.ReadPixels(new Rect(startX, startY, width, height), 0, 0);
         screenshot.Apply();
         testPicture = screenshot;
-        RunAiIdeo(testPicture);
+        RunAiDigit(testPicture);
         // solo per vedere il risutalto inutile sta parte 
         Sprite screenshotSprite = Sprite.Create(screenshot, new Rect(0, 0, screenshot.width, screenshot.height), new Vector2(0.5f, 0.5f));
         screenshotCanva.enabled = true;
