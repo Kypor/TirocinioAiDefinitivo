@@ -64,7 +64,7 @@ public class DrawWithMouse : MonoBehaviour
     IEnumerator DrawLine()
     {
         LineRenderer line = null;
-        bool wasInside = false;
+        bool wasInside = false;        
         while (true)
         {
             Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);

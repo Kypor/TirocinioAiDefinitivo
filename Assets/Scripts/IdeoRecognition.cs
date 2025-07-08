@@ -36,7 +36,7 @@ public class IdeoRecognition : MonoBehaviour
         Model runtimeModel = graph.Compile(softmax);
         worker = new Worker(runtimeModel, BackendType.GPUCompute);
 
-        //RunAiIdeo(testPicture);
+        RunAiIdeo2(testPicture);
         //RunAiDigit(testPicture);
     }
     void Update()
@@ -54,6 +54,24 @@ public class IdeoRecognition : MonoBehaviour
         // Appiattisce l'immagine in un vettore 1x4096
         float[] flat = inputImage.DownloadToArray();
         TensorShape shape = new TensorShape(1, 4096);
+        using Tensor<float> inputTensor = new Tensor<float>(shape, flat);
+
+        worker.Schedule(inputTensor);
+
+        Tensor<float> outputTensor = worker.PeekOutput() as Tensor<float>;
+        results = outputTensor.DownloadToArray();
+
+        int max = GetMaxIndex(results);
+        Debug.Log(max);
+    }
+
+    public void RunAiIdeo2(Texture2D picture)
+    {
+        using Tensor<float> inputImage = TextureConverter.ToTensor(picture, 128, 127, 1);
+
+        // Appiattisce l'immagine in un vettore 1x4096
+        float[] flat = inputImage.DownloadToArray();
+        TensorShape shape = new TensorShape(1, 16256);
         using Tensor<float> inputTensor = new Tensor<float>(shape, flat);
 
         worker.Schedule(inputTensor);
@@ -111,7 +129,7 @@ public class IdeoRecognition : MonoBehaviour
         screenshot.ReadPixels(new Rect(startX, startY, width, height), 0, 0);
         screenshot.Apply();
         testPicture = screenshot;
-        RunAiIdeo(testPicture);
+        RunAiIdeo2(testPicture);
         // solo per vedere il risutalto inutile sta parte 
         Sprite screenshotSprite = Sprite.Create(screenshot, new Rect(0, 0, screenshot.width, screenshot.height), new Vector2(0.5f, 0.5f));
         screenshotCanva.enabled = true;
