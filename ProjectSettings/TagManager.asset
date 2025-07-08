@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ThirdLevelTag
   - LevelTag
+  - CinemachineTarget
+  - clerk
   layers:
   - Default
   - TransparentFX

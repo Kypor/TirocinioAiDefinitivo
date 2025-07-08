@@ -7,6 +7,7 @@ using TMPro;
 using System.Text.RegularExpressions;
 using System.Collections;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 namespace Whisper.Samples
 {
@@ -24,11 +25,12 @@ namespace Whisper.Samples
 
         [Header("UI")]
         public Button button;
-        public Text buttonText;
-        public Text outputText;
+        public TextMeshProUGUI buttonText;
+        public TextMeshProUGUI outputText;
         public TextMeshProUGUI randomWord;
         public TextMeshProUGUI totalPointsText;
         public Dropdown languageDropdown;
+        public GameObject settingsPanel;
         private int randomWordIdex, wrongAnswersCount;
         private float totalPoints;
         [SerializeField]
@@ -37,8 +39,9 @@ namespace Whisper.Samples
 
         private void Awake()
         {
+            //settingsPanel.SetActive(false);
             wrongAnswersCount = 0;
-            totalPoints = 0;
+            totalPoints = 0f;
             totalPointsText.text = "Points : " + totalPoints.ToString();
             randomWord.text = GetRandomWord();
             whisper.OnNewSegment += OnNewSegment;
@@ -56,8 +59,24 @@ namespace Whisper.Samples
             //vadToggle.isOn = microphoneRecord.vadStop;
             //vadToggle.onValueChanged.AddListener(OnVadChanged);
         }
-
-
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Settings();
+            }
+        }
+        void Settings()
+        {
+            if (settingsPanel.GetComponent<CanvasGroup>().alpha == 0)
+            {
+                ShowSettings();
+            }
+            else
+            {
+                UnShowSettings();
+            }
+        }
         private void OnVadChanged(bool vadStop)
         {
             microphoneRecord.vadStop = vadStop;
@@ -139,12 +158,10 @@ namespace Whisper.Samples
         private IEnumerator RightWordCoroutine()
         {
             randomWord.color = Color.green;
-            //UnityEngine.Debug.Log("bravo coglione");
             float points = penalityPercentage / 100f * wrongAnswersCount * basePoints;
-           // UnityEngine.Debug.Log(points);
-            totalPoints += points < 10f ? 10f : basePoints - points;
-            //UnityEngine.Debug.Log(basePoints - points);
+            totalPoints += (basePoints - points <= 10f ? 10f : basePoints - points);
             totalPointsText.text = "Points : " + totalPoints.ToString();
+            PlayerPrefs.SetFloat("Level1Points", totalPoints);
             yield return new WaitForSeconds(4f);
             randomWord.color = Color.white;
             randomWord.text = GetRandomWord();
@@ -154,11 +171,40 @@ namespace Whisper.Samples
         private IEnumerator WrongWordCoroutine()
         {
             randomWord.color = Color.red;
-            //UnityEngine.Debug.Log("stupido idiota");
             wrongAnswersCount++;
-            //UnityEngine.Debug.Log(wrongAnswersCount);
             yield return new WaitForSeconds(0.75f);
             randomWord.color = Color.white;
+        }
+
+        void ShowSettings()
+        {
+            StopAllCoroutines();
+            StartCoroutine(Fade(1, settingsPanel.GetComponent<CanvasGroup>()));
+            settingsPanel.GetComponent<CanvasGroup>().interactable = true;
+            settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        void UnShowSettings()
+        {
+            StopAllCoroutines();
+            StartCoroutine(Fade(0, settingsPanel.GetComponent<CanvasGroup>()));
+            settingsPanel.GetComponent<CanvasGroup>().interactable = false;
+            settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+        public IEnumerator Fade(float end, CanvasGroup canvasGroup)
+        {
+            float elapsedTime = 0.0f;
+            float start = canvasGroup.alpha;
+            while (elapsedTime < 0.5f)
+            {
+                elapsedTime += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 0.5f);
+                yield return null;
+            }
+            canvasGroup.alpha = end;
+        }
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class CharacterBehaviour : MonoBehaviour
 {
@@ -18,9 +19,10 @@ public class CharacterBehaviour : MonoBehaviour
     {
         Idle,
         Moving,
+        Greet,
         Puzzled,
-        BringObject,
-        BringObjectToPlayer
+        GetObject,
+        BringObjectsToCheckout
     }
 
     [SerializeField] private float objectDistance = 3.0f;
@@ -51,7 +53,7 @@ public class CharacterBehaviour : MonoBehaviour
         {
             default:
             case State.Idle:
-                Debug.Log("idle");
+                //Debug.Log("idle");
                 animator.SetFloat("Speed", 0f);
                 break;
             case State.Moving:
@@ -63,28 +65,33 @@ public class CharacterBehaviour : MonoBehaviour
                     state = State.Idle;
                 }
                 break;
+            case State.Greet:
+                Debug.Log("greeting");
+                Greeting(goalObject);
+                break;
             case State.Puzzled:
                 Debug.Log("Puzzled");
                 break;
-            case State.BringObject:
+            case State.GetObject:
                 agent.SetDestination(goalObject.transform.position);
                 animator.SetFloat("Speed", 2f);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
                     Grab(goalObject);
-                    state = State.BringObjectToPlayer;
-                }
-                break;
-            case State.BringObjectToPlayer:
-                agent.SetDestination(defaultPosition.position);
-                if (Vector3.Distance(transform.position, defaultPosition.position) <= 1f)
-                {
-                    Drop(goalObject);
                     state = State.Idle;
                 }
                 break;
-            
-            
+            case State.BringObjectsToCheckout:
+                agent.SetDestination(goalObject.transform.position);
+                animator.SetFloat("Speed", 2f);
+                if (Vector3.Distance(transform.position, goalObject.transform.position) <= 2f)
+                {
+                    BringObjectsToCheckout(goalObject);
+                    state = State.Idle;
+                }
+                break;
+
+
         }
     }
     /// <summary>
@@ -111,13 +118,38 @@ public class CharacterBehaviour : MonoBehaviour
             state = (State)System.Enum.Parse(typeof(State), verb, true);
         }
     }
+    private void Greeting(GameObject gameObject)
+    {
+        Vector3 direction = gameObject.transform.position - transform.position;
+        direction.y = 0; // Per evitare inclinazioni verticali
+        Quaternion targetRotation = Quaternion.LookRotation(direction.normalized);
+        if (Vector3.Angle(transform.forward, direction) > 10f)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
+        }
+        else
+        {
+            Debug.Log("animazione");
+        }
+    }
 
+    private void BringObjectsToCheckout(GameObject gameObject)
+    {
+        Transform[] childArray = grabbingPoint.GetComponentsInChildren<Transform>();
+        for (int i = 1; i < childArray.Length; i++)
+        {
+            Destroy(childArray[i].gameObject);
+        }
+            gameObject.transform.parent = null;
+    }
     private void Grab(GameObject gameObject)
     {
         var rb = gameObject.GetComponent<Rigidbody>();
 
         rb.useGravity = false;
-        gameObject.transform.position = grabbingPoint.position;
+        rb.isKinematic = true;
+        Vector3 spawnPosition = grabbingPoint.position + Vector3.up * (grabbingPoint.childCount * 0.5f);
+        gameObject.transform.position = spawnPosition;
         gameObject.transform.parent = grabbingPoint;
     }
 
@@ -127,7 +159,7 @@ public class CharacterBehaviour : MonoBehaviour
         var rb = gameObject.GetComponent<Rigidbody>();
 
         rb.useGravity = true;
-        
+
         //gameObject.transform.position = defaultPosition.position;
     }
     // public void OnOrderGiven(string prompt)
