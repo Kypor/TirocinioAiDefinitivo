@@ -22,14 +22,18 @@ public class CharacterBehaviour : MonoBehaviour
         Greet,
         Puzzled,
         GetObject,
-        BringObjectsToCheckout
+        BringObjectsToCheckout,
+        Dance,
+        Eat
     }
 
     [SerializeField] private float objectDistance = 3.0f;
     [SerializeField] Transform grabbingPoint;
     [SerializeField] Transform defaultPosition;
+    [SerializeField] Transform eatingPoint;
 
     private Animator animator;
+
 
 
     [Header("Robot list of actions")]
@@ -54,11 +58,13 @@ public class CharacterBehaviour : MonoBehaviour
             default:
             case State.Idle:
                 //Debug.Log("idle");
-                animator.SetFloat("Speed", 0f);
+                //animator.SetFloat("Vert", 0f);
+                animator.SetBool("Moving", false);
                 break;
             case State.Moving:
                 Debug.Log("Moving");
-                animator.SetFloat("Speed", 2f);
+                //animator.SetFloat("Vert", 1f);
+                animator.SetBool("Moving", true);
                 agent.SetDestination(goalObject.transform.position);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
@@ -71,10 +77,19 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.Puzzled:
                 Debug.Log("Puzzled");
+                animator.SetBool("Puzzle", true);
+                if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Puzzle"))
+                {
+                    // Avoid any reload.
+                    Debug.Log("Finita");
+                    state = State.Idle;
+                    animator.SetBool("Puzzle", false);
+                }
                 break;
             case State.GetObject:
                 agent.SetDestination(goalObject.transform.position);
-                animator.SetFloat("Speed", 2f);
+                //animator.SetFloat("Vert", 1f);
+                animator.SetBool("Moving", true);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
                     Grab(goalObject);
@@ -83,11 +98,45 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.BringObjectsToCheckout:
                 agent.SetDestination(goalObject.transform.position);
-                animator.SetFloat("Speed", 2f);
+                //animator.SetFloat("Vert", 1f);
+                animator.SetBool("Moving", true);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) <= 2f)
                 {
                     BringObjectsToCheckout(goalObject);
                     state = State.Idle;
+                }
+                break;
+            case State.Dance:
+                animator.SetBool("Dancing", true);
+                if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Dance"))
+                {
+                    // Avoid any reload.
+                    Debug.Log("Finita");
+                    state = State.Idle;
+                    animator.SetBool("Dancing", false);
+                }
+                break;
+            case State.Eat:
+                agent.SetDestination(goalObject.transform.position);
+                animator.SetBool("Moving", true);
+                if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
+                {
+
+                    animator.SetBool("Moving", false);
+                    goalObject.transform.position = eatingPoint.position;
+                    goalObject.transform.rotation = eatingPoint.rotation;
+                    goalObject.transform.parent = eatingPoint;
+                    animator.SetBool("Eating", true);
+                    // state = State.Idle;
+                    if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Eat"))
+                    {
+
+                        state = State.Idle;
+                        animator.SetBool("Eating", false);
+                        Destroy(goalObject);
+
+                    }
+
                 }
                 break;
 
@@ -103,7 +152,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         // First we check that the score is > of 0.2, otherwise we let our agent perplexed;
         // This way we can handle strange input text (for instance if we write "Go see the dog!" the agent will be puzzled).
-        if (maxScore < 0.20f)
+        if (maxScore < 0.30f)
         {
             state = State.Puzzled;
         }
@@ -129,6 +178,15 @@ public class CharacterBehaviour : MonoBehaviour
         }
         else
         {
+            animator.SetBool("Bowing", true);
+            if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Bow"))
+            {
+                // Avoid any reload.
+                Debug.Log("Finita");
+                state = State.Idle;
+                animator.SetBool("Bowing", false);
+            }
+            //animator.SetBool("Bowing", false);
             Debug.Log("animazione");
         }
     }
@@ -140,7 +198,7 @@ public class CharacterBehaviour : MonoBehaviour
         {
             Destroy(childArray[i].gameObject);
         }
-            gameObject.transform.parent = null;
+        gameObject.transform.parent = null;
     }
     private void Grab(GameObject gameObject)
     {
@@ -162,6 +220,8 @@ public class CharacterBehaviour : MonoBehaviour
 
         //gameObject.transform.position = defaultPosition.position;
     }
+
+    
     // public void OnOrderGiven(string prompt)
     // {
     //     Tuple<int, float> tuple_ = sentenceSimilarity.RankSimilarityScores(prompt, sentencesArray);
