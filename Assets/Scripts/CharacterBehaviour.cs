@@ -29,8 +29,6 @@ public class CharacterBehaviour : MonoBehaviour
     [SerializeField] Transform grabbingPoint;
     [SerializeField] Transform defaultPosition;
 
-    bool inHand = false;
-
     private Animator animator;
 
 
@@ -60,7 +58,7 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.Moving:
                 Debug.Log("Moving");
-                animator.SetBool("isWalking", true);
+                animator.SetFloat("Speed", 2f);
                 agent.SetDestination(goalObject.transform.position);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
@@ -146,7 +144,6 @@ public class CharacterBehaviour : MonoBehaviour
     }
     private void Grab(GameObject gameObject)
     {
-        inHand = true;
         var rb = gameObject.GetComponent<Rigidbody>();
 
         rb.useGravity = false;

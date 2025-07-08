@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91384803441bc344d91b2b31c9826522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-d  testPicture: {fileID: 2800000, guid: b6234de21b6c9824bb9dcece95de5da9, type: 3}
+  testPicture: {fileID: 2800000, guid: b6234de21b6c9824bb9dcece95de5da9, type: 3}
   modelAsset: {fileID: 5022602860645237092, guid: 570d89fa590e89c408f265e858992abd, type: 3}
   screenshotCanva: {fileID: 1947388348}
   results: []
