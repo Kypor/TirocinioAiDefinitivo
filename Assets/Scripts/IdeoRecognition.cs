@@ -36,7 +36,7 @@ public class IdeoRecognition : MonoBehaviour
         Model runtimeModel = graph.Compile(softmax);
         worker = new Worker(runtimeModel, BackendType.GPUCompute);
 
-        RunAiIdeo2(testPicture);
+        //RunAiIdeo2(testPicture);
         //RunAiDigit(testPicture);
     }
     void Update()
