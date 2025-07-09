@@ -2,37 +2,78 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject backgroundPanel, mainPanel, levelPanel;
+    GameObject backgroundPanel, mainPanel, topicPanel, levelPanel;
     public float minPointsLevel1, minPointsLevel2;
     [SerializeField]
     TextMeshProUGUI thirdLevelText;
     public GameObject pointsLabel;
+    public static int topicChosen;
     void Start()
     {
         mainPanel.SetActive(true);
+        topicPanel.SetActive(false);
         levelPanel.SetActive(false);
     }
-    public void ChoseLevel()
+    public void ChoseTopic()
     {
-        if (PlayerPrefs.GetFloat("Level1Points") < minPointsLevel1 || PlayerPrefs.GetFloat("Level2Points") < minPointsLevel2)
-        {
-            thirdLevelText.color = Color.gray;
-        }
-        else
-        {
-            thirdLevelText.color = Color.white;
-        }
         mainPanel.SetActive(false);
-        levelPanel.SetActive(true);
+        topicPanel.SetActive(true);
+        levelPanel.SetActive(false);
     }
-    public void Back()
+    public void ChoseLevel(int topic)
+    {
+        topicChosen = topic;
+        switch (topic)
+        {
+            case 1:
+                if (PlayerPrefs.GetFloat("FirstTopicLevel1Points") < minPointsLevel1 || PlayerPrefs.GetFloat("FirstTopicLevel2Points") < minPointsLevel2)
+                {
+                    thirdLevelText.color = Color.gray;
+                }
+                else
+                {
+                    thirdLevelText.color = Color.white;
+                }
+                Debug.Log("caso primo topic");
+                mainPanel.SetActive(false);
+                topicPanel.SetActive(false);
+                levelPanel.SetActive(true);
+                break;
+            case 2:
+                if (PlayerPrefs.GetFloat("SecondTopicLevel1Points") < minPointsLevel1 || PlayerPrefs.GetFloat("SecondTopicLevel2Points") < minPointsLevel2)
+                {
+                    thirdLevelText.color = Color.gray;
+                }
+                else
+                {
+                    thirdLevelText.color = Color.white;
+                }
+                Debug.Log("caso secondo topic");
+                mainPanel.SetActive(false);
+                topicPanel.SetActive(false);
+                levelPanel.SetActive(true);
+                break;
+            default:
+                Debug.Log("no topic");
+                break;
+        }
+    }
+    public void BackToTopic()
+    {
+        mainPanel.SetActive(false);
+        topicPanel.SetActive(true);
+        levelPanel.SetActive(false);
+    }
+    public void BackToMain()
     {
         mainPanel.SetActive(true);
+        topicPanel.SetActive(false);
         levelPanel.SetActive(false);
     }
     public void Level1()
@@ -45,9 +86,23 @@ public class MainMenuManager : MonoBehaviour
     }
     public void Level3()
     {
-        if (PlayerPrefs.GetFloat("Level1Points") >= minPointsLevel1 && PlayerPrefs.GetFloat("Level2Points") >= minPointsLevel2)
+        switch (topicChosen)
         {
-            StartCoroutine(LoadLevel(3));
+            case 1:
+                if (PlayerPrefs.GetFloat("FirstTopicLevel1Points") >= minPointsLevel1 && PlayerPrefs.GetFloat("FirstTopicLevel2Points") >= minPointsLevel2)
+                {
+                    StartCoroutine(LoadLevel(3));
+                }
+                break;
+            case 2:
+                if (PlayerPrefs.GetFloat("SecondTopicLevel1Points") >= minPointsLevel1 && PlayerPrefs.GetFloat("SecondTopicLevel2Points") >= minPointsLevel2)
+                {
+                    StartCoroutine(LoadLevel(4));
+                }
+                break;
+            default:
+                Debug.Log("no topic");
+                break;
         }
     }
     public IEnumerator LoadLevel(int level)

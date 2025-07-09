@@ -3333,6 +3333,7 @@ GameObject:
   - component: {fileID: 1337591121}
   - component: {fileID: 1337591122}
   - component: {fileID: 1337591123}
+  - component: {fileID: 1337591124}
   m_Layer: 0
   m_Name: Demo
   m_TagString: Untagged
@@ -3367,30 +3368,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fc61bd0b5a5d24ba2275aa2434550f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsManagerScript: {fileID: 1337591124}
   whisper: {fileID: 587639199}
   microphoneRecord: {fileID: 1337591123}
   streamSegments: 1
   printLanguage: 1
-  JapaneseWords: {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}
+  JapaneseWords:
+  - {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}
+  - {fileID: 11400000, guid: d62bd4ddafc03024b8f425cb2f0046a4, type: 2}
   button: {fileID: 1070103918}
   buttonText: {fileID: 1834720408}
   outputText: {fileID: 255658629}
   randomWord: {fileID: 1670079592}
   totalPointsText: {fileID: 1474218058}
-  finalPointText: {fileID: 25598277}
   languageDropdown: {fileID: 1400360880}
   settingsPanel: {fileID: 150455389}
-  finishGamePanel: {fileID: 454911067}
-  basePoints: 100
-  penalityPercentage: 15
-  numberOfWords: 3
+  numberOfWords: 1
   currentCorrectWords: 0
-  fullStarSprite: {fileID: 21300000, guid: 550c53db1c3180040a5a05a0b8cbf987, type: 3}
-  emptyStarSprite: {fileID: 21300000, guid: e1437364f57c351409247808a42cc888, type: 3}
-  starsImages:
-  - {fileID: 1084783481}
-  - {fileID: 489214878}
-  - {fileID: 1212134703}
 --- !u!114 &1337591123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3420,6 +3414,29 @@ MonoBehaviour:
   vadStopTime: 3
   microphoneDropdown: {fileID: 948466958}
   microphoneDefaultLabel: Default microphone
+--- !u!114 &1337591124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337591120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f767c59bbd04c64b8bdb5df9d495b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalPointsText: {fileID: 1474218058}
+  finalPointText: {fileID: 25598277}
+  finishGamePanel: {fileID: 454911067}
+  basePoints: 100
+  penalityPercentage: 10
+  fullStarSprite: {fileID: 21300000, guid: 550c53db1c3180040a5a05a0b8cbf987, type: 3}
+  emptyStarSprite: {fileID: 21300000, guid: e1437364f57c351409247808a42cc888, type: 3}
+  starsImages:
+  - {fileID: 1084783481}
+  - {fileID: 489214878}
+  - {fileID: 1212134703}
 --- !u!1 &1361419376
 GameObject:
   m_ObjectHideFlags: 0
@@ -3896,8 +3913,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285361517
-  m_fontColor: {r: 0.42745098, g: 0.42745098, b: 0.42745098, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

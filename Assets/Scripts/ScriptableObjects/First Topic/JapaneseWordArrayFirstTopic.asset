@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 628f909c8e4a75c42af8431f97e96c55, type: 3}
-  m_Name: JapaneseWordArray
+  m_Name: JapaneseWordArrayFirstTopic
   m_EditorClassIdentifier: 
   paroleConPronunce:
   - pronunce:

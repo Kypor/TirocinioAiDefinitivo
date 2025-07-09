@@ -17,55 +17,41 @@ namespace Whisper.Samples
     /// </summary>
     public class MicrophoneDemo : MonoBehaviour
     {
+        [SerializeField] PointsManagerScript pointsManagerScript;
         public WhisperManager whisper;
         public MicrophoneRecord microphoneRecord;
         public bool streamSegments = true;
         public bool printLanguage = true;
         [SerializeField]
-        private JapaneseWordArray JapaneseWords;
+        private List<JapaneseWordArray> JapaneseWords = new List<JapaneseWordArray>();
 
         [Header("UI")]
         public Button button;
         public TextMeshProUGUI buttonText;
         public TextMeshProUGUI outputText;
         public TextMeshProUGUI randomWord;
-        public TextMeshProUGUI totalPointsText, finalPointText;
+        public TextMeshProUGUI totalPointsText;
         public Dropdown languageDropdown;
-        public GameObject settingsPanel, finishGamePanel;
+        public GameObject settingsPanel;
         private int randomWordIdex;
         private float totalPoints;
-        [SerializeField]
-        public float basePoints, penalityPercentage;
         private string _buffer;
-        [SerializeField] private int numberOfWords, currentCorrectWords;
-        [SerializeField] Sprite fullStarSprite, emptyStarSprite;
-        [SerializeField] List<Image> starsImages = new List<Image>();
+        public int numberOfWords, currentCorrectWords;
 
         private void Awake()
         {
-            EmptyStars();
             currentCorrectWords = 0;
-            totalPoints = 0f;
             totalPointsText.text = "Points : " + totalPoints.ToString();
             randomWord.text = GetRandomWord();
             whisper.OnNewSegment += OnNewSegment;
-            //whisper.OnProgress += OnProgressHandler;
             microphoneRecord.OnRecordStop += OnRecordStop;
-
-            //button.onClick.AddListener(OnButtonPressed);
             languageDropdown.value = languageDropdown.options
                 .FindIndex(op => op.text == whisper.language);
             languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
-
-            //translateToggle.isOn = whisper.translateToEnglish;
-            //translateToggle.onValueChanged.AddListener(OnTranslateChanged);
-
-            //vadToggle.isOn = microphoneRecord.vadStop;
-            //vadToggle.onValueChanged.AddListener(OnVadChanged);
         }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && finishGamePanel.GetComponent<CanvasGroup>().alpha == 0)
+            if (Input.GetKeyDown(KeyCode.Escape) && pointsManagerScript.finishGamePanel.GetComponent<CanvasGroup>().alpha == 0)
             {
                 Settings();
             }
@@ -114,7 +100,6 @@ namespace Whisper.Samples
 
             var time = sw.ElapsedMilliseconds;
             var rate = recordedAudio.Length / (time * 0.001f);
-            //timeText.text = $"Time: {time} ms\nRate: {rate:F1}x";
             var text = res.Result;
 
             outputText.text = text;
@@ -122,7 +107,7 @@ namespace Whisper.Samples
             bool found = false;
             for (int i = 0; i < 3; i++)
             {
-                if (text.ToLower().Equals(JapaneseWords.paroleConPronunce[randomWordIdex].pronunce[i]))
+                if (text.ToLower().Equals(JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[randomWordIdex].pronunce[i]))
                 {
                     found = true;
                     StartCoroutine(RightWordCoroutine());
@@ -153,19 +138,15 @@ namespace Whisper.Samples
 
         private string GetRandomWord()
         {
-            randomWordIdex = Random.Range(0, JapaneseWords.paroleConPronunce.Count);
-            return JapaneseWords.paroleConPronunce[randomWordIdex].pronunce[0];
+            randomWordIdex = Random.Range(0, JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count);
+            return JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[randomWordIdex].pronunce[0];
 
         }
 
         private IEnumerator RightWordCoroutine()
         {
             randomWord.color = Color.green;
-            //float points = penalityPercentage / 100f * wrongAnswersCount * basePoints;
-            //totalPoints += basePoints - points <= 10f ? 10f : basePoints - points;
-            totalPoints += basePoints;
-            totalPointsText.text = "Points : " + totalPoints.ToString();
-            PlayerPrefs.SetFloat("Level1Points", totalPoints);
+            pointsManagerScript.AddPoints();
             yield return new WaitForSeconds(3f);
             randomWord.color = Color.white;
             randomWord.text = GetRandomWord();
@@ -177,16 +158,13 @@ namespace Whisper.Samples
             else
             {
                 StopAllCoroutines();
-                StartCoroutine(ShowResults());
+                StartCoroutine(pointsManagerScript.ShowResults());
 
             }
         }
         private IEnumerator WrongWordCoroutine()
         {
-            float points = penalityPercentage / 100f * basePoints;
-            totalPoints -= points;
-            totalPointsText.text = "Points : " + totalPoints.ToString();
-            PlayerPrefs.SetFloat("Level1Points", totalPoints);
+            pointsManagerScript.SubPoints();
             randomWord.color = Color.red;
             yield return new WaitForSeconds(0.50f);
             randomWord.color = Color.white;
@@ -217,38 +195,6 @@ namespace Whisper.Samples
                 yield return null;
             }
             canvasGroup.alpha = end;
-        }
-        void EmptyStars()
-        {
-            foreach (Image image in starsImages)
-            {
-                image.sprite = emptyStarSprite;
-            }
-        }
-        IEnumerator ShowResults()
-        {
-            StartCoroutine(Fade(1, finishGamePanel.GetComponent<CanvasGroup>()));
-            finishGamePanel.GetComponent<CanvasGroup>().interactable = true;
-            finishGamePanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            totalPointsText.gameObject.SetActive(false);
-            finalPointText.text = totalPointsText.text;
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(FillStars());
-        }
-        IEnumerator FillStars()
-        {
-            float performanceRatio = totalPoints / (numberOfWords * basePoints);
-            int stars;
-            if (performanceRatio >= 0.90f) stars = 3;
-            else if (performanceRatio >= 0.66f) stars = 2;
-            else if (performanceRatio >= 0.33f) stars = 1;
-            else stars = 0;
-           UnityEngine.Debug.Log(stars);
-            for (int i = 0; i < stars; i++)
-            {
-                starsImages[i].sprite = fullStarSprite;
-                yield return new WaitForSeconds(0.5f);
-            }
         }
         public void BackToMenu()
         {
