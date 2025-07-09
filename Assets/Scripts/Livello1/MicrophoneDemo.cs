@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace Whisper.Samples
 {
@@ -28,19 +29,22 @@ namespace Whisper.Samples
         public TextMeshProUGUI buttonText;
         public TextMeshProUGUI outputText;
         public TextMeshProUGUI randomWord;
-        public TextMeshProUGUI totalPointsText;
+        public TextMeshProUGUI totalPointsText, finalPointText;
         public Dropdown languageDropdown;
-        public GameObject settingsPanel;
-        private int randomWordIdex, wrongAnswersCount;
+        public GameObject settingsPanel, finishGamePanel;
+        private int randomWordIdex;
         private float totalPoints;
         [SerializeField]
         public float basePoints, penalityPercentage;
         private string _buffer;
+        [SerializeField] private int numberOfWords, currentCorrectWords;
+        [SerializeField] Sprite fullStarSprite, emptyStarSprite;
+        [SerializeField] List<Image> starsImages = new List<Image>();
 
         private void Awake()
         {
-            //settingsPanel.SetActive(false);
-            wrongAnswersCount = 0;
+            EmptyStars();
+            currentCorrectWords = 0;
             totalPoints = 0f;
             totalPointsText.text = "Points : " + totalPoints.ToString();
             randomWord.text = GetRandomWord();
@@ -61,7 +65,7 @@ namespace Whisper.Samples
         }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && finishGamePanel.GetComponent<CanvasGroup>().alpha == 0)
             {
                 Settings();
             }
@@ -150,7 +154,6 @@ namespace Whisper.Samples
         private string GetRandomWord()
         {
             randomWordIdex = Random.Range(0, JapaneseWords.paroleConPronunce.Count);
-            //UnityEngine.Debug.Log(randomWordIdex);
             return JapaneseWords.paroleConPronunce[randomWordIdex].pronunce[0];
 
         }
@@ -158,21 +161,34 @@ namespace Whisper.Samples
         private IEnumerator RightWordCoroutine()
         {
             randomWord.color = Color.green;
-            float points = penalityPercentage / 100f * wrongAnswersCount * basePoints;
-            totalPoints += (basePoints - points <= 10f ? 10f : basePoints - points);
+            //float points = penalityPercentage / 100f * wrongAnswersCount * basePoints;
+            //totalPoints += basePoints - points <= 10f ? 10f : basePoints - points;
+            totalPoints += basePoints;
             totalPointsText.text = "Points : " + totalPoints.ToString();
             PlayerPrefs.SetFloat("Level1Points", totalPoints);
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(3f);
             randomWord.color = Color.white;
             randomWord.text = GetRandomWord();
             outputText.text = "";
-            wrongAnswersCount = 0;
+            if (currentCorrectWords < numberOfWords - 1)
+            {
+                currentCorrectWords++;
+            }
+            else
+            {
+                StopAllCoroutines();
+                StartCoroutine(ShowResults());
+
+            }
         }
         private IEnumerator WrongWordCoroutine()
         {
+            float points = penalityPercentage / 100f * basePoints;
+            totalPoints -= points;
+            totalPointsText.text = "Points : " + totalPoints.ToString();
+            PlayerPrefs.SetFloat("Level1Points", totalPoints);
             randomWord.color = Color.red;
-            wrongAnswersCount++;
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.50f);
             randomWord.color = Color.white;
         }
 
@@ -201,6 +217,38 @@ namespace Whisper.Samples
                 yield return null;
             }
             canvasGroup.alpha = end;
+        }
+        void EmptyStars()
+        {
+            foreach (Image image in starsImages)
+            {
+                image.sprite = emptyStarSprite;
+            }
+        }
+        IEnumerator ShowResults()
+        {
+            StartCoroutine(Fade(1, finishGamePanel.GetComponent<CanvasGroup>()));
+            finishGamePanel.GetComponent<CanvasGroup>().interactable = true;
+            finishGamePanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            totalPointsText.gameObject.SetActive(false);
+            finalPointText.text = totalPointsText.text;
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(FillStars());
+        }
+        IEnumerator FillStars()
+        {
+            float performanceRatio = totalPoints / (numberOfWords * basePoints);
+            int stars;
+            if (performanceRatio >= 0.90f) stars = 3;
+            else if (performanceRatio >= 0.66f) stars = 2;
+            else if (performanceRatio >= 0.33f) stars = 1;
+            else stars = 0;
+           UnityEngine.Debug.Log(stars);
+            for (int i = 0; i < stars; i++)
+            {
+                starsImages[i].sprite = fullStarSprite;
+                yield return new WaitForSeconds(0.5f);
+            }
         }
         public void BackToMenu()
         {
