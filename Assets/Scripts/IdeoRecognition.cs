@@ -1,14 +1,6 @@
 using UnityEngine;
 using Unity.InferenceEngine;
-
-using UnityEditor.ShaderKeywordFilter;
-using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
-using UnityEngine.UI;
-using System.IO;
-using UnityEngine.UIElements;
-using UnityEditor.SearchService;
-using UnityEditor;
 
 public class IdeoRecognition : MonoBehaviour
 {
@@ -36,7 +28,7 @@ public class IdeoRecognition : MonoBehaviour
         Model runtimeModel = graph.Compile(softmax);
         worker = new Worker(runtimeModel, BackendType.GPUCompute);
 
-        //RunAiIdeo2(testPicture);
+        RunAiIdeo2(testPicture);
         //RunAiDigit(testPicture);
     }
     void Update()
@@ -67,15 +59,26 @@ public class IdeoRecognition : MonoBehaviour
 
     public void RunAiIdeo2(Texture2D picture)
     {
-        using Tensor<float> inputImage = TextureConverter.ToTensor(picture, 128, 127, 1);
+        Debug.Log($"Originale: {picture.width}x{picture.height}");
+        Texture2D resized = new Texture2D(128, 127);
+        Graphics.ConvertTexture(picture, resized);
+        Debug.Log($"Resized: {resized.width}x{resized.height}");
+        
+        using Tensor<float> inputImage = TextureConverter.ToTensor(resized, 128, 127, 1);
 
         // Appiattisce l'immagine in un vettore 1x4096
         float[] flat = inputImage.DownloadToArray();
         TensorShape shape = new TensorShape(1, 16256);
-        using Tensor<float> inputTensor = new Tensor<float>(shape, flat);
 
+        // Applica la normalizzazione (-0.5, 0.5)
+        float[] normalizedFlat = new float[flat.Length];
+        for (int i = 0; i < flat.Length; i++)
+        {
+            normalizedFlat[i] = (flat[i] / 255.0f - 0.5f) / 0.5f;
+        }
+
+        using Tensor<float> inputTensor = new Tensor<float>(shape, normalizedFlat);
         worker.Schedule(inputTensor);
-
         Tensor<float> outputTensor = worker.PeekOutput() as Tensor<float>;
         results = outputTensor.DownloadToArray();
 
