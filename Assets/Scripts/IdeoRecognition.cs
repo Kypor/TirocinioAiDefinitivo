@@ -28,7 +28,7 @@ public class IdeoRecognition : MonoBehaviour
         Model runtimeModel = graph.Compile(softmax);
         worker = new Worker(runtimeModel, BackendType.GPUCompute);
 
-        RunAiIdeo2(testPicture);
+        //RunAiIdeo2(testPicture);
         //RunAiDigit(testPicture);
     }
     void Update()
@@ -59,25 +59,25 @@ public class IdeoRecognition : MonoBehaviour
 
     public void RunAiIdeo2(Texture2D picture)
     {
-        Debug.Log($"Originale: {picture.width}x{picture.height}");
+        // Debug.Log($"Originale: {picture.width}x{picture.height}");
         Texture2D resized = new Texture2D(128, 127);
         Graphics.ConvertTexture(picture, resized);
-        Debug.Log($"Resized: {resized.width}x{resized.height}");
+        // Debug.Log($"Resized: {resized.width}x{resized.height}");
         
         using Tensor<float> inputImage = TextureConverter.ToTensor(resized, 128, 127, 1);
 
-        // Appiattisce l'immagine in un vettore 1x4096
+        // Appiattisce l'immagine in un vettore 1x16256
         float[] flat = inputImage.DownloadToArray();
         TensorShape shape = new TensorShape(1, 16256);
 
-        // Applica la normalizzazione (-0.5, 0.5)
-        float[] normalizedFlat = new float[flat.Length];
-        for (int i = 0; i < flat.Length; i++)
-        {
-            normalizedFlat[i] = (flat[i] / 255.0f - 0.5f) / 0.5f;
-        }
+        // // Applica la normalizzazione
+        // float[] normalizedFlat = new float[flat.Length];
+        // for (int i = 0; i < flat.Length; i++)
+        // {
+        //     normalizedFlat[i] = (flat[i] / 255.0f - 0.5f) / 0.5f;
+        // }
 
-        using Tensor<float> inputTensor = new Tensor<float>(shape, normalizedFlat);
+        using Tensor<float> inputTensor = new Tensor<float>(shape, flat);
         worker.Schedule(inputTensor);
         Tensor<float> outputTensor = worker.PeekOutput() as Tensor<float>;
         results = outputTensor.DownloadToArray();
@@ -132,11 +132,11 @@ public class IdeoRecognition : MonoBehaviour
         screenshot.ReadPixels(new Rect(startX, startY, width, height), 0, 0);
         screenshot.Apply();
         testPicture = screenshot;
+        // ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshot.png");
         RunAiIdeo2(testPicture);
         // solo per vedere il risutalto inutile sta parte 
         Sprite screenshotSprite = Sprite.Create(screenshot, new Rect(0, 0, screenshot.width, screenshot.height), new Vector2(0.5f, 0.5f));
         screenshotCanva.enabled = true;
         screenshotCanva.sprite = screenshotSprite;
-
     }
 }
