@@ -145,6 +145,7 @@ namespace Whisper.Samples
 
         private IEnumerator RightWordCoroutine()
         {
+            SoundManager.instance.PlaySoundFX(1);
             randomWord.color = Color.green;
             pointsManagerScript.AddPoints();
             yield return new WaitForSeconds(3f);
@@ -158,12 +159,14 @@ namespace Whisper.Samples
             else
             {
                 StopAllCoroutines();
+
                 StartCoroutine(pointsManagerScript.ShowResults());
 
             }
         }
         private IEnumerator WrongWordCoroutine()
         {
+            SoundManager.instance.PlaySoundFX(2);
             pointsManagerScript.SubPoints();
             randomWord.color = Color.red;
             yield return new WaitForSeconds(0.50f);

@@ -1,8 +1,6 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
@@ -13,7 +11,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI thirdLevelText;
     public GameObject pointsLabel;
-    public static int topicChosen;
+    public static int topicChosen = 1;
     void Start()
     {
         mainPanel.SetActive(true);
