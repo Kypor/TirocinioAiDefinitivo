@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Quests
   m_EditorClassIdentifier: 
   quests:
-  - questID: 
-    Description: 
+  - questID: 1
+    Description: Togli le scarpe
   - questID: 
     Description: 

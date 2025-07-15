@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testPicture: {fileID: 0}
-  modelAsset: {fileID: 5022602860645237092, guid: 4d4f1079af6b3bb448110bf7daedac82, type: 3}
+  modelAsset: {fileID: 5022602860645237092, guid: 15c6390ff7a333d44beb09a599258854, type: 3}
   screenshotCanva: {fileID: 1947388348}
   results: []
 --- !u!1 &1516242724
