@@ -24,6 +24,7 @@ public class PointsManagerScript : MonoBehaviour
     }
     public IEnumerator Fade(float end, CanvasGroup canvasGroup)
     {
+        SoundManager.instance.PlaySoundFX(0);
         float elapsedTime = 0.0f;
         float start = canvasGroup.alpha;
         while (elapsedTime < 0.5f)
@@ -101,6 +102,7 @@ public class PointsManagerScript : MonoBehaviour
         Debug.Log(stars);
         for (int i = 0; i < stars; i++)
         {
+            SoundManager.instance.PlaySoundFX(3);
             starsImages[i].sprite = fullStarSprite;
             yield return new WaitForSeconds(0.5f);
         }

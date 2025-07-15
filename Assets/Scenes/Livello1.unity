@@ -857,11 +857,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameCameraTransform: {fileID: 637716613}
   soundFXClips:
-  - {fileID: 8300000, guid: 88cbf9a19355042449664cd7e9434399, type: 3}
-  - {fileID: 8300000, guid: 9fd917666cefd4448ae9bc270f6aeb19, type: 3}
-  - {fileID: 8300000, guid: 56c413e549dbfc44f9b0e380bfc73f3f, type: 3}
-  - {fileID: 8300000, guid: 066bb6fcb84b2c04b9c3b5ce858fac93, type: 3}
-  - {fileID: 8300000, guid: 1ebc4613fff7e734d8be9b620d8797c3, type: 3}
+  - {fileID: 8300000, guid: 1667eaf08c9cc3e459fc2038a4d7e226, type: 3}
+  - {fileID: 8300000, guid: e47597c2b31e1c64ea1ca53f2310a419, type: 3}
+  - {fileID: 8300000, guid: 74d3cc47bd2d90f49969104e5c3615c1, type: 3}
+  - {fileID: 8300000, guid: 2c9d604ffa4ded449b9fefaef3c12d28, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!1 &326716702
 GameObject:
@@ -3567,9 +3566,6 @@ MonoBehaviour:
   settingsPanel: {fileID: 150455389}
   numberOfWords: 1
   currentCorrectWords: 0
-  rightAnswer: {fileID: 8300000, guid: 9fd917666cefd4448ae9bc270f6aeb19, type: 3}
-  wrongAnswer: {fileID: 8300000, guid: 56c413e549dbfc44f9b0e380bfc73f3f, type: 3}
-  finishSound: {fileID: 0}
 --- !u!114 &1337591123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4569,7 +4565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b74c31d447d2f5d41a61081bdf5e7126, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
