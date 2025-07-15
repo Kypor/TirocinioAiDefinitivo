@@ -22,3 +22,14 @@ MonoBehaviour:
   - ideosPartitions:
     - {fileID: 21300000, guid: 92f70aa3440f3194ea5b63f56f02d4d1, type: 3}
     - {fileID: 21300000, guid: 92f70aa3440f3194ea5b63f56f02d4d1, type: 3}
+  ideosPartitions:
+  - {fileID: 21300000, guid: 3d4c92474ed596b479c9fca2c969a34d, type: 3}
+  - {fileID: 21300000, guid: ab561f22dbf29ff43a205f539145cf5c, type: 3}
+  - {fileID: 21300000, guid: 6aea52e186f31414bb127488fd988bc3, type: 3}
+  - {fileID: 21300000, guid: b4d21e06a934e5b47b29e71695d138c7, type: 3}
+  - {fileID: 21300000, guid: b735c2c2fc0cfb04bac7937cc58af88d, type: 3}
+  - {fileID: 21300000, guid: 6aff0d774d2d44242b0912586305e778, type: 3}
+  - {fileID: 21300000, guid: c2326237fa314874ca6a1cf515e7163d, type: 3}
+  - {fileID: 21300000, guid: 26c08141480bea443bfa8a7092341911, type: 3}
+  - {fileID: 21300000, guid: e6e71a11d06c77640a0a50b81785da2b, type: 3}
+  - {fileID: 21300000, guid: 38e09d3b572a80e47981357184fae58b, type: 3}
