@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5725345129259994612}
   - component: {fileID: 425583825775245029}
   - component: {fileID: 1879422838125911827}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tile_wall_plain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5115996097034219199, guid: e6595cc3c2581e54d95f890e61e6aea1, type: 3}
+  - {fileID: 2100000, guid: baf4c18559fde3f4fbef8f505432906d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

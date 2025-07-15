@@ -24,13 +24,16 @@ public class CharacterBehaviour : MonoBehaviour
         GetObject,
         BringObjectsToCheckout,
         Dance,
-        Eat
+        Eat,
+        Kneel
     }
 
     [SerializeField] private float objectDistance = 3.0f;
     [SerializeField] Transform grabbingPoint;
     [SerializeField] Transform defaultPosition;
     [SerializeField] Transform eatingPoint;
+
+    private Camera cam;
 
     private Animator animator;
 
@@ -46,6 +49,7 @@ public class CharacterBehaviour : MonoBehaviour
     NavMeshAgent agent;
     void Start()
     {
+        cam = FindAnyObjectByType<Camera>();
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -139,6 +143,16 @@ public class CharacterBehaviour : MonoBehaviour
 
                 }
                 break;
+            case State.Kneel:
+                animator.SetBool("Kneeling", true);
+                if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Kneel"))
+                {
+                    // Avoid any reload.
+                    Debug.Log("Finita");
+                    state = State.Idle;
+                    animator.SetBool("Kneeling", false);
+                }
+                break;
 
 
         }
@@ -221,7 +235,7 @@ public class CharacterBehaviour : MonoBehaviour
         //gameObject.transform.position = defaultPosition.position;
     }
 
-    
+
     // public void OnOrderGiven(string prompt)
     // {
     //     Tuple<int, float> tuple_ = sentenceSimilarity.RankSimilarityScores(prompt, sentencesArray);
