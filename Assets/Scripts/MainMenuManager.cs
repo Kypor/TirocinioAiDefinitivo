@@ -20,6 +20,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void ChoseTopic()
     {
+        SoundManager.instance.PlaySoundFX(0);
         mainPanel.SetActive(false);
         topicPanel.SetActive(true);
         levelPanel.SetActive(false);
@@ -30,6 +31,7 @@ public class MainMenuManager : MonoBehaviour
         switch (topic)
         {
             case 1:
+                SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("FirstTopicLevel1Points") < minPointsLevel1 || PlayerPrefs.GetFloat("FirstTopicLevel2Points") < minPointsLevel2)
                 {
                     thirdLevelText.color = Color.gray;
@@ -44,6 +46,7 @@ public class MainMenuManager : MonoBehaviour
                 levelPanel.SetActive(true);
                 break;
             case 2:
+                SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("SecondTopicLevel1Points") < minPointsLevel1 || PlayerPrefs.GetFloat("SecondTopicLevel2Points") < minPointsLevel2)
                 {
                     thirdLevelText.color = Color.gray;
@@ -64,22 +67,26 @@ public class MainMenuManager : MonoBehaviour
     }
     public void BackToTopic()
     {
+        SoundManager.instance.PlaySoundFX(0);
         mainPanel.SetActive(false);
         topicPanel.SetActive(true);
         levelPanel.SetActive(false);
     }
     public void BackToMain()
     {
+        SoundManager.instance.PlaySoundFX(0);
         mainPanel.SetActive(true);
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
     }
     public void Level1()
     {
+        SoundManager.instance.PlaySoundFX(0);
         StartCoroutine(LoadLevel(1));
     }
     public void Level2()
     {
+        SoundManager.instance.PlaySoundFX(0);
         StartCoroutine(LoadLevel(2));
     }
     public void Level3()
@@ -87,12 +94,14 @@ public class MainMenuManager : MonoBehaviour
         switch (topicChosen)
         {
             case 1:
+                SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("FirstTopicLevel1Points") >= minPointsLevel1 && PlayerPrefs.GetFloat("FirstTopicLevel2Points") >= minPointsLevel2)
                 {
                     StartCoroutine(LoadLevel(3));
                 }
                 break;
             case 2:
+                SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("SecondTopicLevel1Points") >= minPointsLevel1 && PlayerPrefs.GetFloat("SecondTopicLevel2Points") >= minPointsLevel2)
                 {
                     StartCoroutine(LoadLevel(4));
