@@ -28,6 +28,8 @@ public class CharacterBehaviour : MonoBehaviour
         Kneel
     }
 
+    [SerializeField] GameObject shoes;
+
     [SerializeField] private float objectDistance = 3.0f;
     [SerializeField] Transform grabbingPoint;
     [SerializeField] Transform defaultPosition;
@@ -147,10 +149,12 @@ public class CharacterBehaviour : MonoBehaviour
                 animator.SetBool("Kneeling", true);
                 if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Kneel"))
                 {
+
                     // Avoid any reload.
                     Debug.Log("Finita");
                     state = State.Idle;
                     animator.SetBool("Kneeling", false);
+                    shoes.SetActive(false);
                 }
                 break;
 
@@ -234,6 +238,10 @@ public class CharacterBehaviour : MonoBehaviour
 
         //gameObject.transform.position = defaultPosition.position;
     }
+
+    
+
+
 
 
     // public void OnOrderGiven(string prompt)
