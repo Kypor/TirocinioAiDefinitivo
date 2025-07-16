@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Whisper.Samples;
+using UnityEngine.SceneManagement;
 
 public class PointsManagerScript : MonoBehaviour
 {
@@ -15,9 +16,15 @@ public class PointsManagerScript : MonoBehaviour
     private int numberOfWords;
     [SerializeField] Sprite fullStarSprite, emptyStarSprite;
     [SerializeField] List<Image> starsImages = new List<Image>();
+    int currSceneIndex;
+
     private void Awake()
     {
-        numberOfWords = GetComponent<MicrophoneDemo>().numberOfWords;
+        currSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currSceneIndex == 1)
+            numberOfWords = GetComponent<MicrophoneDemo>().numberOfWords;
+        else
+            numberOfWords = 10;
         EmptyStars();
         totalPoints = 0f;
         totalPointsText.text = "Points : " + totalPoints.ToString();
@@ -106,5 +113,10 @@ public class PointsManagerScript : MonoBehaviour
             starsImages[i].sprite = fullStarSprite;
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

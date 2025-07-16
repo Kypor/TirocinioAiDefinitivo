@@ -16,8 +16,7 @@ public class NumberRecognition : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        drawNumberManager = GameObject.Find("DrawNumberManager").GetComponent<DrawNumberManager>();
+        drawNumberManager = GameObject.Find("GameManager").GetComponent<DrawNumberManager>();
         Model model = ModelLoader.Load(modelAsset);
 
         FunctionalGraph graph = new FunctionalGraph();

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DrawNumberManager : MonoBehaviour
 {
+    private PointsManagerScript pointsManagerScript;
     [SerializeField]
     private JapaneseIdeoArray japaneseIdeoArray;
     [SerializeField]
@@ -14,6 +15,8 @@ public class DrawNumberManager : MonoBehaviour
     TextMeshProUGUI text;
     public List<string> numbersIdeo = new();
     public List<int> uniqueRandomNumbers = new();
+    public GameObject finishGamePanel;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +34,7 @@ public class DrawNumberManager : MonoBehaviour
         numbersIdeo.Add("九");
         text.text = PrintText();
         uniqueRandomNumbers = GenerateUniqueRandomNumbers();
+        pointsManagerScript = GameObject.Find("GameManager").GetComponent<PointsManagerScript>();
     }
 
     // Update is called once per frame
@@ -41,7 +45,6 @@ public class DrawNumberManager : MonoBehaviour
         {
             fullIdeoImage.sprite = japaneseIdeoArray.ideosPartitions[currentNumberIndex - 1];
             return "draw the number " + (currentNumberIndex - 1);
-
         }
         if (currentNumberIndex <= 20)
         {
@@ -52,27 +55,44 @@ public class DrawNumberManager : MonoBehaviour
         if (currentRandomNumberIndex <= 10)
         {
             return "draw the number " + numbersIdeo[uniqueRandomNumbers[currentRandomNumberIndex - 1]];
-
         }
-        return "null";
+        Debug.Log("Level over!");
+        // pointsManagerScript.Fade(1, finishGamePanel.GetComponent<CanvasGroup>());
+        StopAllCoroutines();
+        StartCoroutine(pointsManagerScript.ShowResults());
+        return " ";
     }
     public void ChangeTextCheck(int number)
     {
+        Debug.Log("debug random index: " + currentRandomNumberIndex);
 
-        if (number == currentNumberIndex - 1 || number == currentNumberIndex - 11)
+        if (currentRandomNumberIndex - 1 < 0)
         {
-            text.text = PrintText();
-            Debug.Log("testo cambiato");
-        }
-        else
-        {
-            if (currentRandomNumberIndex - 1 >= 0 && number == uniqueRandomNumbers[currentRandomNumberIndex - 1])
+            if (number == currentNumberIndex - 1 || number == currentNumberIndex - 11)
             {
                 text.text = PrintText();
                 Debug.Log("testo cambiato");
             }
             else
             {
+                Debug.Log("number: " + number);
+                Debug.Log("random index: " + currentRandomNumberIndex);
+                Debug.Log("testo NON cambiato");
+            }
+        }
+        else
+        {
+            if (number == uniqueRandomNumbers[currentRandomNumberIndex - 1])
+            {
+                pointsManagerScript.AddPoints();
+                SoundManager.instance.PlaySoundFX(1);
+                text.text = PrintText();
+                Debug.Log("testo cambiato");
+            }
+            else
+            {
+                pointsManagerScript.SubPoints();
+                SoundManager.instance.PlaySoundFX(2);
                 Debug.Log("number: " + number);
                 Debug.Log("random index: " + currentRandomNumberIndex);
                 Debug.Log("testo NON cambiato");
@@ -88,7 +108,7 @@ public class DrawNumberManager : MonoBehaviour
         }
 
         List<int> result = new();
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 10; i++)
         {
             int index = Random.Range(0, pool.Count);
             result.Add(pool[index]);
