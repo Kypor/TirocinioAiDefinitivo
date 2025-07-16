@@ -366,9 +366,6 @@ MonoBehaviour:
   japaneseIdeoArray: {fileID: 11400000, guid: 982fe451a6101f84b97bc3570f21a942, type: 2}
   partitionIdeoImage: {fileID: 1148618457}
   fullIdeoImage: {fileID: 1846724733}
-  text: {fileID: 1516242726}
-  numbersIdeo: []
-  uniqueRandomNumbers: 
 --- !u!1 &640274179
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +963,7 @@ GameObject:
   - component: {fileID: 1382038397}
   - component: {fileID: 1382038398}
   m_Layer: 0
-  m_Name: Ideo Recognition
+  m_Name: IdeoRecognition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1003,6 +1000,7 @@ MonoBehaviour:
   modelAsset: {fileID: 5022602860645237092, guid: c121be55d2e3dcc45baf3295d23e28a3, type: 3}
   screenshotCanva: {fileID: 1947388348}
   results: []
+  indexResult: 0
 --- !u!1 &1516242724
 GameObject:
   m_ObjectHideFlags: 0
