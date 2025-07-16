@@ -10,17 +10,18 @@ public class DrawRandomIdeo : MonoBehaviour
     [SerializeField]
     public Image partitionIdeoImage, fullIdeoImage;
     private ListWrapper currentIdeo;
-    private int currentIndex = 0;
+    private int currentNumberIndex = 0, currentRandomNumberIndex = 0;
     [SerializeField]
     TextMeshProUGUI text;
     public List<string> numbersIdeo = new List<string>();
+    public List<int> uniqueRandomNumbers = new List<int>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //fullIdeoImage.sprite = GetRandomIdeo();
-        //partitionIdeoImage.sprite = currentIdeo.ideosPartitions[currentIndex];
+        //partitionIdeoImage.sprite = currentIdeo.ideosPartitions[currentNumberIndex];
         numbersIdeo.Add("ゼロ");
         numbersIdeo.Add("一");
         numbersIdeo.Add("二");
@@ -32,7 +33,7 @@ public class DrawRandomIdeo : MonoBehaviour
         numbersIdeo.Add("八");
         numbersIdeo.Add("九");
         text.text = PrintText();
-
+        uniqueRandomNumbers = GenerateUniqueRandomNumbers();
     }
 
     // Update is called once per frame
@@ -52,10 +53,10 @@ public class DrawRandomIdeo : MonoBehaviour
     // return true se sono finiti tutte le partizioni fa il controllo e resetta con un nuovo ideogramma
     public bool ToNextIdeosPartition()
     {
-        if (currentIndex < currentIdeo.ideosPartitions.Count - 1)
+        if (currentNumberIndex < currentIdeo.ideosPartitions.Count - 1)
         {
-            currentIndex++;
-            partitionIdeoImage.sprite = currentIdeo.ideosPartitions[currentIndex];
+            currentNumberIndex++;
+            partitionIdeoImage.sprite = currentIdeo.ideosPartitions[currentNumberIndex];
             return false;
         }
         else
@@ -70,38 +71,72 @@ public class DrawRandomIdeo : MonoBehaviour
     private void ResetIdeo()
     {
         fullIdeoImage.sprite = GetRandomIdeo();
-        currentIndex = 1;
-        partitionIdeoImage.sprite = currentIdeo.ideosPartitions[currentIndex];
+        currentNumberIndex = 1;
+        partitionIdeoImage.sprite = currentIdeo.ideosPartitions[currentNumberIndex];
 
     }
     private string PrintText()
     {
-        currentIndex++;
-        if (currentIndex <= 10)
+        currentNumberIndex++;
+        if (currentNumberIndex <= 10)
         {
-            fullIdeoImage.sprite = japaneseIdeoArray.ideosPartitions[currentIndex - 1];
-            return "draw the number " + (currentIndex - 1);
+            fullIdeoImage.sprite = japaneseIdeoArray.ideosPartitions[currentNumberIndex - 1];
+            return "draw the number " + (currentNumberIndex - 1);
 
         }
-        if (currentIndex <= 20)
+        if (currentNumberIndex <= 20)
         {
-            fullIdeoImage.sprite = japaneseIdeoArray.ideosPartitions[currentIndex - 11];
-            return "draw the number " + numbersIdeo[currentIndex - 11];
+            fullIdeoImage.sprite = japaneseIdeoArray.ideosPartitions[currentNumberIndex - 11];
+            return "draw the number " + numbersIdeo[currentNumberIndex - 11];
+        }
+        currentRandomNumberIndex++;
+        if (currentRandomNumberIndex <= 10)
+        {
+            return "draw the number " + numbersIdeo[uniqueRandomNumbers[currentRandomNumberIndex - 1]];
+
         }
         return "null";
     }
     public void ChangeTextCheck(int number)
     {
 
-        if (number == currentIndex - 1 || number == currentIndex - 11)
+        if (number == currentNumberIndex - 1 || number == currentNumberIndex - 11)
         {
             text.text = PrintText();
             Debug.Log("testo cambiato");
         }
         else
         {
-            Debug.Log("testo NON cambiato");
+            if (currentRandomNumberIndex - 1 >= 0 && number == uniqueRandomNumbers[currentRandomNumberIndex - 1])
+            {
+                text.text = PrintText();
+                Debug.Log("testo cambiato");
+            }
+            else
+            {
+                Debug.Log("number: "+ number);
+                Debug.Log("random index: "+ currentRandomNumberIndex);
+                Debug.Log("testo NON cambiato");
+            }
         }
+    }
+    List<int> GenerateUniqueRandomNumbers()
+    {
+        List<int> pool = new List<int>();
+        for (int i = 0; i <= 9; i++)
+        {
+            pool.Add(i);
+        }
+
+        List<int> result = new List<int>();
+        for (int i = 0; i < 9; i++)
+        {
+            int index = Random.Range(0, pool.Count);
+            result.Add(pool[index]);
+            pool.RemoveAt(index);
+        }
+
+        return result;
     }
 
 }

@@ -59,50 +59,50 @@ public class IdeoRecognition : MonoBehaviour
     //     Debug.Log(max);
     // }
 
-    // public void RunAiIdeo2(Texture2D picture)
-    // {
-    //     // Debug.Log($"Originale: {picture.width}x{picture.height}");
-    //     Texture2D resized = new Texture2D(128, 127);
-    //     Graphics.ConvertTexture(picture, resized);
-    //     // Debug.Log($"Resized: {resized.width}x{resized.height}");
-
-    //     using Tensor<float> inputImage = TextureConverter.ToTensor(resized, 128, 127, 1);
-
-    //     // Appiattisce l'immagine in un vettore 1x16256
-    //     float[] flat = inputImage.DownloadToArray();
-    //     TensorShape shape = new TensorShape(1, 16256);
-
-    //     // // Applica la normalizzazione
-    //     // float[] normalizedFlat = new float[flat.Length];
-    //     // for (int i = 0; i < flat.Length; i++)
-    //     // {
-    //     //     normalizedFlat[i] = (flat[i] / 255.0f - 0.5f) / 0.5f;
-    //     // }
-
-    //     using Tensor<float> inputTensor = new Tensor<float>(shape, flat);
-    //     worker.Schedule(inputTensor);
-    //     Tensor<float> outputTensor = worker.PeekOutput() as Tensor<float>;
-    //     results = outputTensor.DownloadToArray();
-
-    //     int max = GetMaxIndex(results);
-    //     Debug.Log(max);
-    // }
-
-    public void RunAiDigit(Texture2D picture)
+    public void RunAiIdeo(Texture2D picture)
     {
-        using Tensor<float> inputTensor = TextureConverter.ToTensor(picture, 28, 28, 1);
+        // Debug.Log($"Originale: {picture.width}x{picture.height}");
+        Texture2D resized = new Texture2D(128, 128);
+        Graphics.ConvertTexture(picture, resized);
+        // Debug.Log($"Resized: {resized.width}x{resized.height}");
 
+        using Tensor<float> inputImage = TextureConverter.ToTensor(resized, 128, 128, 1);
+
+        // Appiattisce l'immagine in un vettore 1x16256
+        float[] flat = inputImage.DownloadToArray();
+        TensorShape shape = new TensorShape(1, 16384);
+
+        // // Applica la normalizzazione
+        // float[] normalizedFlat = new float[flat.Length];
+        // for (int i = 0; i < flat.Length; i++)
+        // {
+        //     normalizedFlat[i] = (flat[i] / 255.0f - 0.5f) / 0.5f;
+        // }
+
+        using Tensor<float> inputTensor = new Tensor<float>(shape, flat);
         worker.Schedule(inputTensor);
-
         Tensor<float> outputTensor = worker.PeekOutput() as Tensor<float>;
-
         results = outputTensor.DownloadToArray();
+
         int max = GetMaxIndex(results);
         Debug.Log(max);
-        Debug.Log(drawRandomIdeo.numbersIdeo[max]);
-        drawRandomIdeo.ChangeTextCheck(max);
-
     }
+
+    // public void RunAiDigit(Texture2D picture)
+    // {
+    //     using Tensor<float> inputTensor = TextureConverter.ToTensor(picture, 28, 28, 1);
+
+    //     worker.Schedule(inputTensor);
+
+    //     Tensor<float> outputTensor = worker.PeekOutput() as Tensor<float>;
+
+    //     results = outputTensor.DownloadToArray();
+    //     int max = GetMaxIndex(results);
+    //     Debug.Log(max);
+    //     Debug.Log(drawRandomIdeo.numbersIdeo[max]);
+    //     drawRandomIdeo.ChangeTextCheck(max);
+
+    // }
 
     private void OnDisable()
     {
@@ -136,7 +136,7 @@ public class IdeoRecognition : MonoBehaviour
         screenshot.Apply();
         testPicture = screenshot;
         // ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshot.png");
-        RunAiDigit(testPicture);
+        RunAiIdeo(testPicture);
         // solo per vedere il risutalto inutile sta parte 
         Sprite screenshotSprite = Sprite.Create(screenshot, new Rect(0, 0, screenshot.width, screenshot.height), new Vector2(0.5f, 0.5f));
         screenshotCanva.enabled = true;

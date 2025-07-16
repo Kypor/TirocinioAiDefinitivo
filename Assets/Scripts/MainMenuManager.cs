@@ -87,7 +87,18 @@ public class MainMenuManager : MonoBehaviour
     public void Level2()
     {
         SoundManager.instance.PlaySoundFX(0);
-        StartCoroutine(LoadLevel(2));
+        switch (topicChosen)
+        {
+            case 1:
+                StartCoroutine(LoadLevel(2));
+                break;
+            case 2:
+                StartCoroutine(LoadLevel(3));
+                break;
+            default:
+                Debug.Log(" no level");
+                break;
+        }
     }
     public void Level3()
     {
@@ -97,14 +108,14 @@ public class MainMenuManager : MonoBehaviour
                 SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("FirstTopicLevel1Points") >= minPointsLevel1 && PlayerPrefs.GetFloat("FirstTopicLevel2Points") >= minPointsLevel2)
                 {
-                    StartCoroutine(LoadLevel(3));
+                    StartCoroutine(LoadLevel(4));
                 }
                 break;
             case 2:
                 SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("SecondTopicLevel1Points") >= minPointsLevel1 && PlayerPrefs.GetFloat("SecondTopicLevel2Points") >= minPointsLevel2)
                 {
-                    StartCoroutine(LoadLevel(4));
+                    StartCoroutine(LoadLevel(5));
                 }
                 break;
             default:
