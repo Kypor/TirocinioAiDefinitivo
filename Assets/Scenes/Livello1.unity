@@ -3516,7 +3516,7 @@ GameObject:
   - component: {fileID: 1337591123}
   - component: {fileID: 1337591124}
   m_Layer: 0
-  m_Name: Demo
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4087,8 +4087,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'points : 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 97bf8563fc7dd434689b6a3672f780f4, type: 2}
+  m_sharedMaterial: {fileID: 8779529331787341973, guid: 97bf8563fc7dd434689b6a3672f780f4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4112,7 +4112,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 25.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5091,8 +5091,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 637716613}
   - {fileID: 1522420788}
-  - {fileID: 587639198}
-  - {fileID: 1337591121}
   - {fileID: 781718532}
+  - {fileID: 587639198}
   - {fileID: 2098053319}
   - {fileID: 276703472}
+  - {fileID: 1337591121}
