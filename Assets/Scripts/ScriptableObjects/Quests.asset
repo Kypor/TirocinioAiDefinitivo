@@ -14,6 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - questID: 1
-    Description: Togli le scarpe
-  - questID: 
-    Description: 
+    description: Togliti le scarpe
+    requiredVerb: Kneel
+    requiredNoun: 
+    isCompleted: 1
+  - questID: 2
+    description: Bevi l'acqua
+    requiredVerb: Eat
+    requiredNoun: Bottle
+    isCompleted: 1
+  - questID: 3
+    description: "Balla Pisell\xEC"
+    requiredVerb: Dance
+    requiredNoun: 
+    isCompleted: 1

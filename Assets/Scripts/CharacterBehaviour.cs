@@ -15,6 +15,9 @@ public class CharacterBehaviour : MonoBehaviour
         public string verb;
         public string noun;
     }
+
+    public string currentVerb { get; private set; }
+    public string currentNoun { get; private set; }
     private enum State
     {
         Idle,
@@ -129,9 +132,12 @@ public class CharacterBehaviour : MonoBehaviour
                 {
 
                     animator.SetBool("Moving", false);
+                    var goalObjectRb = goalObject.GetComponent<Rigidbody>();
+                    goalObjectRb.isKinematic = true;
+                    goalObject.transform.parent = eatingPoint;
                     goalObject.transform.position = eatingPoint.position;
                     goalObject.transform.rotation = eatingPoint.rotation;
-                    goalObject.transform.parent = eatingPoint;
+                    
                     animator.SetBool("Eating", true);
                     // state = State.Idle;
                     if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Eat"))
@@ -139,7 +145,7 @@ public class CharacterBehaviour : MonoBehaviour
 
                         state = State.Idle;
                         animator.SetBool("Eating", false);
-                        Destroy(goalObject);
+                        StartCoroutine(DisableGameObject(goalObject));
 
                     }
 
@@ -154,7 +160,8 @@ public class CharacterBehaviour : MonoBehaviour
                     Debug.Log("Finita");
                     state = State.Idle;
                     animator.SetBool("Kneeling", false);
-                    shoes.SetActive(false);
+                    //shoes.SetActive(false);
+                    StartCoroutine(DisableGameObject(shoes));
                 }
                 break;
 
@@ -180,6 +187,9 @@ public class CharacterBehaviour : MonoBehaviour
             goalObject = GameObject.Find(actionsList[maxScoreIndex].noun);
 
             string verb = actionsList[maxScoreIndex].verb;
+
+            currentVerb = actionsList[maxScoreIndex].verb;
+            currentNoun = actionsList[maxScoreIndex].noun;
 
             // Set the Robot State == verb
             state = (State)System.Enum.Parse(typeof(State), verb, true);
@@ -237,6 +247,13 @@ public class CharacterBehaviour : MonoBehaviour
         rb.useGravity = true;
 
         //gameObject.transform.position = defaultPosition.position;
+    }
+
+    private IEnumerator DisableGameObject(GameObject gameObject)
+    {
+        
+        yield return new WaitForSeconds(3);
+        gameObject.SetActive(false);
     }
 
     
