@@ -10,19 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66ac4d4fe1e9b634481cf56b217e367c, type: 3}
-  m_Name: JapaneseIdeoArraySecondTopic
+  m_Name: JapaneseIdeoArray
   m_EditorClassIdentifier: 
   ideos:
-  - ideosPartitions:
-    - {fileID: 21300000, guid: 92f70aa3440f3194ea5b63f56f02d4d1, type: 3}
-    - {fileID: 21300000, guid: 92f70aa3440f3194ea5b63f56f02d4d1, type: 3}
-  - ideosPartitions:
-    - {fileID: 21300000, guid: 0feda298c1cc3994298b7cfe345437bc, type: 3}
-    - {fileID: 21300000, guid: 0feda298c1cc3994298b7cfe345437bc, type: 3}
-  - ideosPartitions:
-    - {fileID: 21300000, guid: cd925fb50e11c27459221adf5d545481, type: 3}
-    - {fileID: 21300000, guid: cd925fb50e11c27459221adf5d545481, type: 3}
-  ideosPartitions:
+  - word: palle
+    ideosInWord:
+    - {fileID: 21300000, guid: 305ba1adc3b23464fb836682fc17489c, type: 3}
+    - {fileID: 21300000, guid: 9cf79a698ff66ec48bd4b5a7e53cc17f, type: 3}
+    - {fileID: 21300000, guid: 305ba1adc3b23464fb836682fc17489c, type: 3}
+  - word: culo
+    ideosInWord:
+    - {fileID: 21300000, guid: 46ea44228fa36fb42ae4e7379ee45cd6, type: 3}
+    - {fileID: 21300000, guid: a995f081c6c883f4eae70c54c9dcad3b, type: 3}
+    - {fileID: 21300000, guid: 8c9ef0354057c1847ba81bb2f0d14b9f, type: 3}
+  - word: tu
+    ideosInWord:
+    - {fileID: 21300000, guid: 32d201484cc9ad64e99f5cfe2aa8c58d, type: 3}
+    - {fileID: 21300000, guid: 571fab84378dc1c45abfc2c17c77461f, type: 3}
+  numbers:
   - {fileID: 21300000, guid: 3d4c92474ed596b479c9fca2c969a34d, type: 3}
   - {fileID: 21300000, guid: ab561f22dbf29ff43a205f539145cf5c, type: 3}
   - {fileID: 21300000, guid: 6aea52e186f31414bb127488fd988bc3, type: 3}

@@ -11,7 +11,7 @@ public class IdeoRecognition : MonoBehaviour
     DrawRandomIdeo drawRandomIdeo;
     public float[] results;
     private Worker worker;
-    public int indexResult;
+    private int indexResult;
     void Start()
     {
         drawRandomIdeo = GameObject.Find("GameManager").GetComponent<DrawRandomIdeo>();
@@ -57,7 +57,7 @@ public class IdeoRecognition : MonoBehaviour
         results = outputTensor.DownloadToArray();
 
         indexResult = GetMaxIndex(results);
-        Debug.Log(indexResult);
+        Debug.Log("indice riconosciuto: " + indexResult);
         drawRandomIdeo.ToNextIdeosPartition(indexResult);
     }
     private void OnDisable()

@@ -1221,7 +1221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: {fileID: 1105398781}
-  drawRandomIdeo: {fileID: 0}
 --- !u!114 &1183628620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,7 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636358f34fe5a0e4db10f426b7475c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  japaneseIdeoArray: {fileID: 11400000, guid: 382eb830f188e1f4bbbcc4f3f67b4bd3, type: 2}
+  japaneseIdeoArray: {fileID: 11400000, guid: 982fe451a6101f84b97bc3570f21a942, type: 2}
   fullIdeoImage: {fileID: 1846724733}
   text: {fileID: 1516242726}
   numbersIdeo: []

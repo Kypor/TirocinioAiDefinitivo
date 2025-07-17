@@ -6,10 +6,11 @@ using UnityEngine;
 public class JapaneseIdeoArray : ScriptableObject
 {
     public List<ListWrapper> ideos;
-     public List<Sprite> ideosPartitions;
+    public List<Sprite> numbers;
 }
 [System.Serializable]
 public class ListWrapper  
 {
-    public List<Sprite> ideosPartitions;
+    public string word;
+    public List<Sprite> ideosInWord;
 }

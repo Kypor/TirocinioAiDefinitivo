@@ -22,7 +22,7 @@ public class DrawNumberManager : MonoBehaviour
     void Start()
     {
         //fullIdeoImage.sprite = GetRandomIdeo();
-        //partitionIdeoImage.sprite = currentIdeo.ideosPartitions[currentNumberIndex];
+        //partitionIdeoImage.sprite = currentIdeo.numbers[currentNumberIndex];
         numbersIdeo.Add("ゼロ");
         numbersIdeo.Add("一");
         numbersIdeo.Add("二");
@@ -44,12 +44,12 @@ public class DrawNumberManager : MonoBehaviour
         currentNumberIndex++;
         if (currentNumberIndex <= 10)
         {
-            fullIdeoImage.sprite = japaneseIdeoArray.ideosPartitions[currentNumberIndex - 1];
+            fullIdeoImage.sprite = japaneseIdeoArray.numbers[currentNumberIndex - 1];
             return "draw the number " + (currentNumberIndex - 1);
         }
         if (currentNumberIndex <= 20)
         {
-            fullIdeoImage.sprite = japaneseIdeoArray.ideosPartitions[currentNumberIndex - 11];
+            fullIdeoImage.sprite = japaneseIdeoArray.numbers[currentNumberIndex - 11];
             return "draw the number " + numbersIdeo[currentNumberIndex - 11];
         }
         currentRandomNumberIndex++;

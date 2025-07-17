@@ -9,9 +9,6 @@ public class DrawWithMouse : MonoBehaviour
     public static List<LineRenderer> drawLineRenders = new List<LineRenderer>();
     Coroutine drawing;
     public RectTransform area;
-    [SerializeField]
-    DrawRandomIdeo drawRandomIdeo;
-
     // Update is called once per frame
     void Update()
     {
