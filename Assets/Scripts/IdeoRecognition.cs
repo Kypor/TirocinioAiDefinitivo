@@ -1,7 +1,6 @@
 using UnityEngine;
 using Unity.InferenceEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class IdeoRecognition : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class IdeoRecognition : MonoBehaviour
     public int indexResult;
     void Start()
     {
-        drawRandomIdeo = GameObject.Find("DrawRandomIdeoManager").GetComponent<DrawRandomIdeo>();
+        drawRandomIdeo = GameObject.Find("GameManager").GetComponent<DrawRandomIdeo>();
         Model model = ModelLoader.Load(modelAsset);
 
         FunctionalGraph graph = new FunctionalGraph();

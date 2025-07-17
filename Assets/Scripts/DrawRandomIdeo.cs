@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +8,7 @@ public class DrawRandomIdeo : MonoBehaviour
     public Image partitionIdeoImage, fullIdeoImage;
     private ListWrapper currentIdeo;
     private int currentNumberIndex = 1, currentIdeoIndex = 0;
+    public Image errorIndicator;
     void Start()
     {
         fullIdeoImage.sprite = GetRandomIdeo();
@@ -50,13 +48,12 @@ public class DrawRandomIdeo : MonoBehaviour
     {
         if (currentIdeoIndex == recognizedIndex)
         {
+            errorIndicator.color = new Color(0, 1, 0, 1f);
             Debug.Log("bravo");
             return true;
         }
+        errorIndicator.color = new Color(1, 0, 0, 1f);
         Debug.Log("sbagliato");
         return false;
-
     }
-
 }
-
