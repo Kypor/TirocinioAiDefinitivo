@@ -624,7 +624,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: f2c3dd4917f03ea448728bcc0e47d71d, type: 2}
   m_BuildHeightMesh: 0
@@ -785,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7690978067668802722, guid: 1909352e3a186894fbd045ac8fe132b8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.796
+      value: -3.585
       objectReference: {fileID: 0}
     - target: {fileID: 7690978067668802722, guid: 1909352e3a186894fbd045ac8fe132b8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2118,8 +2118,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 58613fc5cadb8654a8dbda6e7f525adc, type: 2}
+  m_sharedMaterial: {fileID: -7786892333198751292, guid: 58613fc5cadb8654a8dbda6e7f525adc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.45
+  m_fontSize: 24.25
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3223,7 +3223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 572244017260947765, guid: 7ffe462c97c4b684991a6f9472318357, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.945
+      value: -3.734
       objectReference: {fileID: 0}
     - target: {fileID: 572244017260947765, guid: 7ffe462c97c4b684991a6f9472318357, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3961,7 +3961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 1468278776}
-  romajiString: 
 --- !u!1001 &1224560246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5487,7 +5486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4661394233312364636, guid: a457d02d5bf10c9459386d5931ca3a94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.455
+      value: -2.18
       objectReference: {fileID: 0}
     - target: {fileID: 4661394233312364636, guid: a457d02d5bf10c9459386d5931ca3a94, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6267,6 +6266,12 @@ MonoBehaviour:
   - sentence: Take off shoes
     verb: Kneel
     noun: 
+  - sentence: "\u304F\u3064\u3092\u306C\u3044\u3067"
+    verb: Kneel
+    noun: 
+  - sentence: "\u307F\u305A\u3092\u306E\u307F\u307E\u3059"
+    verb: Eat
+    noun: Bottle
   sentences: []
 --- !u!195 &1839254888
 NavMeshAgent:
@@ -6790,7 +6795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4892887917995881087, guid: 9212441ed0520ab47817284a41f94845, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.734
+      value: -4.5230002
       objectReference: {fileID: 0}
     - target: {fileID: 4892887917995881087, guid: 9212441ed0520ab47817284a41f94845, type: 3}
       propertyPath: m_LocalRotation.w

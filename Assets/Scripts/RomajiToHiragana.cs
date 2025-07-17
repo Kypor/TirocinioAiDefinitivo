@@ -5,197 +5,199 @@ using System.Collections.Generic;
 public class RomajiToHiragana : MonoBehaviour
 {
     public TMP_InputField inputField;
-    public string romajiString;
+
+    private Dictionary<string, string> romajiToHiragana = new Dictionary<string, string>()
+    {
+        // Vocali
+        {"a", "あ"}, {"i", "い"}, {"u", "う"}, {"e", "え"}, {"o", "お"},
+
+        // K
+        {"ka", "か"}, {"ki", "き"}, {"ku", "く"}, {"ke", "け"}, {"ko", "こ"},
+        {"kya", "きゃ"}, {"kyu", "きゅ"}, {"kyo", "きょ"},
+
+        // S
+        {"sa", "さ"}, {"shi", "し"}, {"su", "す"}, {"se", "せ"}, {"so", "そ"},
+        {"sha", "しゃ"}, {"shu", "しゅ"}, {"sho", "しょ"},
+
+        // T
+        {"ta", "た"}, {"chi", "ち"}, {"tsu", "つ"}, {"te", "て"}, {"to", "と"},
+        {"cha", "ちゃ"}, {"chu", "ちゅ"}, {"cho", "ちょ"},
+
+        // N
+        {"na", "な"}, {"ni", "に"}, {"nu", "ぬ"}, {"ne", "ね"}, {"no", "の"},
+        {"nya", "にゃ"}, {"nyu", "にゅ"}, {"nyo", "にょ"},
+
+        // H
+        {"ha", "は"}, {"hi", "ひ"}, {"fu", "ふ"}, {"he", "へ"}, {"ho", "ほ"},
+        {"hya", "ひゃ"}, {"hyu", "ひゅ"}, {"hyo", "ひょ"},
+
+        // M
+        {"ma", "ま"}, {"mi", "み"}, {"mu", "む"}, {"me", "め"}, {"mo", "も"},
+        {"mya", "みゃ"}, {"myu", "みゅ"}, {"myo", "みょ"},
+
+        // Y
+        {"ya", "や"}, {"yu", "ゆ"}, {"yo", "よ"},
+
+        // R
+        {"ra", "ら"}, {"ri", "り"}, {"ru", "る"}, {"re", "れ"}, {"ro", "ろ"},
+        {"rya", "りゃ"}, {"ryu", "りゅ"}, {"ryo", "りょ"},
+
+        // W
+        {"wa", "わ"}, {"wo", "を"},
+
+        // G
+        {"ga", "が"}, {"gi", "ぎ"}, {"gu", "ぐ"}, {"ge", "げ"}, {"go", "ご"},
+        {"gya", "ぎゃ"}, {"gyu", "ぎゅ"}, {"gyo", "ぎょ"},
+
+        // Z
+        {"za", "ざ"}, {"ji", "じ"}, {"zu", "ず"}, {"ze", "ぜ"}, {"zo", "ぞ"},
+        {"ja", "じゃ"}, {"ju", "じゅ"}, {"jo", "じょ"},
+
+        // D
+        {"da", "だ"}, {"de", "で"}, {"do", "ど"},
+
+        // B
+        {"ba", "ば"}, {"bi", "び"}, {"bu", "ぶ"}, {"be", "べ"}, {"bo", "ぼ"},
+        {"bya", "びゃ"}, {"byu", "びゅ"}, {"byo", "びょ"},
+
+        // P
+        {"pa", "ぱ"}, {"pi", "ぴ"}, {"pu", "ぷ"}, {"pe", "ぺ"}, {"po", "ぽ"},
+        {"pya", "ぴゃ"}, {"pyu", "ぴゅ"}, {"pyo", "ぴょ"}
+    };
+
+    private string romajiBuffer = "";
+    bool ignoreCallback = false;
 
     void Start()
     {
-        // Inverti il dizionario all'avvio
-        romajiToHiragana = new Dictionary<string, string>();
-        foreach (var pair in HiraganaToRomaji)
-        {
-            // Evita duplicati (nel tuo caso, per esempio "shi" e "si")
-            if (!romajiToHiragana.ContainsKey(pair.Value))
-                romajiToHiragana[pair.Value] = pair.Key;
-        }
-
-        // Test: stringa in romaji
-        string inputRomaji = "konnichiwa";
-        string converted = ConvertRomajiToHiragana(inputRomaji);
-        Debug.Log("Hiragana: " + converted); // こんにちは
+        inputField.onValueChanged.AddListener(OnInputChanged);
     }
 
-    string ConvertRomajiToHiragana(string input)
+    void OnInputChanged(string text)
     {
-        string result = "";
-        int i = 0;
-        int maxLen = 3; // Massima lunghezza di un'unità romaji (es. "kyo")
+        if (ignoreCallback) return;
 
-        while (i < input.Length)
+        if (text.Length == 0)
         {
-            bool matched = false;
-            int len = Mathf.Min(maxLen, input.Length - i);
+            romajiBuffer = "";
+            return;
+        }
 
-            // Provo da maxLen a 1 per trovare la combinazione più lunga possibile
-            for (int j = len; j > 0; j--)
+        int caretPos = inputField.caretPosition;
+        if (caretPos == 0) return;
+
+        char lastChar = text[caretPos - 1];
+        
+        // Se non è una lettera, gestisci eventuali "n" in sospeso
+        if (!char.IsLetter(lastChar))
+        {
+            if (romajiBuffer == "n")
             {
-                string chunk = input.Substring(i, j);
-                if (romajiToHiragana.TryGetValue(chunk, out string hira))
+                ReplaceBufferWithKana("ん", 1);
+            }
+            romajiBuffer = "";
+            return;
+        }
+
+        romajiBuffer += lastChar.ToString().ToLower();
+
+        // Caso speciale: doppia "nn" → sempre "ん"
+        if (romajiBuffer.EndsWith("nn"))
+        {
+            ReplaceBufferWithKana("ん", 2);
+            romajiBuffer = "";
+            return;
+        }
+
+        // Caso: "n" seguita da consonante che non può formare sillaba con "n"
+        if (romajiBuffer.Length >= 2 && romajiBuffer[romajiBuffer.Length - 2] == 'n')
+        {
+            char nextChar = romajiBuffer[romajiBuffer.Length - 1];
+            
+            // Se "n" è seguita da consonante che NON può formare sillaba con "n"
+            if (ShouldConvertNToKana(nextChar))
+            {
+                // Converti "n" in "ん", mantieni la consonante nel buffer
+                string remainingChar = nextChar.ToString();
+                ReplaceBufferWithKana("ん", 1);
+                romajiBuffer = remainingChar; // Mantieni la consonante per la prossima iterazione
+                return;
+            }
+        }
+
+        // Cerca match nel dizionario, partendo dalle combinazioni più lunghe
+        for (int len = Mathf.Min(3, romajiBuffer.Length); len > 0; len--)
+        {
+            string slice = romajiBuffer.Substring(romajiBuffer.Length - len, len);
+            if (romajiToHiragana.TryGetValue(slice, out string kana))
+            {
+                ReplaceBufferWithKana(kana, len);
+                romajiBuffer = "";
+                return;
+            }
+        }
+
+        // Se il buffer è troppo lungo senza match, potrebbero esserci "n" da convertire
+        if (romajiBuffer.Length > 3)
+        {
+            // Cerca "n" isolate all'inizio del buffer
+            for (int i = 0; i < romajiBuffer.Length - 1; i++)
+            {
+                if (romajiBuffer[i] == 'n' && ShouldConvertNToKana(romajiBuffer[i + 1]))
                 {
-                    result += hira;
-                    i += j;
-                    matched = true;
+                    // Converti la "n" a posizione i
+                    int caretPosition = inputField.caretPosition;
+                    int nPosition = caretPosition - romajiBuffer.Length + i;
+                    
+                    string currentText = inputField.text;
+                    string newText = currentText.Substring(0, nPosition) + "ん" + currentText.Substring(nPosition + 1);
+                    
+                    ignoreCallback = true;
+                    inputField.text = newText;
+                    inputField.caretPosition = caretPosition;
+                    ignoreCallback = false;
+                    
+                    romajiBuffer = romajiBuffer.Substring(i + 1);
                     break;
                 }
             }
-
-            if (!matched)
-            {
-                // Se non corrisponde a nulla, lo aggiungo come carattere grezzo
-                result += input[i];
-                i++;
-            }
         }
-
-        return result;
     }
 
-    private Dictionary<string, string> HiraganaToRomaji = new Dictionary<string, string>()
+    bool ShouldConvertNToKana(char nextChar)
     {
-                {"あ", "a"},
-                {"い", "i"},
-                {"う", "u"},
-                {"え", "e"},
-                {"お", "o"},
+        // "n" diventa "ん" se seguita da:
+        // - consonanti che non possono combinarsi con "n" (escluse a, e, i, o, u, y)
+        // - oppure consonanti che formano sillabe specifiche ma non con "n"
+        
+        // Consonanti che NON possono seguire "n" per formare sillabe:
+        // b, c, d, f, g, j, k, m, p, q, r, s, t, v, w, x, z
+        
+        if (IsVowel(nextChar)) return false; // na, ne, ni, no, nu sono valide
+        if (nextChar == 'y') return false;   // nya, nyu, nyo sono valide
+        
+        return true; // tutte le altre consonanti
+    }
 
+    bool IsVowel(char c)
+    {
+        return "aeiou".Contains(c);
+    }
 
-                {"か", "ka"},
-                {"き", "ki"},
-                {"く", "ku"},
-                {"け", "ke"},
-                {"こ", "ko"},
+    void ReplaceBufferWithKana(string kana, int romajiLength, int removeFromBuffer = 0)
+    {
+        int caretPos = inputField.caretPosition;
+        int replaceStart = caretPos - romajiLength;
 
-                {"さ", "sa"},
-                {"し", "si"},
-                {"す", "su"},
-                {"せ", "se"},
-                {"そ", "so"},
+        string text = inputField.text;
+        string newText = text.Substring(0, replaceStart) + kana + text.Substring(caretPos);
 
-                {"た", "ta"},
-                {"ち", "ti"},
-                {"つ", "tu"},
-                {"て", "te"},
-                {"と", "to"},
+        ignoreCallback = true;
+        inputField.text = newText;
+        inputField.caretPosition = replaceStart + kana.Length;
+        ignoreCallback = false;
 
-                {"な", "na"},
-                {"に", "ni"},
-                {"ぬ", "nu"},
-                {"ね", "ne"},
-                {"の", "no"},
-                
-                // 直音-清音(ハ～ヲ)
-                {"は", "ha"},
-                {"ひ", "hi"},
-                {"ふ", "hu"},
-                {"へ", "he"},
-                {"ほ", "ho"},
-
-                {"ま", "ma"},
-                {"み", "mi"},
-                {"む", "mu"},
-                {"め", "me"},
-                {"も", "mo"},
-
-                {"や", "ya"},
-                {"ゆ", "yu"},
-                {"よ", "yo"},
-
-                {"ら", "ra"},
-                {"り", "ri"},
-                {"る", "ru"},
-                {"れ", "re"},
-                {"ろ", "ro"},
-
-                {"わ", "wa"},
-                {"ゐ", "wi"},
-                {"ゑ", "we"},
-                {"を", "wo"},
-
-                // 直音-濁音(ガ～ボ)、半濁音(パ～ポ)
-                {"が", "ga"},
-                {"ぎ", "gi"},
-                {"ぐ", "gu"},
-                {"げ", "ge"},
-                {"ご", "go"},
-
-                {"ざ", "za"},
-                {"じ", "zi"},
-                {"ず", "zu"},
-                {"ぜ", "ze"},
-                {"ぞ", "zo"},
-
-                {"だ", "da"},
-                {"ぢ", "di"},
-                {"づ", "du"},
-                {"で", "de"},
-                {"ど", "do"},
-
-                {"ば", "ba"},
-                {"び", "bi"},
-                {"ぶ", "bu"},
-                {"べ", "be"},
-                {"ぼ", "bo"},
-
-                {"ぱ", "pa"},
-                {"ぴ", "pi"},
-                {"ぷ", "pu"},
-                {"ぺ", "pe"},
-                {"ぽ", "po"},
-
-                // 拗音-清音(キャ～リョ)
-                {"きゃ", "kya"},
-                {"きゅ", "kyu"},
-                {"きょ", "kyo"},
-                {"しゃ", "sya"},
-                {"しゅ", "syu"},
-                {"しょ", "syo"},
-                {"ちゃ", "tya"},
-                {"ちゅ", "tyu"},
-                {"ちょ", "tyo"},
-                {"にゃ", "nya"},
-                {"にゅ", "nyu"},
-                {"にょ", "nyo"},
-                {"ひゃ", "hya"},
-                {"ひゅ", "hyu"},
-                {"ひょ", "hyo"},
-                {"みゃ", "mya"},
-                {"みゅ", "myu"},
-                {"みょ", "myo"},
-                {"りゃ", "rya"},
-                {"りゅ", "ryu"},
-                {"りょ", "ryo"},
-               
-
-                // 拗音-濁音(ギャ～ビョ)、半濁音(ピャ～ピョ)、合拗音(クヮ、グヮ)
-                {"ぎゃ", "gya"},
-                {"ぎゅ", "gyu"},
-                {"ぎょ", "gyo"},
-                {"じゃ", "zya"},
-                {"じゅ", "zyu"},
-                {"じょ", "zyo"},
-                {"ぢゃ", "dya"},
-                {"ぢゅ", "dyu"},
-                {"ぢょ", "dyo"},
-                {"びゃ", "bya"},
-                {"びゅ", "byu"},
-                {"びょ", "byo"},
-                {"ぴゃ", "pya"},
-                {"ぴゅ", "pyu"},
-                {"ぴょ", "pyo"},
-                {"くゎ", "kwa"},
-                {"ぐゎ", "gwa"},
-
-    };
-
-    private Dictionary<string, string> romajiToHiragana;
-
+        if (removeFromBuffer > 0 && romajiBuffer.Length >= removeFromBuffer)
+            romajiBuffer = romajiBuffer.Substring(0, romajiBuffer.Length - removeFromBuffer);
+    }
 }
