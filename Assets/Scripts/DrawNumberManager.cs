@@ -16,6 +16,7 @@ public class DrawNumberManager : MonoBehaviour
     public List<string> numbersIdeo = new();
     public List<int> uniqueRandomNumbers = new();
     public GameObject finishGamePanel;
+    public Image errorIndicator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,10 +72,14 @@ public class DrawNumberManager : MonoBehaviour
             if (number == currentNumberIndex - 1 || number == currentNumberIndex - 11)
             {
                 text.text = PrintText();
+                SoundManager.instance.PlaySoundFX(1);
+                errorIndicator.color = new Color(0, 1, 0, 1f);
                 Debug.Log("testo cambiato");
             }
             else
             {
+                errorIndicator.color = new Color(1, 0, 0, 1f);
+                SoundManager.instance.PlaySoundFX(2);
                 Debug.Log("number: " + number);
                 Debug.Log("random index: " + currentRandomNumberIndex);
                 Debug.Log("testo NON cambiato");
@@ -87,12 +92,14 @@ public class DrawNumberManager : MonoBehaviour
                 pointsManagerScript.AddPoints();
                 SoundManager.instance.PlaySoundFX(1);
                 text.text = PrintText();
+                errorIndicator.color = new Color(0, 1, 0, 0.5f);
                 Debug.Log("testo cambiato");
             }
             else
             {
                 pointsManagerScript.SubPoints();
                 SoundManager.instance.PlaySoundFX(2);
+                errorIndicator.color = new Color(1, 0, 0, 0.5f);
                 Debug.Log("number: " + number);
                 Debug.Log("random index: " + currentRandomNumberIndex);
                 Debug.Log("testo NON cambiato");

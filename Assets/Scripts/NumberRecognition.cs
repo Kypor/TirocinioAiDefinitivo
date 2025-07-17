@@ -87,6 +87,7 @@ public class NumberRecognition : MonoBehaviour
         Sprite screenshotSprite = Sprite.Create(screenshot, new Rect(0, 0, screenshot.width, screenshot.height), new Vector2(0.5f, 0.5f));
         screenshotCanva.enabled = true;
         screenshotCanva.sprite = screenshotSprite;
+        DrawWithMouse.DestroyLines();
     }
 }
 

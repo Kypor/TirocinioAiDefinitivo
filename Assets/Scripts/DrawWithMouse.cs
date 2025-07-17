@@ -50,7 +50,7 @@ public class DrawWithMouse : MonoBehaviour
             
         }
     }
-    public void DestroyLines()
+    public static void DestroyLines()
     {
         if (drawLineRenders.Count != 0)
         {
