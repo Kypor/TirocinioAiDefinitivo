@@ -14,11 +14,15 @@ public class DrawRandomIdeo : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text;
     private CountdownTimer timer;
+    private PointsManagerScript pointsManagerScript;
+
     void Start()
     {
         timer = GetComponent<CountdownTimer>();
         ideoImage.sprite = GetRandomIdeo();
+        pointsManagerScript = GameObject.Find("GameManager").GetComponent<PointsManagerScript>();
     }
+
     private Sprite GetRandomIdeo()
     {
         if (WordsCount < numberOfWords)
@@ -30,11 +34,10 @@ public class DrawRandomIdeo : MonoBehaviour
         }
         timer.StopTimer();
         return null;
-
     }
+
     public void ToNextIdeosPartition(int recognizedIndex)
     {
-
         if (CheckIdeo(recognizedIndex))
         {
             if (currentNumberIndex < currentIdeo.ideosInWord.Count - 1)
@@ -58,8 +61,9 @@ public class DrawRandomIdeo : MonoBehaviour
         ideoImage.sprite = GetRandomIdeo();
         currentNumberIndex = 0;
         //add point;
-
+        pointsManagerScript.AddPoints();
     }
+    
     private bool CheckIdeo(int recognizedIndex)
     {
         currentIdeoIndex = int.Parse(ideoImage.sprite.name.Substring(0, 2));
@@ -72,6 +76,8 @@ public class DrawRandomIdeo : MonoBehaviour
         }
         errorIndicator.color = new Color(1, 0, 0, 1f);
         Debug.Log("sbagliato");
+        //sub points
+        pointsManagerScript.SubPoints();
         return false;
     }
 }

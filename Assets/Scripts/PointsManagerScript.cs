@@ -29,6 +29,7 @@ public class PointsManagerScript : MonoBehaviour
         totalPoints = 0f;
         totalPointsText.text = "Points : " + totalPoints.ToString();
     }
+
     public IEnumerator Fade(float end, CanvasGroup canvasGroup)
     {
         SoundManager.instance.PlaySoundFX(0);
@@ -42,6 +43,7 @@ public class PointsManagerScript : MonoBehaviour
         }
         canvasGroup.alpha = end;
     }
+
     void EmptyStars()
     {
         foreach (Image image in starsImages)
@@ -49,6 +51,7 @@ public class PointsManagerScript : MonoBehaviour
             image.sprite = emptyStarSprite;
         }
     }
+
     public IEnumerator ShowResults()
     {
         StartCoroutine(Fade(1, finishGamePanel.GetComponent<CanvasGroup>()));
@@ -59,6 +62,7 @@ public class PointsManagerScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
         StartCoroutine(FillStars());
     }
+
     public void AddPoints()
     {
         totalPoints += basePoints;
@@ -78,6 +82,7 @@ public class PointsManagerScript : MonoBehaviour
                 break;
         }
     }
+
     public void SubPoints()
     {
         float points = penalityPercentage / 100f * basePoints;
@@ -98,6 +103,7 @@ public class PointsManagerScript : MonoBehaviour
                 break;
         }
     }
+
     IEnumerator FillStars()
     {
         float performanceRatio = totalPoints / (numberOfWords * basePoints);
@@ -113,10 +119,5 @@ public class PointsManagerScript : MonoBehaviour
             starsImages[i].sprite = fullStarSprite;
             yield return new WaitForSeconds(0.5f);
         }
-    }
-
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene(0);
     }
 }

@@ -6,7 +6,6 @@ using Button = UnityEngine.UI.Button;
 using TMPro;
 using System.Text.RegularExpressions;
 using System.Collections;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
@@ -49,24 +48,7 @@ namespace Whisper.Samples
                 .FindIndex(op => op.text == whisper.language);
             languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
         }
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) && pointsManagerScript.finishGamePanel.GetComponent<CanvasGroup>().alpha == 0)
-            {
-                Settings();
-            }
-        }
-        void Settings()
-        {
-            if (settingsPanel.GetComponent<CanvasGroup>().alpha == 0)
-            {
-                ShowSettings();
-            }
-            else
-            {
-                UnShowSettings();
-            }
-        }
+
         private void OnVadChanged(bool vadStop)
         {
             microphoneRecord.vadStop = vadStop;
@@ -164,6 +146,7 @@ namespace Whisper.Samples
 
             }
         }
+
         private IEnumerator WrongWordCoroutine()
         {
             SoundManager.instance.PlaySoundFX(2);
@@ -172,37 +155,5 @@ namespace Whisper.Samples
             yield return new WaitForSeconds(0.50f);
             randomWord.color = Color.white;
         }
-
-        void ShowSettings()
-        {
-            StopAllCoroutines();
-            StartCoroutine(Fade(1, settingsPanel.GetComponent<CanvasGroup>()));
-            settingsPanel.GetComponent<CanvasGroup>().interactable = true;
-            settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-        void UnShowSettings()
-        {
-            StopAllCoroutines();
-            StartCoroutine(Fade(0, settingsPanel.GetComponent<CanvasGroup>()));
-            settingsPanel.GetComponent<CanvasGroup>().interactable = false;
-            settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
-        public IEnumerator Fade(float end, CanvasGroup canvasGroup)
-        {
-            float elapsedTime = 0.0f;
-            float start = canvasGroup.alpha;
-            while (elapsedTime < 0.5f)
-            {
-                elapsedTime += Time.deltaTime;
-                canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 0.5f);
-                yield return null;
-            }
-            canvasGroup.alpha = end;
-        }
-        public void BackToMenu()
-        {
-            SceneManager.LoadScene(0);
-        }
     }
-
 }
