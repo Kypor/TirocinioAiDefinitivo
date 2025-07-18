@@ -7,6 +7,7 @@ using UnityEngine.AI; //important
 public class RandomMovement : MonoBehaviour //don't forget to change the script name if you haven't
 {
     public NavMeshAgent agent;
+    private CharacterBehaviour characterBehaviour;
     private Animator animator;
     public float range; //radius of sphere
 
@@ -21,54 +22,73 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
 
     private bool isPaused = false;
     private float pauseTimer = 0f;
+    public float customTimer = 5f;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        characterBehaviour = FindAnyObjectByType<CharacterBehaviour>();
     }
 
-    
-    void Update()
+
+     void Update()
     {
         animator.SetFloat("Vert", agent.velocity.magnitude);
-        if (agent.velocity.magnitude > 0f)
+
+        if (characterBehaviour.catInteraction == true)
         {
-            Debug.Log("Movimento");
+            Debug.Log("Gatto fermo");
+            StartPause(customTimer);
         }
         else
-            Debug.Log("Fermo");
-        // Se è in pausa, conta il tempo
-        if (isPaused)
         {
-            pauseTimer -= Time.deltaTime;
-            if (pauseTimer <= 0f)
+            
+            // Se è in pausa, conta il tempo
+            if (isPaused)
             {
-                isPaused = false;
-                // Riprendi il movimento trovando una nuova destinazione
-                FindNewDestination();
+                
+                pauseTimer -= Time.deltaTime;
+                Debug.Log(pauseTimer);
+                if (pauseTimer <= 0f)
+                {
+                    isPaused = false;
+                    // Riprendi il movimento trovando una nuova destinazione
+                    FindNewDestination();
+                }
+                return;
             }
-            return;
+
+            if (agent.remainingDistance <= agent.stoppingDistance) //done with path
+            {
+                // Controlla se deve fare una pausa
+                if (Random.value < pauseChance)
+                {
+                    StartPause();
+                }
+                else
+                {
+                    FindNewDestination();
+                }
+            }
         }
 
-        if(agent.remainingDistance <= agent.stoppingDistance) //done with path
-        {
-            // Controlla se deve fare una pausa
-            if (Random.value < pauseChance)
-            {
-                StartPause();
-            }
-            else
-            {
-                FindNewDestination();
-            }
-        }
     }
 
-    void StartPause()
+    void StartPause(float? customDuration = null)
     {
         isPaused = true;
-        pauseTimer = Random.Range(minPauseTime, maxPauseTime);
+        
+        // Se viene passato un valore personalizzato, usalo, altrimenti usa random
+        if (customDuration.HasValue)
+        {
+            pauseTimer = customDuration.Value;
+        }
+        else
+        {
+            pauseTimer = Random.Range(minPauseTime, maxPauseTime);
+        }
+        
         agent.SetDestination(transform.position); // Ferma l'agent
     }
 
@@ -87,7 +107,7 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
         Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
-        { 
+        {
             //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
             //or add a for loop like in the documentation
             result = hit.position;

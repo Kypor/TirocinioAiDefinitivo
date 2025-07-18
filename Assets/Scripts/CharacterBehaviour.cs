@@ -29,7 +29,8 @@ public class CharacterBehaviour : MonoBehaviour
         Dance,
         Eat,
         Kneel,
-        Sleep
+        Sleep,
+        Pet
     }
 
     [SerializeField] GameObject shoes;
@@ -41,6 +42,7 @@ public class CharacterBehaviour : MonoBehaviour
     [SerializeField] Transform defaultPosition;
     [SerializeField] Transform eatingPoint;
     [SerializeField] Transform sleepPosition;
+    public bool catInteraction;
 
     private Camera cam;
 
@@ -72,7 +74,7 @@ public class CharacterBehaviour : MonoBehaviour
         {
             default:
             case State.Idle:
-                
+
                 break;
             case State.Moving:
                 Debug.Log("Moving");
@@ -166,6 +168,22 @@ public class CharacterBehaviour : MonoBehaviour
                 {
                     transform.position = sleepPosition.position;
                     animator.SetBool("Sleeping", true);
+                }
+                break;
+            case State.Pet:
+                catInteraction = true;
+                agent.SetDestination(goalObject.transform.position);
+                if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
+                {
+                    animator.SetBool("Kneeling", true);
+                    if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Kneel"))
+                    {
+
+                        state = State.Idle;
+                        animator.SetBool("Kneeling", false);
+                        catInteraction = false;
+
+                    }
                 }
                 break;
 

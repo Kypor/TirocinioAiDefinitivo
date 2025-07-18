@@ -3381,6 +3381,7 @@ MonoBehaviour:
   defaultPosition: {fileID: 489959055}
   eatingPoint: {fileID: 0}
   sleepPosition: {fileID: 0}
+  catInteraction: 0
   actionsList:
   - sentence: Hello
     verb: Idle
@@ -6024,12 +6025,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92885cf5df398a44fa767f8d2d3f46ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 1349519397}
   range: 10
   centrePoint: {fileID: 1349519395}
   minPauseTime: 0.05
   maxPauseTime: 2
   pauseChance: 0.3
+  customTimer: 5
 --- !u!195 &1349519397
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8491,6 +8493,7 @@ MonoBehaviour:
   defaultPosition: {fileID: 489959055}
   eatingPoint: {fileID: 1202463516}
   sleepPosition: {fileID: 743134477}
+  catInteraction: 0
   actionsList:
   - sentence: "\u304A\u3069\u308A\u307E\u3059"
     verb: Dance
@@ -8507,6 +8510,9 @@ MonoBehaviour:
   - sentence: "\u306D\u308B"
     verb: Sleep
     noun: Bed
+  - sentence: "\u306D\u3053"
+    verb: Pet
+    noun: Cat
   sentences: []
 --- !u!195 &1839254888
 NavMeshAgent:
@@ -9296,7 +9302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6397291155531275063, guid: 44a0de0f766c9634eb66f1d56b7edc9d, type: 3}
       propertyPath: m_Name
-      value: Kitty_001
+      value: Cat
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6397291155531275060, guid: 44a0de0f766c9634eb66f1d56b7edc9d, type: 3}
