@@ -13,18 +13,28 @@ MonoBehaviour:
   m_Name: Quests
   m_EditorClassIdentifier: 
   quests:
-  - questID: 1
+  - questID: 0
     description: Togliti le scarpe
     requiredVerb: Kneel
     requiredNoun: 
     isCompleted: 1
-  - questID: 2
+  - questID: 1
     description: Bevi l'acqua
     requiredVerb: Eat
     requiredNoun: Bottle
     isCompleted: 1
-  - questID: 3
+  - questID: 2
     description: "Balla Pisell\xEC"
     requiredVerb: Dance
     requiredNoun: 
+    isCompleted: 1
+  - questID: 3
+    description: Mangia il riso
+    requiredVerb: Eat
+    requiredNoun: RiceAll
+    isCompleted: 1
+  - questID: 4
+    description: Dormi
+    requiredVerb: Sleep
+    requiredNoun: Bed
     isCompleted: 1

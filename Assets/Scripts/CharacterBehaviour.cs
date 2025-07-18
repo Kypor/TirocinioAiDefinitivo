@@ -28,15 +28,19 @@ public class CharacterBehaviour : MonoBehaviour
         BringObjectsToCheckout,
         Dance,
         Eat,
-        Kneel
+        Kneel,
+        Sleep
     }
 
     [SerializeField] GameObject shoes;
+
+    QuestManager questManager;
 
     [SerializeField] private float objectDistance = 3.0f;
     [SerializeField] Transform grabbingPoint;
     [SerializeField] Transform defaultPosition;
     [SerializeField] Transform eatingPoint;
+    [SerializeField] Transform sleepPosition;
 
     private Camera cam;
 
@@ -57,23 +61,21 @@ public class CharacterBehaviour : MonoBehaviour
         cam = FindAnyObjectByType<Camera>();
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        questManager = FindAnyObjectByType<QuestManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Speed", agent.velocity.magnitude);
         switch (state)
         {
             default:
             case State.Idle:
-                //Debug.Log("idle");
-                //animator.SetFloat("Vert", 0f);
-                animator.SetBool("Moving", false);
+                
                 break;
             case State.Moving:
                 Debug.Log("Moving");
-                //animator.SetFloat("Vert", 1f);
-                animator.SetBool("Moving", true);
                 agent.SetDestination(goalObject.transform.position);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
@@ -97,8 +99,6 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.GetObject:
                 agent.SetDestination(goalObject.transform.position);
-                //animator.SetFloat("Vert", 1f);
-                animator.SetBool("Moving", true);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
                     Grab(goalObject);
@@ -107,8 +107,6 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.BringObjectsToCheckout:
                 agent.SetDestination(goalObject.transform.position);
-                //animator.SetFloat("Vert", 1f);
-                animator.SetBool("Moving", true);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) <= 2f)
                 {
                     BringObjectsToCheckout(goalObject);
@@ -127,17 +125,15 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.Eat:
                 agent.SetDestination(goalObject.transform.position);
-                animator.SetBool("Moving", true);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
 
-                    animator.SetBool("Moving", false);
                     var goalObjectRb = goalObject.GetComponent<Rigidbody>();
                     goalObjectRb.isKinematic = true;
                     goalObject.transform.parent = eatingPoint;
                     goalObject.transform.position = eatingPoint.position;
                     goalObject.transform.rotation = eatingPoint.rotation;
-                    
+
                     animator.SetBool("Eating", true);
                     // state = State.Idle;
                     if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Eat"))
@@ -162,6 +158,14 @@ public class CharacterBehaviour : MonoBehaviour
                     animator.SetBool("Kneeling", false);
                     //shoes.SetActive(false);
                     StartCoroutine(DisableGameObject(shoes));
+                }
+                break;
+            case State.Sleep:
+                agent.SetDestination(goalObject.transform.position);
+                if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
+                {
+                    transform.position = sleepPosition.position;
+                    animator.SetBool("Sleeping", true);
                 }
                 break;
 
@@ -191,9 +195,23 @@ public class CharacterBehaviour : MonoBehaviour
             currentVerb = actionsList[maxScoreIndex].verb;
             currentNoun = actionsList[maxScoreIndex].noun;
 
-            // Set the Robot State == verb
-            state = (State)System.Enum.Parse(typeof(State), verb, true);
+            if (questManager != null && questManager.currentQuest != null)
+            {
+                if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower())
+                {
+                    state = (State)System.Enum.Parse(typeof(State), verb, true);
+                }
+                else
+                {
+                    state = State.Puzzled;
+                }
+            }
+            else
+                state = (State)System.Enum.Parse(typeof(State), verb, true);
         }
+
+        // Set the Robot State == verb
+
     }
     private void Greeting(GameObject gameObject)
     {
@@ -251,12 +269,12 @@ public class CharacterBehaviour : MonoBehaviour
 
     private IEnumerator DisableGameObject(GameObject gameObject)
     {
-        
+
         yield return new WaitForSeconds(3);
         gameObject.SetActive(false);
     }
 
-    
+
 
 
 
