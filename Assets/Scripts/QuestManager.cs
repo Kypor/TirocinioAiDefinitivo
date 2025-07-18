@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] public Quests questsData;
-    private Quest currentQuest;
+    public Quest currentQuest;
     [SerializeField] public TextMeshProUGUI textMeshPro;
     private CharacterBehaviour character;
     private int currentQuestID = 0;
@@ -30,6 +30,7 @@ public class QuestManager : MonoBehaviour
         if (currentQuestID >= questsData.quests.Count) return;
 
         currentQuest = questsData.quests[currentQuestID];
+
 
         if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun))
         {
