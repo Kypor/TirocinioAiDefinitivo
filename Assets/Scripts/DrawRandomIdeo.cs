@@ -45,11 +45,12 @@ public class DrawRandomIdeo : MonoBehaviour
                 currentNumberIndex++;
                 ideoImage.sprite = currentIdeo.ideosInWord[currentNumberIndex];
                 //Debug.Log("cambio");
-
+                DrawWithMouse.DestroyLines();
             }
             else
             {
                 ResetIdeo();
+                DrawWithMouse.DestroyLines();
                 Debug.Log("resettato");
             }
         }
@@ -63,7 +64,7 @@ public class DrawRandomIdeo : MonoBehaviour
         //add point;
         pointsManagerScript.AddPoints();
     }
-    
+
     private bool CheckIdeo(int recognizedIndex)
     {
         currentIdeoIndex = int.Parse(ideoImage.sprite.name.Substring(0, 2));
