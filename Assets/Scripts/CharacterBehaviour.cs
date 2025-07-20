@@ -42,6 +42,7 @@ public class CharacterBehaviour : MonoBehaviour
     [SerializeField] Transform defaultPosition;
     [SerializeField] Transform eatingPoint;
     [SerializeField] Transform sleepPosition;
+    [SerializeField] Transform catInteractionPoint;
     public bool catInteraction;
 
     private Camera cam;
@@ -172,16 +173,17 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.Pet:
                 catInteraction = true;
-                agent.SetDestination(goalObject.transform.position);
-                if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
+                agent.SetDestination(catInteractionPoint.position);
+                if (Vector3.Distance(transform.position, catInteractionPoint.position) < objectDistance)
                 {
+                    catInteraction = false;
                     animator.SetBool("Kneeling", true);
                     if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Kneel"))
                     {
 
                         state = State.Idle;
                         animator.SetBool("Kneeling", false);
-                        catInteraction = false;
+                        
 
                     }
                 }
