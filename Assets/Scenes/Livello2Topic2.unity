@@ -1833,8 +1833,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: disegna 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 58613fc5cadb8654a8dbda6e7f525adc, type: 2}
-  m_sharedMaterial: {fileID: -7786892333198751292, guid: 58613fc5cadb8654a8dbda6e7f525adc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3dcf5c70297b8184cb6b9a4b341796d1, type: 2}
+  m_sharedMaterial: {fileID: -7786892333198751292, guid: 3dcf5c70297b8184cb6b9a4b341796d1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1998,8 +1998,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1183628618}
-          m_TargetAssemblyTypeName: PointsManagerScript, Assembly-CSharp
+        - m_Target: {fileID: 1183628622}
+          m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
           m_MethodName: BackToMenu
           m_Mode: 1
           m_Arguments:
