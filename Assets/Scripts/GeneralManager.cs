@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GeneralManager : MonoBehaviour
 {
     QuestManager questManager;
+    [SerializeField] AudioSource backgroundMusic;
     [SerializeField] private GameObject victoryPanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +20,13 @@ public class GeneralManager : MonoBehaviour
         if (questManager.allQuestsCompleted == true)
         {
             Time.timeScale = 0;
+            backgroundMusic.Stop();
             victoryPanel.SetActive(true);
         }
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

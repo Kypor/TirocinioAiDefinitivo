@@ -16,6 +16,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    
+
     public void PlaySoundFX(int clipIndex)
     {
         AudioSource audioSource = Instantiate(soundFXobj, gameCameraTransform.position, Quaternion.identity);

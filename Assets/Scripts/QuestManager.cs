@@ -9,14 +9,18 @@ public class QuestManager : MonoBehaviour
     [SerializeField] public Quests questsData;
     public Quest currentQuest;
     [SerializeField] public TextMeshProUGUI textMeshPro;
+    [SerializeField] private GameObject questPanel;
     private CharacterBehaviour character;
     private int currentQuestID = 0;
     public bool allQuestsCompleted { get; private set; }
 
 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        questPanel.SetActive(true);
         allQuestsCompleted = false;
 
         character = FindAnyObjectByType<CharacterBehaviour>();
@@ -63,13 +67,52 @@ public class QuestManager : MonoBehaviour
 
     private IEnumerator waitForNextQuest()
     {
-        yield return new WaitForSeconds(3);
-        textMeshPro.text = currentQuest.description;
+        textMeshPro.color = Color.green;
+        yield return new WaitForSeconds(2);
+        StartCoroutine(TextLerp(false));
+        yield return new WaitForSeconds(2);
+        textMeshPro.color = Color.white;
+        StartCoroutine(TextLerp(true));
+
+
+
     }
     private IEnumerator finalQuestWait()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
+        questPanel.SetActive(false);
         textMeshPro.text = null;
         allQuestsCompleted = true;
+    }
+
+    public IEnumerator TextLerp(bool reversed)
+    {
+        Vector2 startPoint;
+        Vector2 endPoint;
+        if (!reversed)
+        {
+            startPoint = textMeshPro.transform.position;
+            endPoint = new Vector2(startPoint.x - 1000, startPoint.y);
+        }
+        else
+        {
+            startPoint = textMeshPro.transform.position;
+            endPoint = new Vector2(startPoint.x + 1000, startPoint.y);
+        }
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < 1f)
+        {
+
+            Debug.Log("Puppa");
+            elapsedTime += Time.deltaTime;
+            //canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 0.5f);
+            textMeshPro.transform.position = Vector2.Lerp(startPoint, endPoint, elapsedTime);
+            yield return null;
+        }
+
+        textMeshPro.text = currentQuest.description;
+
     }
 }

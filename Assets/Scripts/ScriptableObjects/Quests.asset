@@ -21,7 +21,7 @@ MonoBehaviour:
   - questID: 1
     description: Accarezza il gatto
     requiredVerb: Pet
-    requiredNoun: Cat
+    requiredNoun: Mimmo
     isCompleted: 1
   - questID: 2
     description: Bevi l'acqua

@@ -37,6 +37,9 @@ public class CharacterBehaviour : MonoBehaviour
 
     QuestManager questManager;
 
+    SoundManager soundManager;
+    private bool audioPlaying;
+
     [SerializeField] private float objectDistance = 3.0f;
     [SerializeField] Transform grabbingPoint;
     [SerializeField] Transform defaultPosition;
@@ -61,6 +64,8 @@ public class CharacterBehaviour : MonoBehaviour
     NavMeshAgent agent;
     void Start()
     {
+        audioPlaying = false;
+        soundManager = FindAnyObjectByType<SoundManager>();
         cam = FindAnyObjectByType<Camera>();
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -102,6 +107,7 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.GetObject:
                 agent.SetDestination(goalObject.transform.position);
+                
                 if (Vector3.Distance(transform.position, goalObject.transform.position) < objectDistance)
                 {
                     Grab(goalObject);
@@ -118,9 +124,15 @@ public class CharacterBehaviour : MonoBehaviour
                 break;
             case State.Dance:
                 animator.SetBool("Dancing", true);
+                if (!audioPlaying)
+                {
+                    soundManager.PlaySoundFX(0);
+                    audioPlaying = true;
+                }              
                 if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Dance"))
                 {
                     // Avoid any reload.
+                    audioPlaying = false;
                     Debug.Log("Finita");
                     state = State.Idle;
                     animator.SetBool("Dancing", false);
@@ -269,6 +281,8 @@ public class CharacterBehaviour : MonoBehaviour
     private void Grab(GameObject gameObject)
     {
         var rb = gameObject.GetComponent<Rigidbody>();
+
+        soundManager.PlaySoundFX(1);
 
         rb.useGravity = false;
         rb.isKinematic = true;
