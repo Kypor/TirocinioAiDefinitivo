@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace Whisper.Samples
 {
@@ -22,7 +23,7 @@ namespace Whisper.Samples
         public bool streamSegments = true;
         public bool printLanguage = true;
         [SerializeField]
-        private List<JapaneseWordArray> JapaneseWords = new List<JapaneseWordArray>();
+        public List<JapaneseWordArray> JapaneseWords = new List<JapaneseWordArray>();
 
         [SerializeField]
         private WordsPronunciation wordsPronunciation;
@@ -34,18 +35,16 @@ namespace Whisper.Samples
         public TextMeshProUGUI randomWord;
         public TextMeshProUGUI totalPointsText;
         public Dropdown languageDropdown;
-        public GameObject settingsPanel;
-        private int arrayIndex;
+        public GameObject settingsPanel, sensei;
+        private int arrayIndex, wrongWordCount = 0;
         private float totalPoints;
         private string _buffer;
-        public int numberOfWords, currentCorrectWords;
 
 
 
         private void Awake()
         {
             arrayIndex = 0;
-            currentCorrectWords = 0;
             totalPointsText.text = "Points : " + totalPoints.ToString();
             randomWord.text = JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[0];
             whisper.OnNewSegment += OnNewSegment;
@@ -148,6 +147,7 @@ namespace Whisper.Samples
 
         private IEnumerator RightWordCoroutine()
         {
+            StartCoroutine(pointsManagerScript.Fade(0, sensei.GetComponent<CanvasGroup>()));
             SoundManager.instance.PlaySoundFX(1);
             randomWord.color = Color.green;
             pointsManagerScript.AddPoints();
@@ -176,6 +176,25 @@ namespace Whisper.Samples
             randomWord.color = Color.red;
             yield return new WaitForSeconds(0.50f);
             randomWord.color = Color.white;
+            wrongWordCount++;
+            if (wrongWordCount > 5)
+            {
+                StartCoroutine(Fade(1, sensei.GetComponent<CanvasGroup>()));
+            }
+
+        }
+        public IEnumerator Fade(float end, CanvasGroup canvasGroup)
+        {
+            //SoundManager.instance.PlaySoundFX(0);
+            float elapsedTime = 0.0f;
+            float start = canvasGroup.alpha;
+            while (elapsedTime < 2f)
+            {
+                elapsedTime += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 2f);
+                yield return null;
+            }
+            canvasGroup.alpha = end;
         }
     }
 }

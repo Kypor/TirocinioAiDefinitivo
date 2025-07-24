@@ -22,7 +22,7 @@ public class PointsManagerScript : MonoBehaviour
     {
         currSceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (currSceneIndex == 1)
-            numberOfWords = GetComponent<MicrophoneDemo>().numberOfWords;
+            numberOfWords = GetComponent<MicrophoneDemo>().JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count;
         else
             numberOfWords = 10;
         EmptyStars();
