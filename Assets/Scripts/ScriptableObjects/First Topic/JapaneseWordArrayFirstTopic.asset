@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paroleConPronunce:
   - pronunce:
-    - ciao
-    - bello
-    - pisello
+    - "\u306D\u3053"
+    - "\u732B"
+    - "\u30CD\u30B3"
+    - gatto
   - pronunce:
-    - cornetto
-    - pane
-    - palle
+    - "\u307F\u305A"
+    - "\u6C34"
+    - "\u30DF\u30BA"
+    - acqua
   - pronunce:
-    - palla
-    - arabakis
-    - gesu
+    - "\u3054\u306F\u3093"
+    - "\u3054\u98EF"
+    - "\u30B4\u30CF\u30F3"
+    - riso

@@ -24,6 +24,9 @@ namespace Whisper.Samples
         [SerializeField]
         private List<JapaneseWordArray> JapaneseWords = new List<JapaneseWordArray>();
 
+        [SerializeField]
+        private WordsPronunciation wordsPronunciation;
+
         [Header("UI")]
         public Button button;
         public TextMeshProUGUI buttonText;
@@ -32,16 +35,19 @@ namespace Whisper.Samples
         public TextMeshProUGUI totalPointsText;
         public Dropdown languageDropdown;
         public GameObject settingsPanel;
-        private int randomWordIdex;
+        private int arrayIndex;
         private float totalPoints;
         private string _buffer;
         public int numberOfWords, currentCorrectWords;
 
+
+
         private void Awake()
         {
+            arrayIndex = 0;
             currentCorrectWords = 0;
             totalPointsText.text = "Points : " + totalPoints.ToString();
-            randomWord.text = GetRandomWord();
+            randomWord.text = JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[0];
             whisper.OnNewSegment += OnNewSegment;
             microphoneRecord.OnRecordStop += OnRecordStop;
             languageDropdown.value = languageDropdown.options
@@ -87,10 +93,11 @@ namespace Whisper.Samples
             outputText.text = text;
             text = Regex.Replace(text, "[、，゠＝…‥。.,?! ]", "");
             bool found = false;
-            for (int i = 0; i < JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[randomWordIdex].pronunce.Count; i++)
+            for (int i = 0; i < JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce.Count; i++)
             {
-                if (text.ToLower().Equals(JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[randomWordIdex].pronunce[i]))
+                if (text.ToLower().Equals(JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[i]))
                 {
+                    outputText.text = JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[0];
                     found = true;
                     StartCoroutine(RightWordCoroutine());
                     break;
@@ -118,11 +125,25 @@ namespace Whisper.Samples
             outputText.text = _buffer + "...";
         }
 
-        private string GetRandomWord()
-        {
-            randomWordIdex = Random.Range(0, JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count);
-            return JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[randomWordIdex].pronunce[0];
+        // private string GetRandomWord()
+        // {
+        //     arrayIndex = Random.Range(0, JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count);
+        //     return JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[0];
 
+
+
+        // }
+
+        private string GetText()
+        {
+            arrayIndex++;
+            return JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[0];
+
+        }
+
+        public void PronunciationPlay()
+        {
+            SoundManager.instance.PlaySoundFX(wordsPronunciation.pronunciation[arrayIndex]);
         }
 
         private IEnumerator RightWordCoroutine()
@@ -132,11 +153,12 @@ namespace Whisper.Samples
             pointsManagerScript.AddPoints();
             yield return new WaitForSeconds(3f);
             randomWord.color = Color.white;
-            randomWord.text = GetRandomWord();
+
+
             outputText.text = "";
-            if (currentCorrectWords < numberOfWords - 1)
+            if (arrayIndex < JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count - 1)
             {
-                currentCorrectWords++;
+                randomWord.text = GetText();
             }
             else
             {
