@@ -30,6 +30,8 @@ namespace Whisper.Samples
 
         [Header("UI")]
         public Button button;
+        [SerializeField] private TextMeshProUGUI wordMeaning;
+        [SerializeField] private TextMeshProUGUI wordRomaji;
         public TextMeshProUGUI buttonText;
         public TextMeshProUGUI outputText;
         public TextMeshProUGUI randomWord;
@@ -46,7 +48,13 @@ namespace Whisper.Samples
         {
             arrayIndex = 0;
             totalPointsText.text = "Points : " + totalPoints.ToString();
+
+
             randomWord.text = JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[0];
+            wordMeaning.text = WordMeaningFunction();
+            wordRomaji.text = WordRomajiFunction();
+
+
             whisper.OnNewSegment += OnNewSegment;
             microphoneRecord.OnRecordStop += OnRecordStop;
             languageDropdown.value = languageDropdown.options
@@ -159,6 +167,8 @@ namespace Whisper.Samples
             if (arrayIndex < JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count - 1)
             {
                 randomWord.text = GetText();
+                wordMeaning.text = WordMeaningFunction();
+                wordRomaji.text = WordRomajiFunction();
             }
             else
             {
@@ -195,6 +205,16 @@ namespace Whisper.Samples
                 yield return null;
             }
             canvasGroup.alpha = end;
+        }
+
+        private string WordMeaningFunction()
+        {
+            return "Prova a dire: " + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[3];
+        }
+
+        private string WordRomajiFunction()
+        {
+            return "'" + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[4] + "'";
         }
     }
 }
