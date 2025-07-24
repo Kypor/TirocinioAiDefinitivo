@@ -87,7 +87,7 @@ namespace Whisper.Samples
             outputText.text = text;
             text = Regex.Replace(text, "[、，゠＝…‥。.,?! ]", "");
             bool found = false;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[randomWordIdex].pronunce.Count; i++)
             {
                 if (text.ToLower().Equals(JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[randomWordIdex].pronunce[i]))
                 {

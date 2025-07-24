@@ -11,5 +11,5 @@ public class JapaneseWordArray : ScriptableObject
 [System.Serializable]
 public class PronunciaEntry
 {
-    public List<string> pronunce; // Max 3 elementi
+    public List<string> pronunce; // Max 4 elementi
 }
