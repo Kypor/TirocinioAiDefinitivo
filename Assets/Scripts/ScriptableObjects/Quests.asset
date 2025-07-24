@@ -23,23 +23,33 @@ MonoBehaviour:
     requiredVerb: Pet
     requiredNoun: Cat
     isCompleted: 1
-  - questID: 1
+  - questID: 2
     description: Bevi l'acqua
     requiredVerb: Eat
     requiredNoun: Bottle
-    isCompleted: 0
-  - questID: 2
+    isCompleted: 1
+  - questID: 3
     description: "Balla Pisell\xEC"
     requiredVerb: Dance
     requiredNoun: 
-    isCompleted: 0
-  - questID: 3
+    isCompleted: 1
+  - questID: 4
     description: Mangia il riso
     requiredVerb: Eat
     requiredNoun: RiceAll
-    isCompleted: 0
-  - questID: 4
+    isCompleted: 1
+  - questID: 5
+    description: Raccogli i vestiti
+    requiredVerb: GetObject
+    requiredNoun: Clothes
+    isCompleted: 1
+  - questID: 6
+    description: Porta i vestiti in camera da letto
+    requiredVerb: BringObjectsToCheckout
+    requiredNoun: Closet
+    isCompleted: 1
+  - questID: 7
     description: Dormi
     requiredVerb: Sleep
     requiredNoun: Bed
-    isCompleted: 0
+    isCompleted: 1
