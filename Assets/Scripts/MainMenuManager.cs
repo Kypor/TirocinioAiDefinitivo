@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject backgroundPanel, mainPanel, topicPanel, levelPanel;
+    GameObject backgroundPanel, mainPanel, topicPanel, levelPanel, blackCanvas;
     public float minPointsLevel1, minPointsLevel2;
     [SerializeField]
     TextMeshProUGUI thirdLevelText;
@@ -126,17 +126,9 @@ public class MainMenuManager : MonoBehaviour
     public IEnumerator LoadLevel(int level)
     {
         levelPanel.SetActive(false);
-        float elapsedTime = 0.0f;
-        float start = backgroundPanel.transform.localScale.x;
-        float end = start + 6;
-        while (elapsedTime < 1f)
-        {
-            elapsedTime += Time.deltaTime;
-            backgroundPanel.transform.localScale = new Vector3(Mathf.Lerp(start, end, elapsedTime / 1f), Mathf.Lerp(start, end, elapsedTime / 1f), Mathf.Lerp(start, end, elapsedTime / 1f));
-            yield return null;
-        }
+        StartCoroutine(Fade(1, blackCanvas.GetComponent<CanvasGroup>()));
+        yield return new WaitForSeconds(1f);
         StartCoroutine(LoadYourAsyncScene(level));
-
     }
     IEnumerator LoadYourAsyncScene(int level)
     {
@@ -155,5 +147,19 @@ public class MainMenuManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public IEnumerator Fade(float end, CanvasGroup canvasGroup)
+    {
+        SoundManager.instance.PlaySoundFX(0);
+        float elapsedTime = 0.0f;
+        float start = canvasGroup.alpha;
+        while (elapsedTime < 0.5f)
+        {
+            elapsedTime += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 0.5f);
+            yield return null;
+        }
+        canvasGroup.alpha = end;
     }
 }
