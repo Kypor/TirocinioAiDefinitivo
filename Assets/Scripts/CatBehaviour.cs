@@ -6,7 +6,8 @@ public class CatBehaviour : MonoBehaviour
 {
     private NavMeshAgent agent;
     private CharacterBehaviour robot;
-    public float secondsToStart;
+    public float secondsToStop;
+    public float secondsToRestart;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class CatBehaviour : MonoBehaviour
             StopMovement();
             if (!robot.catInteraction)
             {
-                StartCoroutine(ResumeAfterSeconds(secondsToStart));
+                StartCoroutine(ResumeAfterSeconds(secondsToRestart));
             }
         }
         
@@ -32,7 +33,7 @@ public class CatBehaviour : MonoBehaviour
         agent.isStopped = true;
         
         Debug.Log("[Gatto] Fermato. Attesa 3 secondi prima di ripartire.");
-        StartCoroutine(ResumeAfterSeconds(3f));
+        StartCoroutine(ResumeAfterSeconds(secondsToStop));
     }
 
     IEnumerator ResumeAfterSeconds(float seconds)
