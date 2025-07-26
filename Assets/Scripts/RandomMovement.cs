@@ -48,8 +48,8 @@ public class RandomMovement : MonoBehaviour
             yield return null; // aspetta un frame per non bloccare il gioco
         }
 
-        Debug.Log($"[RandomMovement] Punto trovato dopo {attempts} tentativi: {point}");
-        Debug.DrawRay(point, Vector3.up, Color.green, 1.0f);
+        //Debug.Log($"[RandomMovement] Punto trovato dopo {attempts} tentativi: {point}");
+        //Debug.DrawRay(point, Vector3.up, Color.green, 1.0f);
         agent.SetDestination(point);
 
         isWaiting = false;

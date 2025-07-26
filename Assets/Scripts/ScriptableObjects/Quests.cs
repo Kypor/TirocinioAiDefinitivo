@@ -11,22 +11,40 @@ public class Quest
 {
     public int questID;
     public string description;
-
     public string requiredVerb;
     public string requiredNoun;
-
+    public string requiredNumber;
     public bool isCompleted;
 
-    public bool CheckCondition(string currentVerb, string currentNoun)
+    public bool CheckCondition(string currentVerb, string currentNoun, string currentNumber)
     {
-        // Se il noun non è richiesto, controlla solo il verbo
-        if (string.IsNullOrEmpty(requiredNoun))
+        if (string.IsNullOrEmpty(requiredNumber))
         {
-            return !isCompleted && currentVerb == requiredVerb;
+            if (string.IsNullOrEmpty(requiredNoun))
+            {
+                // Se il noun e il numero non sono richiesti, controlla solo il verbo
+                Debug.Log("caso solo verbo");
+                return !isCompleted && currentVerb == requiredVerb;
+            }
+            else
+            {
+                Debug.Log("caso  verbo e noun");
+
+                return !isCompleted && currentVerb == requiredVerb && currentNoun == requiredNoun;
+            }
         }
         else
         {
-            return !isCompleted && currentVerb == requiredVerb && currentNoun == requiredNoun;
+            if (string.IsNullOrEmpty(requiredNoun))
+            {
+                // Se il noun non è richiesto, controlla verbo e numero 
+                Debug.Log("caso  verbo e numero");
+
+                return !isCompleted && currentVerb == requiredVerb && currentNumber == requiredNumber;
+            }
+                            Debug.Log("caso  tutto");
+
+            return !isCompleted && currentVerb == requiredVerb && currentNoun == requiredNoun && currentNumber == requiredNumber;
         }
     }
 }

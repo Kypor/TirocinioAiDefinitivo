@@ -32,7 +32,7 @@ public class CatBehaviour : MonoBehaviour
     {
         agent.isStopped = true;
         
-        Debug.Log("[Gatto] Fermato. Attesa 3 secondi prima di ripartire.");
+       // Debug.Log("[Gatto] Fermato. Attesa 3 secondi prima di ripartire.");
         StartCoroutine(ResumeAfterSeconds(secondsToStop));
     }
 

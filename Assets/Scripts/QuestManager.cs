@@ -22,7 +22,7 @@ public class QuestManager : MonoBehaviour
 
         foreach (Quest quest in questsData.quests)
         {
-            Debug.Log("QuestID: " + quest.questID);
+            //Debug.Log("QuestID: " + quest.questID);
             quest.isCompleted = false;
         }
 
@@ -36,7 +36,7 @@ public class QuestManager : MonoBehaviour
 
         currentQuest = questsData.quests[currentQuestID];
 
-        if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun))
+        if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun, character.currentNumber))
         {
             currentQuest.isCompleted = true;
             Debug.Log("Quest completata: " + currentQuest.description);
@@ -93,7 +93,7 @@ public class QuestManager : MonoBehaviour
 
         while (elapsedTime < 1f)
         {
-            Debug.Log("Pu");
+           // Debug.Log("Pu");
             elapsedTime += Time.deltaTime;
             //canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 0.5f);
             textMeshPro.transform.position = Vector2.Lerp(startPoint, endPoint, elapsedTime);
