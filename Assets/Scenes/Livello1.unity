@@ -4742,6 +4742,7 @@ MonoBehaviour:
   languageDropdown: {fileID: 1400360880}
   settingsPanel: {fileID: 150455389}
   sensei: {fileID: 1311323398}
+  superMegaPerforzon: {fileID: 8300000, guid: ecd5a7ff5948db04db3c242015e486f2, type: 3}
 --- !u!114 &1337591123
 MonoBehaviour:
   m_ObjectHideFlags: 0

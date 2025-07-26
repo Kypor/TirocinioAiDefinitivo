@@ -41,6 +41,8 @@ namespace Whisper.Samples
         private int arrayIndex, wrongWordCount = 0;
         private float totalPoints;
         private string _buffer;
+        [SerializeField]
+        AudioClip superMegaPerforzon;
 
 
 
@@ -150,7 +152,14 @@ namespace Whisper.Samples
 
         public void PronunciationPlay()
         {
-            SoundManager.instance.PlaySoundFX(wordsPronunciation.pronunciation[arrayIndex]);
+            if (Random.Range(0, 100) == 3)
+            {
+                SoundManager.instance.PlaySoundFX(superMegaPerforzon);
+            }
+            else
+            {
+                SoundManager.instance.PlaySoundFX(wordsPronunciation.pronunciation[arrayIndex]);
+            }
         }
 
         private IEnumerator RightWordCoroutine()
@@ -173,7 +182,6 @@ namespace Whisper.Samples
             else
             {
                 StopAllCoroutines();
-
                 StartCoroutine(pointsManagerScript.ShowResults());
 
             }
