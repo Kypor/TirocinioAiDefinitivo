@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -13,9 +11,6 @@ public class QuestManager : MonoBehaviour
     private CharacterBehaviour character;
     private int currentQuestID = 0;
     public bool allQuestsCompleted { get; private set; }
-
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,8 +24,6 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("QuestID: " + quest.questID);
             quest.isCompleted = false;
-
-
         }
 
         textMeshPro.text = questsData.quests[currentQuestID].description;
@@ -43,12 +36,12 @@ public class QuestManager : MonoBehaviour
 
         currentQuest = questsData.quests[currentQuestID];
 
-
         if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun))
         {
             currentQuest.isCompleted = true;
             Debug.Log("Quest completata: " + currentQuest.description);
             currentQuestID++;
+            SoundManager.instance.PlaySoundFX(2);
 
             if (currentQuestID >= questsData.quests.Count)
             {
@@ -58,11 +51,8 @@ public class QuestManager : MonoBehaviour
                 return;
             }
 
-
             StartCoroutine(waitForNextQuest());
         }
-
-
     }
 
     private IEnumerator waitForNextQuest()
@@ -73,10 +63,8 @@ public class QuestManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         textMeshPro.color = Color.white;
         StartCoroutine(TextLerp(true));
-
-
-
     }
+
     private IEnumerator finalQuestWait()
     {
         yield return new WaitForSeconds(2f);
@@ -89,6 +77,7 @@ public class QuestManager : MonoBehaviour
     {
         Vector2 startPoint;
         Vector2 endPoint;
+
         if (!reversed)
         {
             startPoint = textMeshPro.transform.position;
@@ -104,8 +93,7 @@ public class QuestManager : MonoBehaviour
 
         while (elapsedTime < 1f)
         {
-
-            Debug.Log("Puppa");
+            Debug.Log("Pu");
             elapsedTime += Time.deltaTime;
             //canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 0.5f);
             textMeshPro.transform.position = Vector2.Lerp(startPoint, endPoint, elapsedTime);
@@ -113,6 +101,5 @@ public class QuestManager : MonoBehaviour
         }
 
         textMeshPro.text = currentQuest.description;
-
     }
 }
