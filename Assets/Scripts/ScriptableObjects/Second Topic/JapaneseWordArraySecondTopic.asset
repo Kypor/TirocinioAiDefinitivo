@@ -14,8 +14,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paroleConPronunce:
   - pronunce:
+    - "\u30BC\u30ED"
+    - 
+    - 
+    - zero
+    - zero
+  - pronunce:
+    - "\u3044\u3061"
+    - "\u4E00"
+    - 1
     - uno
+    - ichi
   - pronunce:
+    - "\u306B"
+    - "\u4E8C"
+    - 2
     - due
+    - ni
   - pronunce:
+    - "\u3055\u3093"
+    - "\u4E09"
+    - 3
     - tre
+    - san
+  - pronunce:
+    - "\u3088\u3093"
+    - "\u56DB"
+    - 4
+    - quattro
+    - yon
+  - pronunce:
+    - "\u3054"
+    - "\u4E94"
+    - 5
+    - cinque
+    - go
+  - pronunce:
+    - "\u308D\u304F"
+    - "\u516D"
+    - 6
+    - sei
+    - roku
+  - pronunce:
+    - "\u306A\u306A"
+    - "\u4E03"
+    - 7
+    - sette
+    - nana
+  - pronunce:
+    - "\u306F\u3061"
+    - "\u516B"
+    - 8
+    - otto
+    - hachi
+  - pronunce:
+    - "\u304F"
+    - "\u4E5D"
+    - 9
+    - nove
+    - ku

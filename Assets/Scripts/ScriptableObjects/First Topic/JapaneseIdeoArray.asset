@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: JapaneseIdeoArray
   m_EditorClassIdentifier: 
   ideos:
-  - word: palle
+  - word: neko
     ideosInWord:
-    - {fileID: 21300000, guid: 305ba1adc3b23464fb836682fc17489c, type: 3}
-    - {fileID: 21300000, guid: 9cf79a698ff66ec48bd4b5a7e53cc17f, type: 3}
-    - {fileID: 21300000, guid: 305ba1adc3b23464fb836682fc17489c, type: 3}
-  - word: culo
-    ideosInWord:
-    - {fileID: 21300000, guid: 46ea44228fa36fb42ae4e7379ee45cd6, type: 3}
-    - {fileID: 21300000, guid: a995f081c6c883f4eae70c54c9dcad3b, type: 3}
-    - {fileID: 21300000, guid: 8c9ef0354057c1847ba81bb2f0d14b9f, type: 3}
-  - word: tu
-    ideosInWord:
+    - {fileID: 21300000, guid: 55f8c062d399aad409364894b9feca13, type: 3}
     - {fileID: 21300000, guid: 32d201484cc9ad64e99f5cfe2aa8c58d, type: 3}
-    - {fileID: 21300000, guid: 571fab84378dc1c45abfc2c17c77461f, type: 3}
+  - word: mizu
+    ideosInWord:
+    - {fileID: 21300000, guid: 4ba43605b1ca7c84d97da51c60cfeb8b, type: 3}
+    - {fileID: 21300000, guid: cdb939e0f6c10f144a4b7059ae5bb38f, type: 3}
+  - word: gohan
+    ideosInWord:
+    - {fileID: 21300000, guid: 8ec8e0ee3efbb57469bf814901095dbc, type: 3}
+    - {fileID: 21300000, guid: 231c7d99fed12d3448c3956eac29b037, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
   numbers:
   - {fileID: 21300000, guid: 3d4c92474ed596b479c9fca2c969a34d, type: 3}
   - {fileID: 21300000, guid: ab561f22dbf29ff43a205f539145cf5c, type: 3}

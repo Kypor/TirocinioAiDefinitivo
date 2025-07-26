@@ -25,8 +25,10 @@ namespace Whisper.Samples
         [SerializeField]
         public List<JapaneseWordArray> JapaneseWords = new List<JapaneseWordArray>();
 
-        [SerializeField]
-        private WordsPronunciation wordsPronunciation;
+        [SerializeField] private List<WordsPronunciation> wordsPronunciationList = new List<WordsPronunciation>();
+
+        // [SerializeField]
+        // private WordsPronunciation wordsPronunciation;
 
         [Header("UI")]
         public Button button;
@@ -158,12 +160,14 @@ namespace Whisper.Samples
             }
             else
             {
-                SoundManager.instance.PlaySoundFX(wordsPronunciation.pronunciation[arrayIndex]);
+                SoundManager.instance.PlaySoundFX(wordsPronunciationList[MainMenuManager.topicChosen - 1].pronunciation[arrayIndex]);
+                //SoundManager.instance.PlaySoundFX(wordsPronunciation.pronunciation[arrayIndex]);
             }
         }
 
         private IEnumerator RightWordCoroutine()
         {
+            wrongWordCount = 0;
             StartCoroutine(pointsManagerScript.Fade(0, sensei.GetComponent<CanvasGroup>()));
             SoundManager.instance.PlaySoundFX(1);
             randomWord.color = Color.green;

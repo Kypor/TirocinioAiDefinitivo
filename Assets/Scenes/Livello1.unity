@@ -4731,7 +4731,9 @@ MonoBehaviour:
   JapaneseWords:
   - {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}
   - {fileID: 11400000, guid: d62bd4ddafc03024b8f425cb2f0046a4, type: 2}
-  wordsPronunciation: {fileID: 11400000, guid: d34d77b7957994747abd017f486e2120, type: 2}
+  wordsPronunciationList:
+  - {fileID: 11400000, guid: d34d77b7957994747abd017f486e2120, type: 2}
+  - {fileID: 11400000, guid: f599ac55fcb4b6c41883593760a6bfbb, type: 2}
   button: {fileID: 1070103918}
   wordMeaning: {fileID: 1189336254}
   wordRomaji: {fileID: 238189044}
@@ -5757,8 +5759,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
-  m_sharedMaterial: {fileID: 2204534132060886028, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3dcf5c70297b8184cb6b9a4b341796d1, type: 2}
+  m_sharedMaterial: {fileID: -7786892333198751292, guid: 3dcf5c70297b8184cb6b9a4b341796d1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5782,7 +5784,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.75
+  m_fontSize: 34.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

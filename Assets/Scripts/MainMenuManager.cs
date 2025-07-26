@@ -11,7 +11,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI thirdLevelText;
     public GameObject pointsLabel;
-    public static int topicChosen = 1;
+    public static int topicChosen = 2;
     void Start()
     {
         mainPanel.SetActive(true);
