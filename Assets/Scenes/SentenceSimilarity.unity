@@ -3791,10 +3791,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 5b8cde3b1f32ef449a8853b0768e091f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: e3b50e1408cf142439d8657ad1c58a5d, type: 3}
-  m_Resource: {fileID: 8300000, guid: e3b50e1408cf142439d8657ad1c58a5d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8fafcca51b3dcef48bd8846fff53448a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 8fafcca51b3dcef48bd8846fff53448a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5877,6 +5877,7 @@ MonoBehaviour:
   soundFXClips:
   - {fileID: 8300000, guid: e101d2fbe4d1e074ab5e66aaf92b293a, type: 3}
   - {fileID: 8300000, guid: d04b5dc50a827a944942648524bdd629, type: 3}
+  - {fileID: 8300000, guid: e47597c2b31e1c64ea1ca53f2310a419, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!1001 &1143513858
 PrefabInstance:
