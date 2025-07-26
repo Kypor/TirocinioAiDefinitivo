@@ -202,6 +202,7 @@ namespace Whisper.Samples
             if (wrongWordCount > 5)
             {
                 StartCoroutine(Fade(1, sensei.GetComponent<CanvasGroup>()));
+                SoundManager.instance.PlaySoundFX(4);
             }
 
         }

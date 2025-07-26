@@ -1073,6 +1073,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e47597c2b31e1c64ea1ca53f2310a419, type: 3}
   - {fileID: 8300000, guid: 74d3cc47bd2d90f49969104e5c3615c1, type: 3}
   - {fileID: 8300000, guid: 2c9d604ffa4ded449b9fefaef3c12d28, type: 3}
+  - {fileID: 8300000, guid: c5a35dc4eba85364b97f88bcbd4a6357, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!1 &313098117
 GameObject:
