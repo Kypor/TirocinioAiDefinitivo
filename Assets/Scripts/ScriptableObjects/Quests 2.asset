@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76dfa03a3d0e3484d9656f39e76067c1, type: 3}
+  m_Name: Quests 2
+  m_EditorClassIdentifier: 
+  quests:
+  - questID: 1
+    description: 'saluta il commesso '
+    requiredVerb: Greet
+    requiredNoun: Clerk
+    requiredNumber: 
+    isCompleted: 1
+  - questID: 0
+    description: Prendi 2 mele
+    requiredVerb: GetObject
+    requiredNoun: Apple
+    requiredNumber: 2
+    isCompleted: 1
+  - questID: 2
+    description: vai alla cassa
+    requiredVerb: BringObjectsToCheckout
+    requiredNoun: Caisse
+    requiredNumber: 
+    isCompleted: 0
+  - questID: 3
+    description: "Balla Pisell\xEC"
+    requiredVerb: Dance
+    requiredNoun: 
+    requiredNumber: 
+    isCompleted: 0
+  - questID: 4
+    description: Mangia il riso
+    requiredVerb: Eat
+    requiredNoun: RiceAll
+    requiredNumber: 
+    isCompleted: 0
+  - questID: 5
+    description: Raccogli i vestiti
+    requiredVerb: GetObject
+    requiredNoun: Clothes
+    requiredNumber: 
+    isCompleted: 0
+  - questID: 6
+    description: Porta i vestiti in camera da letto
+    requiredVerb: BringObjectsToCheckout
+    requiredNoun: Closet
+    requiredNumber: 
+    isCompleted: 0
+  - questID: 7
+    description: Dormi
+    requiredVerb: Sleep
+    requiredNoun: Bed
+    requiredNumber: 
+    isCompleted: 0
