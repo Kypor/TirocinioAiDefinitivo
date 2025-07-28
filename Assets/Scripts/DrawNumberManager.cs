@@ -89,7 +89,7 @@ public class DrawNumberManager : MonoBehaviour
         {
             if (number == uniqueRandomNumbers[currentRandomNumberIndex - 1])
             {
-                pointsManagerScript.AddPoints();
+                pointsManagerScript.AddPoints(2);
                 SoundManager.instance.PlaySoundFX(1);
                 text.text = PrintText();
                 errorIndicator.color = new Color(0, 1, 0, 0.5f);
@@ -97,7 +97,7 @@ public class DrawNumberManager : MonoBehaviour
             }
             else
             {
-                pointsManagerScript.SubPoints();
+                pointsManagerScript.SubPoints(2);
                 SoundManager.instance.PlaySoundFX(2);
                 errorIndicator.color = new Color(1, 0, 0, 0.5f);
                 Debug.Log("number: " + number);

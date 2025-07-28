@@ -62,7 +62,7 @@ public class DrawRandomIdeo : MonoBehaviour
         ideoImage.sprite = GetRandomIdeo();
         currentNumberIndex = 0;
         //add point;
-        pointsManagerScript.AddPoints();
+        pointsManagerScript.AddPoints(2);
     }
 
     private bool CheckIdeo(int recognizedIndex)
@@ -78,7 +78,7 @@ public class DrawRandomIdeo : MonoBehaviour
         errorIndicator.color = new Color(1, 0, 0, 1f);
         Debug.Log("sbagliato");
         //sub points
-        pointsManagerScript.SubPoints();
+        pointsManagerScript.SubPoints(2);
         return false;
     }
 }

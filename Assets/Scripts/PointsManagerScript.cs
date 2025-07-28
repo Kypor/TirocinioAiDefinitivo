@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Whisper.Samples;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PointsManagerScript : MonoBehaviour
 {
@@ -63,44 +64,84 @@ public class PointsManagerScript : MonoBehaviour
         StartCoroutine(FillStars());
     }
 
-    public void AddPoints()
+    public void AddPoints(int level)
     {
         totalPoints += basePoints;
         totalPointsText.text = "Points : " + totalPoints.ToString();
-        switch (MainMenuManager.topicChosen)
+        if (level == 1)
         {
-            case 1:
-                PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
-                Debug.Log("aggiunti punti primo livello primo topic");
-                break;
-            case 2:
-                PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
-                Debug.Log("aggiunti punti primo livello secondo topic");
+            switch (MainMenuManager.topicChosen)
+            {
+                case 1:
+                    PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
+                    Debug.Log("aggiunti punti primo livello primo topic");
+                    break;
+                case 2:
+                    PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
+                    Debug.Log("aggiunti punti primo livello secondo topic");
 
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (level == 2)
+        {
+            switch (MainMenuManager.topicChosen)
+            {
+                case 1:
+                    PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
+                    Debug.Log("aggiunti punti secondo livello primo topic");
+                    break;
+                case 2:
+                    PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
+                    Debug.Log("aggiunti punti secondo livello secondo topic");
+
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
-    public void SubPoints()
+    public void SubPoints(int level)
     {
         float points = penalityPercentage / 100f * basePoints;
         totalPoints -= points;
         totalPointsText.text = "Points : " + totalPoints.ToString();
-        switch (MainMenuManager.topicChosen)
+        if (level == 1)
         {
-            case 1:
-                PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
-                Debug.Log("sottratti punti primo livello primo topic");
+            switch (MainMenuManager.topicChosen)
+            {
+                case 1:
+                    PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
+                    Debug.Log("sottratti punti primo livello primo topic");
 
-                break;
-            case 2:
-                PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
-                Debug.Log("sottratti punti primo livello secondo topic");
-                break;
-            default:
-                break;
+                    break;
+                case 2:
+                    PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
+                    Debug.Log("sottratti punti primo livello secondo topic");
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (level == 2)
+        {
+            switch (MainMenuManager.topicChosen)
+            {
+                case 1:
+                    PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
+                    Debug.Log("sottratti punti secondo livello primo topic");
+
+                    break;
+                case 2:
+                    PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
+                    Debug.Log("sottratti punti secondo livello secondo topic");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

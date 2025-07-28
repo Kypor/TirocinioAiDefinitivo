@@ -171,7 +171,7 @@ namespace Whisper.Samples
             StartCoroutine(pointsManagerScript.Fade(0, sensei.GetComponent<CanvasGroup>()));
             SoundManager.instance.PlaySoundFX(1);
             randomWord.color = Color.green;
-            pointsManagerScript.AddPoints();
+            pointsManagerScript.AddPoints(1);
             yield return new WaitForSeconds(3f);
             randomWord.color = Color.white;
 
@@ -194,7 +194,7 @@ namespace Whisper.Samples
         private IEnumerator WrongWordCoroutine()
         {
             SoundManager.instance.PlaySoundFX(2);
-            pointsManagerScript.SubPoints();
+            pointsManagerScript.SubPoints(1);
             randomWord.color = Color.red;
             yield return new WaitForSeconds(0.50f);
             randomWord.color = Color.white;
