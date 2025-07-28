@@ -72,10 +72,12 @@ public class DrawRandomIdeo : MonoBehaviour
         if (currentIdeoIndex == recognizedIndex)
         {
             errorIndicator.color = new Color(0, 1, 0, 1f);
+            SoundManager.instance.PlaySoundFX(1);
             Debug.Log("bravo");
             return true;
         }
         errorIndicator.color = new Color(1, 0, 0, 1f);
+        SoundManager.instance.PlaySoundFX(2);
         Debug.Log("sbagliato");
         //sub points
         pointsManagerScript.SubPoints(2);
