@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
@@ -10,8 +11,11 @@ public class MainMenuManager : MonoBehaviour
     public float minPointsLevel1, minPointsLevel2;
     [SerializeField]
     TextMeshProUGUI thirdLevelText;
+    [SerializeField]
+    EventTrigger eventTriggerThirdLevelText;
     public GameObject pointsLabel;
-    public static int topicChosen = 2;
+
+    public static int topicChosen = 1;
     void Start()
     {
         mainPanel.SetActive(true);
@@ -34,11 +38,13 @@ public class MainMenuManager : MonoBehaviour
                 SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("FirstTopicLevel1Points") < minPointsLevel1 || PlayerPrefs.GetFloat("FirstTopicLevel2Points") < minPointsLevel2)
                 {
+                    eventTriggerThirdLevelText.enabled = false;
                     thirdLevelText.color = Color.gray;
                 }
                 else
                 {
-                    thirdLevelText.color = Color.white;
+                    eventTriggerThirdLevelText.enabled = true;
+                    thirdLevelText.color = Color.black;
                 }
                 Debug.Log("caso primo topic");
                 mainPanel.SetActive(false);
@@ -49,11 +55,13 @@ public class MainMenuManager : MonoBehaviour
                 SoundManager.instance.PlaySoundFX(0);
                 if (PlayerPrefs.GetFloat("SecondTopicLevel1Points") < minPointsLevel1 || PlayerPrefs.GetFloat("SecondTopicLevel2Points") < minPointsLevel2)
                 {
+                    eventTriggerThirdLevelText.enabled = false;
                     thirdLevelText.color = Color.gray;
                 }
                 else
                 {
-                    thirdLevelText.color = Color.white;
+                    eventTriggerThirdLevelText.enabled = true;
+                    thirdLevelText.color = Color.black;
                 }
                 Debug.Log("caso secondo topic");
                 mainPanel.SetActive(false);

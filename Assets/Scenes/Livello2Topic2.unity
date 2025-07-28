@@ -1831,10 +1831,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: disegna
+  m_text: "disegna \u3042\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
-  m_sharedMaterial: {fileID: 2204534132060886028, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3dcf5c70297b8184cb6b9a4b341796d1, type: 2}
+  m_sharedMaterial: {fileID: -7786892333198751292, guid: 3dcf5c70297b8184cb6b9a4b341796d1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
