@@ -2015,8 +2015,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Porta i vestiti in camera da letto
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
-  m_sharedMaterial: {fileID: 2204534132060886028, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e8e9b8fc0d59f45419838df70af05f2f, type: 2}
+  m_sharedMaterial: {fileID: -9057063263922470647, guid: e8e9b8fc0d59f45419838df70af05f2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8870,7 +8870,6 @@ MonoBehaviour:
     description: 
     requiredVerb: 
     requiredNoun: 
-    requiredNumber: 
     isCompleted: 0
   textMeshPro: {fileID: 456403716}
   questPanel: {fileID: 473695725}
@@ -9521,28 +9520,28 @@ MonoBehaviour:
   catInteractionPoint: {fileID: 1158541813}
   catInteraction: 0
   actionsList:
-  - sentence: Balla
+  - sentence: Dance
     verb: Dance
     noun: 
-  - sentence: Togliti le scarpe
+  - sentence: Take off shoes
     verb: Kneel
     noun: 
-  - sentence: Bevi l'acqua
+  - sentence: Drink water
     verb: Eat
     noun: Bottle
-  - sentence: Mangia il riso
+  - sentence: Eat the rice
     verb: Eat
     noun: RiceAll
-  - sentence: Vai a dormire
+  - sentence: Go to sleep
     verb: Sleep
     noun: Bed
-  - sentence: Accarezza il gatto
+  - sentence: Pet the car
     verb: Pet
     noun: Mimmo
-  - sentence: Prendi i vestiti
+  - sentence: Grab the clothes
     verb: GetObject
     noun: Clothes
-  - sentence: Vai in camera da letto
+  - sentence: Take clothes to bedroom
     verb: BringObjectsToCheckout
     noun: Closet
   sentences: []

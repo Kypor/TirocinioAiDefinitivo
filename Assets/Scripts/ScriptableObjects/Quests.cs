@@ -13,13 +13,13 @@ public class Quest
     public string description;
     public string requiredVerb;
     public string requiredNoun;
-    public string requiredNumber;
+    
     public bool isCompleted;
 
-    public bool CheckCondition(string currentVerb, string currentNoun, string currentNumber)
+    public bool CheckCondition(string currentVerb, string currentNoun)
     {
-        if (string.IsNullOrEmpty(requiredNumber))
-        {
+        
+        
             if (string.IsNullOrEmpty(requiredNoun))
             {
                 // Se il noun e il numero non sono richiesti, controlla solo il verbo
@@ -32,19 +32,10 @@ public class Quest
 
                 return !isCompleted && currentVerb == requiredVerb && currentNoun == requiredNoun;
             }
-        }
-        else
-        {
-            if (string.IsNullOrEmpty(requiredNoun))
-            {
-                // Se il noun non è richiesto, controlla verbo e numero 
-                Debug.Log("caso  verbo e numero");
-
-                return !isCompleted && currentVerb == requiredVerb && currentNumber == requiredNumber;
-            }
-                            Debug.Log("caso  tutto");
-
-            return !isCompleted && currentVerb == requiredVerb && currentNoun == requiredNoun && currentNumber == requiredNumber;
-        }
+        
+        
+        
+    
+        
     }
 }

@@ -14,50 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - questID: 0
-    description: "Togliti le \u304F\u3064"
+    description: "Take off \u304F\u3064"
     requiredVerb: Kneel
     requiredNoun: 
-    requiredNumber: 
-    isCompleted: 1
+    isCompleted: 0
   - questID: 1
-    description: "Accarezza il \u306D\u3053"
+    description: "Pet the \u306D\u3053"
     requiredVerb: Pet
     requiredNoun: Mimmo
-    requiredNumber: 
-    isCompleted: 1
+    isCompleted: 0
   - questID: 2
-    description: "Bevi \u307F\u305A"
+    description: "Drink \u307F\u305A"
     requiredVerb: Eat
     requiredNoun: Bottle
-    requiredNumber: 
     isCompleted: 0
   - questID: 3
     description: "\u304A\u3069\u308A\u307E\u3059"
     requiredVerb: Dance
     requiredNoun: 
-    requiredNumber: 
     isCompleted: 0
   - questID: 4
-    description: "Mangia il \u3054\u306F\u3093"
+    description: "Eat the \u3054\u306F\u3093"
     requiredVerb: Eat
     requiredNoun: RiceAll
-    requiredNumber: 
     isCompleted: 0
   - questID: 5
-    description: "Raccogli i \u3075\u304F"
+    description: "Grab the \u3075\u304F"
     requiredVerb: GetObject
     requiredNoun: Clothes
-    requiredNumber: 
     isCompleted: 0
   - questID: 6
-    description: "Porta i vestiti in \u3057\u3093\u3057\u3064"
+    description: "Bring clothes to the \u3057\u3093\u3057\u3064"
     requiredVerb: BringObjectsToCheckout
     requiredNoun: Closet
-    requiredNumber: 
-    isCompleted: 0
-  - questID: 7
-    description: "Vai a \u306D\u308B"
-    requiredVerb: Sleep
-    requiredNoun: Bed
-    requiredNumber: 
     isCompleted: 0

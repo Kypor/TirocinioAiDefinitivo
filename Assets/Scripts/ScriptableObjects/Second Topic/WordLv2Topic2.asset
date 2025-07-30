@@ -14,8 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paroleConPronunce:
   - pronunce:
-    - "\u3053\u3093\u306B\u3061\u308F"
-    - "\u4ECA\u65E5\u306F"
-    - "\u30B3\u30F3\u30CB\u30C1\u30EF"
-    - hello
+    - "\u308A\u3093\u3054"
+    - 
+    - "\u30EA\u30F3\u30B4"
+    - apple
+    - ringo
+  - pronunce:
+    - "\u306B\u304F"
+    - "\u8089"
+    - "\u30CB\u30AF"
+    - meat
+    - niku
+  - pronunce:
+    - "\u3055\u304B\u306A"
+    - "\u9B5A"
+    - "\u30B5\u30AB\u30CA"
+    - fish
+    - sakana
+  - pronunce:
+    - "\u3084\u3055\u3044"
+    - "\u91CE\u83DC"
+    - "\u30E4\u30B5\u30A4"
+    - vegetable
+    - yasai
+  - pronunce:
+    - "\u3053\u3093\u306B\u3061\u306F"
+    - 
+    - "\u30B3\u30F3\u30CB\u30C1\u30CF"
+    - hi
     - konnichiwa
+  - pronunce:
+    - "\u306F\u3089\u3044\u307E\u3059"
+    - "\u6255\u3044\u307E\u3059"
+    - "\u30CF\u30E9\u30A4\u30DE\u30B9"
+    - pay
+    - haraimasu

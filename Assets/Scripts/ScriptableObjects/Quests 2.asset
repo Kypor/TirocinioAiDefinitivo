@@ -13,51 +13,33 @@ MonoBehaviour:
   m_Name: Quests 2
   m_EditorClassIdentifier: 
   quests:
-  - questID: 1
-    description: 'saluta il commesso '
+  - questID: 0
+    description: "Tell \u3053\u3093\u306B\u3061\u306F to the clerk"
     requiredVerb: Greet
     requiredNoun: Clerk
-    requiredNumber: 
     isCompleted: 1
-  - questID: 0
-    description: Prendi 2 mele
+  - questID: 1
+    description: "Take some \u308A\u3093\u3054"
     requiredVerb: GetObject
     requiredNoun: Apple
-    requiredNumber: 2
     isCompleted: 1
   - questID: 2
-    description: vai alla cassa
-    requiredVerb: BringObjectsToCheckout
-    requiredNoun: Caisse
-    requiredNumber: 
-    isCompleted: 0
-  - questID: 3
-    description: "Balla Pisell\xEC"
-    requiredVerb: Dance
-    requiredNoun: 
-    requiredNumber: 
-    isCompleted: 0
-  - questID: 4
-    description: Mangia il riso
-    requiredVerb: Eat
-    requiredNoun: RiceAll
-    requiredNumber: 
-    isCompleted: 0
-  - questID: 5
-    description: Raccogli i vestiti
+    description: "Take \u306B\u304F"
     requiredVerb: GetObject
-    requiredNoun: Clothes
-    requiredNumber: 
-    isCompleted: 0
-  - questID: 6
-    description: Porta i vestiti in camera da letto
+    requiredNoun: Meat
+    isCompleted: 1
+  - questID: 3
+    description: "Take \u3084\u3055\u3044"
+    requiredVerb: GetObject
+    requiredNoun: Vegetables
+    isCompleted: 1
+  - questID: 4
+    description: "Take \u3055\u304B\u306A"
+    requiredVerb: GetObject
+    requiredNoun: Fish
+    isCompleted: 1
+  - questID: 5
+    description: "\u306F\u3089\u3044\u307E\u3059"
     requiredVerb: BringObjectsToCheckout
-    requiredNoun: Closet
-    requiredNumber: 
-    isCompleted: 0
-  - questID: 7
-    description: Dormi
-    requiredVerb: Sleep
-    requiredNoun: Bed
-    requiredNumber: 
-    isCompleted: 0
+    requiredNoun: Checkout
+    isCompleted: 1

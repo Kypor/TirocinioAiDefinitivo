@@ -36,7 +36,7 @@ public class QuestManager : MonoBehaviour
 
         currentQuest = questsData.quests[currentQuestID];
 
-        if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun, character.currentNumber))
+        if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun))
         {
             currentQuest.isCompleted = true;
             Debug.Log("Quest completata: " + currentQuest.description);
