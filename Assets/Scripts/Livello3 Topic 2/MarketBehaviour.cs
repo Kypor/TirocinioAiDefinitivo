@@ -14,12 +14,12 @@ public class MarketBehaviour : MonoBehaviour
         public string sentence;
         public string verb;
         public string noun;
-        public string number;
+       
     }
 
     public string currentVerb { get; private set; }
     public string currentNoun { get; private set; }
-    public string currentNumber { get; private set; }
+    
     private enum State
     {
         Idle,
@@ -227,9 +227,8 @@ public class MarketBehaviour : MonoBehaviour
 
             currentVerb = actionsList[maxScoreIndex].verb;
             currentNoun = actionsList[maxScoreIndex].noun;
-            currentNumber = actionsList[maxScoreIndex].number;
-            Debug.Log(" curent number " + currentNumber);
             
+
             if (questManager != null && questManager.currentQuest != null)
             {
                 if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower())
