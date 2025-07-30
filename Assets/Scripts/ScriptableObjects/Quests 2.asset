@@ -14,30 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - questID: 0
-    description: "Greet the \u3066\u3093\u3044\u3093"
+    description: "Tell \u3053\u3093\u306B\u3061\u306F to the clerk"
     requiredVerb: Greet
     requiredNoun: Clerk
-    isCompleted: 0
+    isCompleted: 1
   - questID: 1
+    description: "Take some \u308A\u3093\u3054"
+    requiredVerb: GetObject
+    requiredNoun: Apple
+    isCompleted: 1
+  - questID: 2
+    description: "Take \u306B\u304F"
+    requiredVerb: GetObject
+    requiredNoun: Meat
+    isCompleted: 1
+  - questID: 3
+    description: "Take \u3084\u3055\u3044"
+    requiredVerb: GetObject
+    requiredNoun: Vegetables
+    isCompleted: 1
+  - questID: 4
     description: "Take \u3055\u304B\u306A"
     requiredVerb: GetObject
     requiredNoun: Fish
     isCompleted: 1
-  - questID: 2
-    description: "Take some \u308A\u3093\u3054"
-    requiredVerb: GetObject
-    requiredNoun: Apple
-    isCompleted: 0
-  - questID: 3
-    description: "Take \u306B\u304F"
-    requiredVerb: GetObject
-    requiredNoun: Meat
-    isCompleted: 0
-  - questID: 4
-    description: "Take \u3084\u3055\u3044"
-    requiredVerb: GetObject
-    requiredNoun: Vegetables
-    isCompleted: 0
   - questID: 5
     description: "\u306F\u3089\u3044\u307E\u3059"
     requiredVerb: BringObjectsToCheckout

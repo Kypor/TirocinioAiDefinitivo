@@ -52,10 +52,12 @@ public class DrawRandomIdeo : MonoBehaviour
             ideoName.text = currentIdeo.ideosInWord[0].name.Split("-")[1];
 
             text.text = "Write the word: " + "'" + currentIdeo.word + "'" + "\n in japanese "+"\nTranslation: " + currentIdeo.traduzione;
+            
             return currentIdeo.ideosInWord[0];
         }
+
         timer.StopTimer();
-        pointsManagerScript.AddPoints(2);
+        //pointsManagerScript.AddPoints(2);
         StartCoroutine(pointsManagerScript.ShowResults());
         
         return null;

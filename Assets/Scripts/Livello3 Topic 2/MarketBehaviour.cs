@@ -14,12 +14,12 @@ public class MarketBehaviour : MonoBehaviour
         public string sentence;
         public string verb;
         public string noun;
-       
+
     }
 
     public string currentVerb { get; private set; }
     public string currentNoun { get; private set; }
-    
+
     private enum State
     {
         Idle,
@@ -35,9 +35,9 @@ public class MarketBehaviour : MonoBehaviour
         Pet
     }
 
-    
 
-    QuestManager questManager;
+
+    QuestManager2 questManager;
     SoundManager soundManager;
     private bool audioPlaying;
 
@@ -70,7 +70,7 @@ public class MarketBehaviour : MonoBehaviour
         cam = FindAnyObjectByType<Camera>();
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        questManager = FindAnyObjectByType<QuestManager>();
+        questManager = FindAnyObjectByType<QuestManager2>();
     }
 
     // Update is called once per frame
@@ -173,7 +173,7 @@ public class MarketBehaviour : MonoBehaviour
                     state = State.Idle;
                     animator.SetBool("Kneeling", false);
                     //shoes.SetActive(false);
-                    
+
                 }
                 break;
             case State.Sleep:
@@ -227,7 +227,6 @@ public class MarketBehaviour : MonoBehaviour
 
             currentVerb = actionsList[maxScoreIndex].verb;
             currentNoun = actionsList[maxScoreIndex].noun;
-            
 
             if (questManager != null && questManager.currentQuest != null)
             {
@@ -237,6 +236,7 @@ public class MarketBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("Entraaa?");
                     state = State.Puzzled;
                 }
             }

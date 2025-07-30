@@ -4595,7 +4595,7 @@ MonoBehaviour:
   printLanguage: 1
   JapaneseWords:
   - {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}
-  - {fileID: 11400000, guid: d62bd4ddafc03024b8f425cb2f0046a4, type: 2}
+  - {fileID: 11400000, guid: 81c7942aa1ed5f54c8f467ffe711542e, type: 2}
   wordsPronunciationList:
   - {fileID: 11400000, guid: d34d77b7957994747abd017f486e2120, type: 2}
   - {fileID: 11400000, guid: f599ac55fcb4b6c41883593760a6bfbb, type: 2}

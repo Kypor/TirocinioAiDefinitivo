@@ -11,6 +11,8 @@ public class MouseOverScript : MonoBehaviour
     MainMenuManager mainMenuManager;
     [SerializeField]
     float fadeTime = 0.2f;
+
+    private int topic = MainMenuManager.topicChosen;
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
@@ -28,13 +30,28 @@ public class MouseOverScript : MonoBehaviour
         else
         {
             mainMenuManager = FindFirstObjectByType<MainMenuManager>().GetComponent<MainMenuManager>();
-            if (PlayerPrefs.GetFloat("Level1Points") >= mainMenuManager.minPointsLevel1 && PlayerPrefs.GetFloat("Level2Points") >= mainMenuManager.minPointsLevel2)
+
+            if (topic == 1)
             {
-                text.text = "<b>" + txt + "</b>";
-                text.outlineWidth = 0.2f;
-                text.outlineColor = Color.white;
-                text.color = Color.white;
+                if (PlayerPrefs.GetFloat("Level1Points") >= mainMenuManager.minPointsLv1Top1 && PlayerPrefs.GetFloat("Level2Points") >= mainMenuManager.minPointsLv2Top1)
+                {
+                    text.text = "<b>" + txt + "</b>";
+                    text.outlineWidth = 0.2f;
+                    text.outlineColor = Color.white;
+                    text.color = Color.white;
+                }
             }
+            else
+            {
+                if (PlayerPrefs.GetFloat("Level1Points") >= mainMenuManager.minPointsLv1Top2 && PlayerPrefs.GetFloat("Level2Points") >= mainMenuManager.minPointsLv2Top2)
+                {
+                    text.text = "<b>" + txt + "</b>";
+                    text.outlineWidth = 0.2f;
+                    text.outlineColor = Color.white;
+                    text.color = Color.white;
+                }
+            }
+
         }
     }
     public void MouseExit()
@@ -49,12 +66,25 @@ public class MouseOverScript : MonoBehaviour
         else
         {
             mainMenuManager = FindFirstObjectByType<MainMenuManager>().GetComponent<MainMenuManager>();
-            if (PlayerPrefs.GetFloat("Level1Points") >= mainMenuManager.minPointsLevel1 && PlayerPrefs.GetFloat("Level2Points") >= mainMenuManager.minPointsLevel2)
+            if (topic == 1)
             {
-                text.text = txt;
-                text.outlineWidth = 0f;
-                text.outlineColor = Color.white;
-                text.color = Color.white;
+                if (PlayerPrefs.GetFloat("Level1Points") >= mainMenuManager.minPointsLv1Top1 && PlayerPrefs.GetFloat("Level2Points") >= mainMenuManager.minPointsLv2Top1)
+                {
+                    text.text = "<b>" + txt + "</b>";
+                    text.outlineWidth = 0.2f;
+                    text.outlineColor = Color.white;
+                    text.color = Color.white;
+                }
+            }
+            else
+            {
+                if (PlayerPrefs.GetFloat("Level1Points") >= mainMenuManager.minPointsLv1Top2 && PlayerPrefs.GetFloat("Level2Points") >= mainMenuManager.minPointsLv2Top2)
+                {
+                    text.text = "<b>" + txt + "</b>";
+                    text.outlineWidth = 0.2f;
+                    text.outlineColor = Color.white;
+                    text.color = Color.white;
+                }
             }
         }
     }

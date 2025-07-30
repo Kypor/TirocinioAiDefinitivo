@@ -463,8 +463,10 @@ MonoBehaviour:
   topicPanel: {fileID: 234248772}
   levelPanel: {fileID: 1343966459}
   blackCanvas: {fileID: 27900743}
-  minPointsLevel1: 10
-  minPointsLevel2: 10
+  minPointsLv1Top1: 700
+  minPointsLv2Top1: 700
+  minPointsLv1Top2: 600
+  minPointsLv2Top2: 600
   thirdLevelText: {fileID: 219718611}
   eventTriggerThirdLevelText: {fileID: 219718609}
   pointsLabel: {fileID: 1001831756}

@@ -36,19 +36,20 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 541e53c36e70b6647bb24779d46124b7, type: 3}
     - {fileID: 21300000, guid: e8db161597a0f6b46af47b2b5d967bbd, type: 3}
     - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
-  - word: tenin
-    traduzione: clerk
-    ideosInWord:
-    - {fileID: 21300000, guid: 46442df9fc8826149a60d2ef3a6c9d47, type: 3}
-    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
-    - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
-    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
   - word: haraimasu
-    traduzione: pagare
+    traduzione: pay
     ideosInWord:
     - {fileID: 21300000, guid: 231c7d99fed12d3448c3956eac29b037, type: 3}
     - {fileID: 21300000, guid: 248fe2d175fee1c4cb7b9e610409cf3d, type: 3}
     - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
     - {fileID: 21300000, guid: 88695dc0f7fe60c4582c91b2232a1e9a, type: 3}
     - {fileID: 21300000, guid: d917018a574d7cc4ea5d21dedfed3fd5, type: 3}
+  - word: konnichiwa
+    traduzione: hi
+    ideosInWord:
+    - {fileID: 21300000, guid: 32d201484cc9ad64e99f5cfe2aa8c58d, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
+    - {fileID: 21300000, guid: c516247d2e098a141b2ef1215dbef9ee, type: 3}
+    - {fileID: 21300000, guid: 230a95421dc033e48953404011eadc6b, type: 3}
+    - {fileID: 21300000, guid: 231c7d99fed12d3448c3956eac29b037, type: 3}
   numbers: []
