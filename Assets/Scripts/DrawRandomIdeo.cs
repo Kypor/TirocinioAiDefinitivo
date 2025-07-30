@@ -7,9 +7,6 @@ public class DrawRandomIdeo : MonoBehaviour
 {
     [SerializeField]
     private JapaneseIdeoArray japaneseIdeoArray;
-
-
-
     public Image partitionIdeoImage, ideoImage;
     private ListWrapper currentIdeo;
     private int currentNumberIndex = 0, currentIdeoIndex = 0, WordsCount = 0;
@@ -23,14 +20,10 @@ public class DrawRandomIdeo : MonoBehaviour
 
     void Start()
     {
-    
         timer = GetComponent<CountdownTimer>();
         ideoImage.sprite = GetRandomIdeo();
-        pointsManagerScript = GetComponent<PointsManagerScript>();
-        
+        pointsManagerScript = GetComponent<PointsManagerScript>(); 
     }
-
-    
 
     // private Sprite GetRandomIdeo()
     // {
@@ -52,29 +45,21 @@ public class DrawRandomIdeo : MonoBehaviour
     {
         if (WordsCount < japaneseIdeoArray.ideos.Count)
         {
-
             //int randomIndex = UnityEngine.Random.Range(0, availableIdeos.Count);
             currentIdeo = japaneseIdeoArray.ideos[WordsCount];
-
 
             //ideoName.text = currentIdeo.ideosInWord[currentNumberIndex].name;
             ideoName.text = currentIdeo.ideosInWord[0].name.Split("-")[1];
 
-
-            text.text = "Scrivi la parola: " + "'" + currentIdeo.word + "'" + "\n in giapponese "+"\ntraduzione: " + currentIdeo.traduzione;
+            text.text = "Write the word: " + "'" + currentIdeo.word + "'" + "\n in japanese "+"\nTranslation: " + currentIdeo.traduzione;
             return currentIdeo.ideosInWord[0];
-            
         }
-        
-
         timer.StopTimer();
         pointsManagerScript.AddPoints(2);
         StartCoroutine(pointsManagerScript.ShowResults());
         
         return null;
     }
-
-
 
     public void ToNextIdeosPartition(int recognizedIndex)
     {

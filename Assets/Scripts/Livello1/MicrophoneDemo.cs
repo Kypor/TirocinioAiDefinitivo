@@ -47,7 +47,6 @@ namespace Whisper.Samples
         AudioClip superMegaPerforzon;
 
 
-
         private void Awake()
         {
             arrayIndex = 0;
@@ -118,7 +117,6 @@ namespace Whisper.Samples
             {
                 StartCoroutine(WrongWordCoroutine());
             }
-
         }
 
         private void OnLanguageChanged(int ind)
@@ -199,13 +197,15 @@ namespace Whisper.Samples
             yield return new WaitForSeconds(0.50f);
             randomWord.color = Color.white;
             wrongWordCount++;
-            if (wrongWordCount > 5)
+            if (wrongWordCount == 5)
             {
                 StartCoroutine(Fade(1, sensei.GetComponent<CanvasGroup>()));
                 SoundManager.instance.PlaySoundFX(4);
+                yield return new WaitForSeconds(8f);
+                StartCoroutine(Fade(0, sensei.GetComponent<CanvasGroup>()));
             }
-
         }
+
         public IEnumerator Fade(float end, CanvasGroup canvasGroup)
         {
             //SoundManager.instance.PlaySoundFX(0);
@@ -222,7 +222,7 @@ namespace Whisper.Samples
 
         private string WordMeaningFunction()
         {
-            return "Prova a dire: " + "'" + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[3] + "'" + " in giapponese";
+            return "Try to say: " + "'" + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[3] + "'" + " in japanese";
         }
 
         private string WordRomajiFunction()

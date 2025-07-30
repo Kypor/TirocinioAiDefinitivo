@@ -14,30 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ideos:
   - word: ringo
-    traduzione: mela
+    traduzione: apple
     ideosInWord:
     - {fileID: 21300000, guid: 15142d0820da25a47ad51f380f83eb4f, type: 3}
     - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
     - {fileID: 21300000, guid: 8ec8e0ee3efbb57469bf814901095dbc, type: 3}
   - word: niku
-    traduzione: carne
+    traduzione: meat
     ideosInWord:
     - {fileID: 21300000, guid: c516247d2e098a141b2ef1215dbef9ee, type: 3}
     - {fileID: 21300000, guid: 8ec23330a4eb7514b8ca35501b476c56, type: 3}
   - word: sakana
-    traduzione: pesce
+    traduzione: fish
     ideosInWord:
     - {fileID: 21300000, guid: e8db161597a0f6b46af47b2b5d967bbd, type: 3}
     - {fileID: 21300000, guid: da7d73fa50b940347b9ffe6fe65149f6, type: 3}
     - {fileID: 21300000, guid: 717e43d3a73c64a499db309efcb9f29d, type: 3}
   - word: yasai
-    traduzione: verdura
+    traduzione: vegetable
     ideosInWord:
     - {fileID: 21300000, guid: 541e53c36e70b6647bb24779d46124b7, type: 3}
     - {fileID: 21300000, guid: e8db161597a0f6b46af47b2b5d967bbd, type: 3}
     - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
   - word: tenin
-    traduzione: commesso
+    traduzione: clerk
     ideosInWord:
     - {fileID: 21300000, guid: 46442df9fc8826149a60d2ef3a6c9d47, type: 3}
     - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
