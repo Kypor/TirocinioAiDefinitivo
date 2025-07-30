@@ -22,6 +22,13 @@ public class MainMenuManager : MonoBehaviour
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
     }
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         SavePlayerDataManager.AddRatio(1, 2, 89);
+    //     }
+    // }
     public void ChoseTopic()
     {
         SoundManager.instance.PlaySoundFX(0);
