@@ -968,7 +968,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f2c3dd4917f03ea448728bcc0e47d71d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3cec394eb2a47e0479fbc3892975fdd8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &235464475
 Transform:
@@ -2015,8 +2015,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Porta i vestiti in camera da letto
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7f00e82227172fb44be3f1dba94a54df, type: 2}
-  m_sharedMaterial: {fileID: -8137832749218801186, guid: 7f00e82227172fb44be3f1dba94a54df, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
+  m_sharedMaterial: {fileID: 2204534132060886028, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3106,8 +3106,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
-  m_sharedMaterial: {fileID: 2204534132060886028, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7f00e82227172fb44be3f1dba94a54df, type: 2}
+  m_sharedMaterial: {fileID: -8137832749218801186, guid: 7f00e82227172fb44be3f1dba94a54df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3131,7 +3131,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.15
+  m_fontSize: 28.1
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6339,7 +6339,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209029370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32f3bf44508693a4ebecee35571915ff, type: 3}
   m_Name: 
@@ -8870,6 +8870,7 @@ MonoBehaviour:
     description: 
     requiredVerb: 
     requiredNoun: 
+    requiredNumber: 
     isCompleted: 0
   textMeshPro: {fileID: 456403716}
   questPanel: {fileID: 473695725}
@@ -9520,28 +9521,28 @@ MonoBehaviour:
   catInteractionPoint: {fileID: 1158541813}
   catInteraction: 0
   actionsList:
-  - sentence: "\u304A\u3069\u308A\u307E\u3059"
+  - sentence: Balla
     verb: Dance
     noun: 
-  - sentence: "\u304F\u3064\u3092\u306C\u3044\u3067"
+  - sentence: Togliti le scarpe
     verb: Kneel
     noun: 
-  - sentence: "\u307F\u305A\u3092\u306E\u3093\u3067"
+  - sentence: Bevi l'acqua
     verb: Eat
     noun: Bottle
-  - sentence: "\u3054\u306F\u3093\u3092\u305F\u3079\u3066"
+  - sentence: Mangia il riso
     verb: Eat
     noun: RiceAll
-  - sentence: "\u306D\u308B"
+  - sentence: Vai a dormire
     verb: Sleep
     noun: Bed
-  - sentence: "\u306D\u3053"
+  - sentence: Accarezza il gatto
     verb: Pet
     noun: Mimmo
-  - sentence: "\u3075\u304F"
+  - sentence: Prendi i vestiti
     verb: GetObject
     noun: Clothes
-  - sentence: "\u3057\u3093\u3057\u3064"
+  - sentence: Vai in camera da letto
     verb: BringObjectsToCheckout
     noun: Closet
   sentences: []

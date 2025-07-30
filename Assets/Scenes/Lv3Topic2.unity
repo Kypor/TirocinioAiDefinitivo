@@ -4826,9 +4826,9 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585548}
   - component: {fileID: 330585549}
   - component: {fileID: 330585550}
+  - component: {fileID: 330585551}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4954,22 +4954,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &330585548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c1084a695aeaf6478378c80123e8fdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 5fee63a1c98e7954cb330de33bde7f44, type: 3}
-  tMP_InputField: {fileID: 1468278776}
-  scores: []
-  characterBehaviour: {fileID: 1839254887}
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5018,6 +5002,22 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &330585551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259ad287e306ff94a8c75aa0ea163e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelAsset: {fileID: 5022602860645237092, guid: 5fee63a1c98e7954cb330de33bde7f44, type: 3}
+  tMP_InputField: {fileID: 1468278776}
+  scores: []
+  characterBehaviour: {fileID: 1839254889}
 --- !u!1 &335969245
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,7 +6273,7 @@ GameObject:
   - component: {fileID: 441779920}
   - component: {fileID: 441779919}
   - component: {fileID: 441779921}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Apple_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7372,7 +7372,7 @@ PrefabInstance:
     - target: {fileID: 4113075352669578663, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1950095544}
+      objectReference: {fileID: 0}
     - target: {fileID: 4113075352669578663, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMenu
@@ -8518,11 +8518,6 @@ Transform:
   - {fileID: 1349373694}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &604565403 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 542305235797570110, guid: 22c8a65dd2461254f88aad6af785ba9e, type: 3}
-  m_PrefabInstance: {fileID: 1839254884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &623906623
 GameObject:
   m_ObjectHideFlags: 0
@@ -9056,8 +9051,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
-  m_sharedMaterial: {fileID: 2204534132060886028, guid: 8ca7b46e3ccd4964c947fca22242a817, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7f00e82227172fb44be3f1dba94a54df, type: 2}
+  m_sharedMaterial: {fileID: -8137832749218801186, guid: 7f00e82227172fb44be3f1dba94a54df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9081,7 +9076,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.15
+  m_fontSize: 28.1
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12445,31 +12440,24 @@ MonoBehaviour:
   - sentence: Hello
     verb: Idle
     noun: 
-    number: 
   - sentence: sort
     verb: Puzzled
     noun: 
-    number: 
   - sentence: Bring the red cube
     verb: BringObject
     noun: RedCube
-    number: 
   - sentence: Move to the right
     verb: Moving
     noun: Right
-    number: 
   - sentence: Move to the left
     verb: Moving
     noun: Left
-    number: 
   - sentence: "\u53F3\u306B\u884C\u304F"
     verb: Moving
     noun: Right
-    number: 
   - sentence: Bring the blue cube
     verb: BringObject
     noun: BlueCube
-    number: 
   sentences: []
 --- !u!136 &828444841
 CapsuleCollider:
@@ -16613,7 +16601,7 @@ GameObject:
   - component: {fileID: 1142227743}
   - component: {fileID: 1142227742}
   - component: {fileID: 1142227744}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Apple_1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17222,7 +17210,7 @@ GameObject:
   - component: {fileID: 1201593345}
   - component: {fileID: 1201593344}
   - component: {fileID: 1201593346}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Apple_1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19156,7 +19144,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1349519399
+--- !u!114 &1349519401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19165,7 +19153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349519393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a16655e07f127c4b855f906e7d33039, type: 3}
+  m_Script: {fileID: 11500000, guid: 63de65f137f24ae458afd8c0f354f6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   secondsToStop: 10
@@ -23753,7 +23741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1711242260}
-  - component: {fileID: 1711242259}
+  - component: {fileID: 1711242261}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -23761,28 +23749,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1711242259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711242258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e9a4743ecd63a43a3c7d9a04ada270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questsData: {fileID: 11400000, guid: a5364061ec7345f488587313a8fe0931, type: 2}
-  currentQuest:
-    questID: 0
-    description: 
-    requiredVerb: 
-    requiredNoun: 
-    requiredNumber: 
-    isCompleted: 0
-  textMeshPro: {fileID: 456403716}
-  questPanel: {fileID: 473695725}
 --- !u!4 &1711242260
 Transform:
   m_ObjectHideFlags: 0
@@ -23798,6 +23764,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2113168347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1711242261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12757dcbad71b5f428f71d838b4c88fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questsData: {fileID: 11400000, guid: a5364061ec7345f488587313a8fe0931, type: 2}
+  currentQuest:
+    questID: 0
+    description: 
+    requiredVerb: 
+    requiredNoun: 
+    requiredNumber: 
+    isCompleted: 0
+  textMeshPro: {fileID: 456403716}
+  questPanel: {fileID: 473695725}
 --- !u!65 &1714917903
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25804,7 +25792,7 @@ PrefabInstance:
       addedObject: {fileID: 1839254888}
     - targetCorrespondingSourceObject: {fileID: 7988317273923387031, guid: 22c8a65dd2461254f88aad6af785ba9e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1839254887}
+      addedObject: {fileID: 1839254889}
   m_SourcePrefab: {fileID: 100100000, guid: 22c8a65dd2461254f88aad6af785ba9e, type: 3}
 --- !u!1 &1839254885 stripped
 GameObject:
@@ -25816,64 +25804,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7686371609259345846, guid: 22c8a65dd2461254f88aad6af785ba9e, type: 3}
   m_PrefabInstance: {fileID: 1839254884}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1839254887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839254885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e76620ac3cd21c47b2f57a8e069310f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shoes: {fileID: 604565403}
-  objectDistance: 1
-  grabbingPoint: {fileID: 2069355959}
-  defaultPosition: {fileID: 489959055}
-  eatingPoint: {fileID: 1202463516}
-  sleepPosition: {fileID: 0}
-  catInteractionPoint: {fileID: 1158541813}
-  catInteraction: 0
-  actionsList:
-  - sentence: "\u304A\u3069\u308A\u307E\u3059"
-    verb: Dance
-    noun: 
-    number: 
-  - sentence: "\u304F\u3064\u3092\u306C\u3044\u3067"
-    verb: Kneel
-    noun: 
-    number: 2
-  - sentence: "\u307F\u305A\u3092\u306E\u3093\u3067"
-    verb: Eat
-    noun: Bottle
-    number: 
-  - sentence: "\u3054\u306F\u3093\u3092\u305F\u3079\u3066"
-    verb: Eat
-    noun: RiceAll
-    number: 
-  - sentence: "\u306D\u308B"
-    verb: Sleep
-    noun: Bed
-    number: 
-  - sentence: "\u306D\u3053"
-    verb: Pet
-    noun: Mimmo
-    number: 
-  - sentence: Get Apple
-    verb: GetObject
-    noun: Apple
-    number: 2
-  - sentence: vai alla cassa
-    verb: BringObjectsToCheckout
-    noun: Caisse
-    number: 
-  - sentence: Greet the clerk
-    verb: Greet
-    noun: Clerk
-    number: 
-  sentences: []
 --- !u!195 &1839254888
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -25896,6 +25826,39 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1839254889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839254885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39f915250f40a54b9d2ce8c362205fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectDistance: 3
+  grabbingPoint: {fileID: 2069355959}
+  defaultPosition: {fileID: 0}
+  eatingPoint: {fileID: 0}
+  sleepPosition: {fileID: 0}
+  catInteractionPoint: {fileID: 0}
+  catInteraction: 0
+  actionsList:
+  - sentence: Prendi le mele
+    verb: GetObject
+    noun: Apple
+    number: 2
+  - sentence: Vai alla cassa
+    verb: BringObjectsToCheckout
+    noun: Cassa
+    number: 
+  - sentence: Saluta il commesso
+    verb: Greet
+    noun: Clerk
+    number: 
+  sentences: []
 --- !u!1 &1841149647
 GameObject:
   m_ObjectHideFlags: 0
@@ -28263,7 +28226,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1950095542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b0f5a863b4314438ded0dd6546f6d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc79b50a1b454b4c97cccb4da5d43cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 790015692}
@@ -29400,10 +29363,10 @@ PrefabInstance:
       addedObject: {fileID: 1349519396}
     - targetCorrespondingSourceObject: {fileID: 6397291155531275063, guid: 44a0de0f766c9634eb66f1d56b7edc9d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1349519399}
+      addedObject: {fileID: 1349519397}
     - targetCorrespondingSourceObject: {fileID: 6397291155531275063, guid: 44a0de0f766c9634eb66f1d56b7edc9d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1349519397}
+      addedObject: {fileID: 1349519401}
   m_SourcePrefab: {fileID: 100100000, guid: 44a0de0f766c9634eb66f1d56b7edc9d, type: 3}
 --- !u!4 &2053939880 stripped
 Transform:
@@ -31453,7 +31416,7 @@ GameObject:
   - component: {fileID: 636186763598223029}
   - component: {fileID: 8790171246452686757}
   - component: {fileID: 8790171246452686758}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33488,7 +33451,7 @@ GameObject:
   - component: {fileID: 2247936221071455503}
   - component: {fileID: 1555354709}
   m_Layer: 0
-  m_Name: Caisse
+  m_Name: Cassa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

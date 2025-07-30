@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class CharacterBehaviour : MonoBehaviour
+public class MarketBehaviour : MonoBehaviour
 {
     [System.Serializable]
     public struct Actions
@@ -14,7 +14,7 @@ public class CharacterBehaviour : MonoBehaviour
         public string sentence;
         public string verb;
         public string noun;
-        
+        public string number;
     }
 
     public string currentVerb { get; private set; }
@@ -35,7 +35,7 @@ public class CharacterBehaviour : MonoBehaviour
         Pet
     }
 
-    [SerializeField] GameObject shoes;
+    
 
     QuestManager questManager;
     SoundManager soundManager;
@@ -173,7 +173,7 @@ public class CharacterBehaviour : MonoBehaviour
                     state = State.Idle;
                     animator.SetBool("Kneeling", false);
                     //shoes.SetActive(false);
-                    StartCoroutine(DisableGameObject(shoes));
+                    
                 }
                 break;
             case State.Sleep:
@@ -227,8 +227,9 @@ public class CharacterBehaviour : MonoBehaviour
 
             currentVerb = actionsList[maxScoreIndex].verb;
             currentNoun = actionsList[maxScoreIndex].noun;
-            
+            currentNumber = actionsList[maxScoreIndex].number;
             Debug.Log(" curent number " + currentNumber);
+            
             if (questManager != null && questManager.currentQuest != null)
             {
                 if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower())

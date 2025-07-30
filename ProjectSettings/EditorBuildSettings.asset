@@ -12,16 +12,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Livello1.unity
     guid: 7a80fb2c53f56ff498548ca3327259cd
   - enabled: 1
-    path: Assets/Scenes/Livello2Topic1.unity
+    path: Assets/Scenes/Lv2Topic1.unity
     guid: c352428370a2e0748bce951049be710d
   - enabled: 1
-    path: Assets/Scenes/Livello2Topic2.unity
-    guid: e416636d4bfd0644c85e686faa1382ab
+    path: Assets/Scenes/Lv2Topic2.unity
+    guid: 80f41148ac18e4449b6a03dd4214bc49
   - enabled: 1
-    path: Assets/Scenes/SentenceSimilarity.unity
+    path: Assets/Scenes/Lv3Topic1.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Livello3Topic2.unity
+    path: Assets/Scenes/Lv3Topic2.unity
     guid: 4f87a07d6e514d341b65366a997bc7b2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

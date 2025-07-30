@@ -154,7 +154,7 @@ namespace Whisper.Samples
 
         public void PronunciationPlay()
         {
-            if (Random.Range(0, 100) == 3)
+            if (Random.Range(0, 1000) == 3)
             {
                 SoundManager.instance.PlaySoundFX(superMegaPerforzon);
             }
@@ -222,7 +222,7 @@ namespace Whisper.Samples
 
         private string WordMeaningFunction()
         {
-            return "Prova a dire: " + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[3];
+            return "Prova a dire: " + "'" + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[3] + "'" + " in giapponese";
         }
 
         private string WordRomajiFunction()

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ac4d4fe1e9b634481cf56b217e367c, type: 3}
+  m_Name: IdeoLv2Topic2
+  m_EditorClassIdentifier: 
+  ideos:
+  - word: konnichiwa
+    traduzione: ciao
+    ideosInWord:
+    - {fileID: 21300000, guid: 32d201484cc9ad64e99f5cfe2aa8c58d, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
+    - {fileID: 21300000, guid: c516247d2e098a141b2ef1215dbef9ee, type: 3}
+    - {fileID: 21300000, guid: 230a95421dc033e48953404011eadc6b, type: 3}
+    - {fileID: 21300000, guid: d9561fed3e7dc794d8586b4a1187d2b8, type: 3}
+  - word: ringo
+    traduzione: mela
+    ideosInWord:
+    - {fileID: 21300000, guid: 15142d0820da25a47ad51f380f83eb4f, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
+    - {fileID: 21300000, guid: 8ec8e0ee3efbb57469bf814901095dbc, type: 3}
+  - word: niku
+    traduzione: carne
+    ideosInWord:
+    - {fileID: 21300000, guid: c516247d2e098a141b2ef1215dbef9ee, type: 3}
+    - {fileID: 21300000, guid: 8ec23330a4eb7514b8ca35501b476c56, type: 3}
+  - word: sakana
+    traduzione: pesce
+    ideosInWord:
+    - {fileID: 21300000, guid: e8db161597a0f6b46af47b2b5d967bbd, type: 3}
+    - {fileID: 21300000, guid: da7d73fa50b940347b9ffe6fe65149f6, type: 3}
+    - {fileID: 21300000, guid: 717e43d3a73c64a499db309efcb9f29d, type: 3}
+  - word: yasai
+    traduzione: verdura
+    ideosInWord:
+    - {fileID: 21300000, guid: 541e53c36e70b6647bb24779d46124b7, type: 3}
+    - {fileID: 21300000, guid: e8db161597a0f6b46af47b2b5d967bbd, type: 3}
+    - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
+  - word: tenin
+    traduzione: commesso
+    ideosInWord:
+    - {fileID: 21300000, guid: 46442df9fc8826149a60d2ef3a6c9d47, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
+    - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
+  numbers: []
