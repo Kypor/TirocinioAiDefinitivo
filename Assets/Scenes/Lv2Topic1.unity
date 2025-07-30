@@ -328,8 +328,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PointsManagerScript, Assembly-CSharp
+        - m_Target: {fileID: 2110774189}
+          m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
           m_MethodName: BackToMenu
           m_Mode: 1
           m_Arguments:
@@ -3093,7 +3093,6 @@ MonoBehaviour:
   japaneseIdeoArray: {fileID: 11400000, guid: 982fe451a6101f84b97bc3570f21a942, type: 2}
   partitionIdeoImage: {fileID: 1148618457}
   ideoImage: {fileID: 1846724733}
-  numberOfWords: 7
   errorIndicator: {fileID: 565465179}
   text: {fileID: 1516242726}
   ideoName: {fileID: 229756287}
@@ -3139,6 +3138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalTime: 90
   timerText: {fileID: 434319699}
+  GameOverPanel: {fileID: 0}
 --- !u!114 &2110774188
 MonoBehaviour:
   m_ObjectHideFlags: 0
