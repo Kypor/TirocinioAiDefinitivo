@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ideos:
   - word: gohan
-    traduzione: riso
+    traduzione: rice
     ideosInWord:
     - {fileID: 21300000, guid: 8ec8e0ee3efbb57469bf814901095dbc, type: 3}
     - {fileID: 21300000, guid: 231c7d99fed12d3448c3956eac29b037, type: 3}
     - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
   - word: shinshitsu
-    traduzione: camera da letto
+    traduzione: bedroom
     ideosInWord:
     - {fileID: 21300000, guid: df64d516f9f675c4d92ab7ebfa20ef2d, type: 3}
     - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
     - {fileID: 21300000, guid: df64d516f9f675c4d92ab7ebfa20ef2d, type: 3}
     - {fileID: 21300000, guid: 34f5e9248e047854b80de422e86a8ca4, type: 3}
   - word: kutsu
-    traduzione: scarpe
+    traduzione: shoes
     ideosInWord:
     - {fileID: 21300000, guid: 8ec23330a4eb7514b8ca35501b476c56, type: 3}
     - {fileID: 21300000, guid: 34f5e9248e047854b80de422e86a8ca4, type: 3}
   - word: odorimasu
-    traduzione: ballare
+    traduzione: dance
     ideosInWord:
     - {fileID: 21300000, guid: 52fd3dfceba36e946bb2e48b8596f9a6, type: 3}
     - {fileID: 21300000, guid: 8c9ef0354057c1847ba81bb2f0d14b9f, type: 3}
@@ -40,17 +40,17 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 88695dc0f7fe60c4582c91b2232a1e9a, type: 3}
     - {fileID: 21300000, guid: d917018a574d7cc4ea5d21dedfed3fd5, type: 3}
   - word: fuku
-    traduzione: vestito
+    traduzione: clothes
     ideosInWord:
     - {fileID: 21300000, guid: d6cbba58f7f082545be5f262d99f2482, type: 3}
     - {fileID: 21300000, guid: 8ec23330a4eb7514b8ca35501b476c56, type: 3}
   - word: neko
-    traduzione: gatto
+    traduzione: cat
     ideosInWord:
     - {fileID: 21300000, guid: 55f8c062d399aad409364894b9feca13, type: 3}
     - {fileID: 21300000, guid: 32d201484cc9ad64e99f5cfe2aa8c58d, type: 3}
   - word: mizu
-    traduzione: acqua
+    traduzione: water
     ideosInWord:
     - {fileID: 21300000, guid: 4ba43605b1ca7c84d97da51c60cfeb8b, type: 3}
     - {fileID: 21300000, guid: cdb939e0f6c10f144a4b7059ae5bb38f, type: 3}
