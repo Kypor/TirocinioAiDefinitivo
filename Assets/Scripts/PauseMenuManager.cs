@@ -54,7 +54,10 @@ public class PauseMenuManager : MonoBehaviour
         }
         canvasGroup.alpha = end;
     }
-
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);
