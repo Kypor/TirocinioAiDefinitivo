@@ -1,43 +1,55 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using UnityEditor.Rendering;
 using UnityEngine;
+
 [Serializable]
 public class ErrorRatios
 {
-    public List<float> lv1To1 = new List<float>();
-    public List<float> lv1To2 = new List<float>();
-    public List<float> lv2To1 = new List<float>();
-    public List<float> lv2To2 = new List<float>();
-    public List<float> lv3To1 = new List<float>();
-    public List<float> lv3To2 = new List<float>();
+    // da vedere se mettere float (motivi di grafico)
+    public List<float> lv1To1 = new();
+    public List<float> lv1To2 = new();
+    public List<float> lv2To1 = new();
+    public List<float> lv2To2 = new();
+    public List<float> lv3To1 = new();
+    public List<float> lv3To2 = new();
 
 }
+
+[Serializable]
+public class ErrorCounts
+{
+    public Dictionary<string, List<int>> wordsErrorCountT1 = new();
+    public Dictionary<string, List<int>> wordsErrorCountT2 = new();
+    public Dictionary<string, List<int>> ideoErrorCountT1 = new();
+    public Dictionary<string, List<int>> ideoErrorCountT2 = new();
+    public Dictionary<string, List<int>> questErrorCountT1 = new();
+    public Dictionary<string, List<int>> questErrorCountT2 = new();
+
+}
+
+
 [Serializable]
 public class PlayerDataList
 {
-    public List<PlayerData> players = new List<PlayerData>();
+    public List<PlayerData> players = new();
 }
+
+
 [Serializable]
 public class PlayerData
 {
     public string name;
     public ErrorRatios errorRatios;
+    public ErrorCounts errorCounts;
 
     public PlayerData(string text)
     {
-        this.name = text;
-    }
+        name = text;
+        errorRatios = new();
+        errorCounts = new();
 
-    public void AddRatio(int level, int topic, float ratio)
-    {
-        if (level == 1 && topic == 1) errorRatios.lv1To1.Add(ratio);
-        else if (level == 1 && topic == 2) errorRatios.lv1To2.Add(ratio);
-        else if (level == 2 && topic == 1) errorRatios.lv2To1.Add(ratio);
-        else if (level == 2 && topic == 2) errorRatios.lv2To2.Add(ratio);
-        else if (level == 3 && topic == 1) errorRatios.lv3To1.Add(ratio);
-        else if (level == 3 && topic == 2) errorRatios.lv3To2.Add(ratio);
-        Debug.Log("ratio addedd");
     }
 }

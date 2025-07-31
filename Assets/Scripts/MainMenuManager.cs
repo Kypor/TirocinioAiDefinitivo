@@ -22,14 +22,26 @@ public class MainMenuManager : MonoBehaviour
         mainPanel.SetActive(true);
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
+
     }
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         SavePlayerDataManager.AddRatio(1, 2, 89);
-    //     }
-    // }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SavePlayerDataManager.AddRatio(1, 2, 89);
+            SavePlayerDataManager.AddRatio(1, 2, 79);
+            SavePlayerDataManager.AddRatio(1, 2, 90);
+            SavePlayerDataManager.AddRatio(2, 2, 4);
+            SavePlayerDataManager.AddRatio(3, 1, 66);
+
+            SavePlayerDataManager.AddErrorCount(2, 1, "palle", 33);
+            SavePlayerDataManager.AddErrorCount(1, 2, "suca", 13);
+            SavePlayerDataManager.AddErrorCount(2, 1, "palle", 43);
+            SavePlayerDataManager.AddErrorCount(2, 1, "palle", 553);
+            SavePlayerDataManager.AddErrorCount(2, 1, "palle", 33);
+            SavePlayerDataManager.AddErrorCount(3, 2, "culo", 10);
+        }
+    }
     public void ChoseTopic()
     {
         SoundManager.instance.PlaySoundFX(0);
