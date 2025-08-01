@@ -36,7 +36,7 @@ public class CharacterBehaviour : MonoBehaviour
     }
 
     [SerializeField] GameObject shoes;
-
+    private int errorCount = 0;
     QuestManager questManager;
     SoundManager soundManager;
     private bool audioPlaying;
@@ -60,7 +60,7 @@ public class CharacterBehaviour : MonoBehaviour
     private State state;
     private GameObject goalObject;
     [HideInInspector]
-    public List<string> sentences; // Robot list of sentences (actions)
+    public List<string> sentences; 
 
     NavMeshAgent agent;
     void Start()
@@ -233,10 +233,13 @@ public class CharacterBehaviour : MonoBehaviour
             {
                 if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower())
                 {
+                    //SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
+                    errorCount = 0;
                     state = (State)System.Enum.Parse(typeof(State), verb, true);
                 }
                 else
                 {
+                    errorCount++;
                     state = State.Puzzled;
                 }
             }

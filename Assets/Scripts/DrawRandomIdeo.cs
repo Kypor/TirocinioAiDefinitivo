@@ -9,8 +9,8 @@ public class DrawRandomIdeo : MonoBehaviour
     private JapaneseIdeoArray japaneseIdeoArray;
     public Image partitionIdeoImage, ideoImage;
     private ListWrapper currentIdeo;
-    private int currentNumberIndex = 0, currentIdeoIndex = 0, WordsCount = 0;
-   // public int numberOfWords = 1;
+    private int currentNumberIndex = 0, currentIdeoIndex = 0, wordsCount = 0, errorCount = 0;
+    // public int numberOfWords = 1;
     public Image errorIndicator;
     [SerializeField]
     private TextMeshProUGUI text;
@@ -22,12 +22,12 @@ public class DrawRandomIdeo : MonoBehaviour
     {
         timer = GetComponent<CountdownTimer>();
         ideoImage.sprite = GetRandomIdeo();
-        pointsManagerScript = GetComponent<PointsManagerScript>(); 
+        pointsManagerScript = GetComponent<PointsManagerScript>();
     }
 
     // private Sprite GetRandomIdeo()
     // {
-    //     if (WordsCount < numberOfWords)
+    //     if (wordsCount < numberOfWords)
     //     {
     //         int randomWord = Random.Range(0, japaneseIdeoArray.ideos.Count);
     //         currentIdeo = japaneseIdeoArray.ideos[randomWord];
@@ -43,23 +43,23 @@ public class DrawRandomIdeo : MonoBehaviour
 
     private Sprite GetRandomIdeo()
     {
-        if (WordsCount < japaneseIdeoArray.ideos.Count)
+        if (wordsCount < japaneseIdeoArray.ideos.Count)
         {
             //int randomIndex = UnityEngine.Random.Range(0, availableIdeos.Count);
-            currentIdeo = japaneseIdeoArray.ideos[WordsCount];
+            currentIdeo = japaneseIdeoArray.ideos[wordsCount];
 
             //ideoName.text = currentIdeo.ideosInWord[currentNumberIndex].name;
             ideoName.text = currentIdeo.ideosInWord[0].name.Split("-")[1];
 
-            text.text = "Write the word: " + "'" + currentIdeo.word + "'" + "\n in japanese "+"\nTranslation: " + currentIdeo.traduzione;
-            
+            text.text = "Write the word: " + "'" + currentIdeo.word + "'" + "\n in japanese " + "\nTranslation: " + currentIdeo.traduzione;
+
             return currentIdeo.ideosInWord[0];
         }
 
         timer.StopTimer();
         //pointsManagerScript.AddPoints(2);
         StartCoroutine(pointsManagerScript.ShowResults());
-        
+
         return null;
     }
 
@@ -87,7 +87,7 @@ public class DrawRandomIdeo : MonoBehaviour
 
     private void ResetIdeo()
     {
-        WordsCount++;
+        wordsCount++;
         ideoImage.sprite = GetRandomIdeo();
         currentNumberIndex = 0;
         pointsManagerScript.AddPoints(2);
@@ -95,19 +95,23 @@ public class DrawRandomIdeo : MonoBehaviour
 
     private bool CheckIdeo(int recognizedIndex)
     {
-        currentIdeoIndex = int.Parse(ideoImage.sprite.name.Substring(0, 2));
+        currentIdeoIndex = int.Parse(ideoImage.sprite.name[..2]);
         Debug.Log("indice immagine: " + currentIdeoIndex);
         if (currentIdeoIndex == recognizedIndex)
         {
+
             errorIndicator.color = new Color(0, 1, 0, 1f);
             SoundManager.instance.PlaySoundFX(1);
             Debug.Log("bravo");
+            //SavePlayerDataManager.AddErrorCount(2, MainMenuManager.topicChosen, ideoName.text, errorCount);
+            errorCount = 0;
             return true;
         }
         errorIndicator.color = new Color(1, 0, 0, 1f);
         SoundManager.instance.PlaySoundFX(2);
         Debug.Log("sbagliato");
         pointsManagerScript.SubPoints(2);
+        errorCount++;
         return false;
     }
 }

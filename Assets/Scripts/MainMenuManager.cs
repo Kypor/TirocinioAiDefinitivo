@@ -160,6 +160,12 @@ public class MainMenuManager : MonoBehaviour
     }
     IEnumerator LoadYourAsyncScene(int level)
     {
+        if (SavePlayerDataManager.currentPlayerData == null)
+        {
+            Debug.LogWarning("no data loaded");
+
+            yield return null;
+        }
         // The Application loads the Scene in the background as the current Scene runs.
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(level);

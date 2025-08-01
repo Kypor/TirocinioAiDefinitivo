@@ -165,6 +165,7 @@ namespace Whisper.Samples
 
         private IEnumerator RightWordCoroutine()
         {
+            //SavePlayerDataManager.AddErrorCount(1, MainMenuManager.topicChosen, JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce.Count - 1], wrongWordCount);
             wrongWordCount = 0;
             StartCoroutine(pointsManagerScript.Fade(0, sensei.GetComponent<CanvasGroup>()));
             SoundManager.instance.PlaySoundFX(1);
