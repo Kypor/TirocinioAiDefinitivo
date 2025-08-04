@@ -5070,13 +5070,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 259ad287e306ff94a8c75aa0ea163e8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c1084a695aeaf6478378c80123e8fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   modelAsset: {fileID: 5022602860645237092, guid: 5fee63a1c98e7954cb330de33bde7f44, type: 3}
   tMP_InputField: {fileID: 1468278776}
   scores: []
-  characterBehaviour: {fileID: 1839254892}
+  characterBehaviour: {fileID: 1839254893}
 --- !u!1 &335969245
 GameObject:
   m_ObjectHideFlags: 0
@@ -7376,7 +7376,7 @@ PrefabInstance:
     - target: {fileID: 4113075352669578663, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1950095544}
+      objectReference: {fileID: 0}
     - target: {fileID: 4113075352669578663, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMenu
@@ -16713,6 +16713,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e101d2fbe4d1e074ab5e66aaf92b293a, type: 3}
   - {fileID: 8300000, guid: d04b5dc50a827a944942648524bdd629, type: 3}
   - {fileID: 8300000, guid: e47597c2b31e1c64ea1ca53f2310a419, type: 3}
+  victoryMusic: {fileID: 8300000, guid: 9507be2c0dc2e014f8e08217f44935ab, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!4 &1138078492 stripped
 Transform:
@@ -19388,7 +19389,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1349519401
+--- !u!114 &1349519398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19397,7 +19398,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349519393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63de65f137f24ae458afd8c0f354f6d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a16655e07f127c4b855f906e7d33039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   secondsToStop: 10
@@ -23821,7 +23822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1711242260}
-  - component: {fileID: 1711242261}
+  - component: {fileID: 1711242262}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -23844,7 +23845,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2113168347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1711242261
+--- !u!114 &1711242262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23853,7 +23854,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1711242258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12757dcbad71b5f428f71d838b4c88fe, type: 3}
+  m_Script: {fileID: 11500000, guid: f3e9a4743ecd63a43a3c7d9a04ada270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   questsData: {fileID: 11400000, guid: a5364061ec7345f488587313a8fe0931, type: 2}
@@ -25843,7 +25844,7 @@ PrefabInstance:
       addedObject: {fileID: 1839254888}
     - targetCorrespondingSourceObject: {fileID: 7988317273923387031, guid: 22c8a65dd2461254f88aad6af785ba9e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1839254892}
+      addedObject: {fileID: 1839254893}
   m_SourcePrefab: {fileID: 100100000, guid: 22c8a65dd2461254f88aad6af785ba9e, type: 3}
 --- !u!1 &1839254885 stripped
 GameObject:
@@ -25877,7 +25878,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1839254892
+--- !u!114 &1839254893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25886,9 +25887,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1839254885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39f915250f40a54b9d2ce8c362205fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e76620ac3cd21c47b2f57a8e069310f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoes: {fileID: 0}
   objectDistance: 2
   grabbingPoint: {fileID: 2069355959}
   defaultPosition: {fileID: 0}
@@ -28346,7 +28348,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1950095542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc79b50a1b454b4c97cccb4da5d43cd, type: 3}
+  m_Script: {fileID: 11500000, guid: e3b0f5a863b4314438ded0dd6546f6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 790015692}
@@ -29486,7 +29488,7 @@ PrefabInstance:
       addedObject: {fileID: 1349519397}
     - targetCorrespondingSourceObject: {fileID: 6397291155531275063, guid: 44a0de0f766c9634eb66f1d56b7edc9d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1349519401}
+      addedObject: {fileID: 1349519398}
   m_SourcePrefab: {fileID: 100100000, guid: 44a0de0f766c9634eb66f1d56b7edc9d, type: 3}
 --- !u!4 &2053939880 stripped
 Transform:

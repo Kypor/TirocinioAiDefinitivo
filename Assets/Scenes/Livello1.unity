@@ -1074,6 +1074,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 74d3cc47bd2d90f49969104e5c3615c1, type: 3}
   - {fileID: 8300000, guid: 2c9d604ffa4ded449b9fefaef3c12d28, type: 3}
   - {fileID: 8300000, guid: c5a35dc4eba85364b97f88bcbd4a6357, type: 3}
+  victoryMusic: {fileID: 8300000, guid: 9507be2c0dc2e014f8e08217f44935ab, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!1 &313098117
 GameObject:
@@ -1908,7 +1909,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: e3b50e1408cf142439d8657ad1c58a5d, type: 3}
   m_Resource: {fileID: 8300000, guid: e3b50e1408cf142439d8657ad1c58a5d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0

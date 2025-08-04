@@ -6,10 +6,15 @@ public class GeneralManager : MonoBehaviour
     QuestManager questManager;
     [SerializeField] AudioSource backgroundMusic;
     [SerializeField] private GameObject victoryPanel;
+    GameObject bgMusic;
+    bool coroutineStarted = false;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         questManager = FindAnyObjectByType<QuestManager>();
+        bgMusic = GameObject.Find("BackgroundMusic");
 
         victoryPanel.SetActive(false);
     }
@@ -19,8 +24,12 @@ public class GeneralManager : MonoBehaviour
     {
         if (questManager.allQuestsCompleted == true)
         {
-            Time.timeScale = 0;
-            backgroundMusic.Stop();
+            if (!coroutineStarted)
+            {
+                StartCoroutine(SoundManager.instance.FadeCore(bgMusic.GetComponent<AudioSource>(), 1f, SoundManager.instance.victoryMusic));
+                coroutineStarted = true;
+            }
+
             victoryPanel.SetActive(true);
         }
     }

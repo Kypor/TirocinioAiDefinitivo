@@ -4357,6 +4357,7 @@ MonoBehaviour:
   gameCameraTransform: {fileID: 1302606502}
   soundFXClips:
   - {fileID: 8300000, guid: 7064f0a44dbe06049a804187ad0ca6d5, type: 3}
+  victoryMusic: {fileID: 8300000, guid: 9507be2c0dc2e014f8e08217f44935ab, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!4 &1354004992
 Transform:
@@ -6633,7 +6634,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0920ffca13963a6479c57a6108d68c99, type: 3}
   m_Resource: {fileID: 8300000, guid: 0920ffca13963a6479c57a6108d68c99, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.801
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0

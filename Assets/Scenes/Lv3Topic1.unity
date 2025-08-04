@@ -5878,6 +5878,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e101d2fbe4d1e074ab5e66aaf92b293a, type: 3}
   - {fileID: 8300000, guid: d04b5dc50a827a944942648524bdd629, type: 3}
   - {fileID: 8300000, guid: e47597c2b31e1c64ea1ca53f2310a419, type: 3}
+  victoryMusic: {fileID: 8300000, guid: 9507be2c0dc2e014f8e08217f44935ab, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!1001 &1143513858
 PrefabInstance:

@@ -2502,6 +2502,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 74d3cc47bd2d90f49969104e5c3615c1, type: 3}
   - {fileID: 8300000, guid: 2c9d604ffa4ded449b9fefaef3c12d28, type: 3}
   - {fileID: 8300000, guid: 31db01a304eb3d44cb458f69807a1196, type: 3}
+  victoryMusic: {fileID: 8300000, guid: 9507be2c0dc2e014f8e08217f44935ab, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!4 &1356495430
 Transform:

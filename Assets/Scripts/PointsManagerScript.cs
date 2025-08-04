@@ -19,8 +19,14 @@ public class PointsManagerScript : MonoBehaviour
     [SerializeField] List<Image> starsImages = new List<Image>();
     int currSceneIndex;
 
+    GameObject bgMusic;
+
+
     private void Awake()
     {
+        bgMusic = GameObject.Find("BackgroundMusic");
+
+
         currSceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (currSceneIndex == 1)
             numberOfWords = GetComponent<MicrophoneDemo>().JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count;
@@ -53,8 +59,16 @@ public class PointsManagerScript : MonoBehaviour
         }
     }
 
+    
+
     public IEnumerator ShowResults()
     {
+        StartCoroutine(SoundManager.instance.FadeCore(bgMusic.GetComponent<AudioSource>(), 1f, SoundManager.instance.victoryMusic));
+        //bgMusic.GetComponent<AudioSource>().Stop();
+        //SoundManager.instance.PlaySoundFX(SoundManager.instance.victoryMusic);
+        //StartCoroutine(SoundManager.instance.FadeInCore(bgMusic.GetComponent<AudioSource>(), 2f, SoundManager.instance.victoryMusic));
+
+
         StartCoroutine(Fade(1, finishGamePanel.GetComponent<CanvasGroup>()));
         finishGamePanel.GetComponent<CanvasGroup>().interactable = true;
         finishGamePanel.GetComponent<CanvasGroup>().blocksRaycasts = true;

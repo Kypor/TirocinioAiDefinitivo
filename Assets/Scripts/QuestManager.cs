@@ -13,7 +13,6 @@ public class QuestManager : MonoBehaviour
     private int currentQuestID = 0;
     public bool allQuestsCompleted { get; private set; }
 
-    public float finalWaitSeconds;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -82,7 +81,7 @@ public class QuestManager : MonoBehaviour
 
     private IEnumerator finalQuestWait()
     {
-        yield return new WaitForSeconds(finalWaitSeconds);
+        yield return new WaitForSeconds(2f);
         questPanel.SetActive(false);
         textMeshPro.text = null;
         allQuestsCompleted = true;
