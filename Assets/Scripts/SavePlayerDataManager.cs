@@ -13,7 +13,7 @@ public class SavePlayerDataManager : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown savesDropdown;
     private static PlayerDataList playersList;
-    private List<string> nameSaved = new();
+    private readonly List<string> nameSaved = new();
     [SerializeField]
     private TextMeshProUGUI debugText;
     private static readonly string path = "C:/Users/diego/Desktop/build tirocinio" + "/playerDataList.json";

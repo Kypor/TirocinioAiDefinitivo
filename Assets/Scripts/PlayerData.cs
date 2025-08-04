@@ -41,12 +41,14 @@ public class PlayerDataList
 [Serializable]
 public class PlayerData
 {
+    public readonly string pcId;
     public string name;
     public ErrorRatios errorRatios;
     public ErrorCounts errorCounts;
 
     public PlayerData(string text)
     {
+        pcId = Environment.MachineName;
         name = text;
         errorRatios = new();
         errorCounts = new();
