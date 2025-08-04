@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DrawRandomIdeo : MonoBehaviour
 {
-    [SerializeField]
-    private JapaneseIdeoArray japaneseIdeoArray;
+    
+    public JapaneseIdeoArray japaneseIdeoArray;
     public Image partitionIdeoImage, ideoImage;
     private ListWrapper currentIdeo;
     private int currentNumberIndex = 0, currentIdeoIndex = 0, wordsCount = 0, errorCount = 0;

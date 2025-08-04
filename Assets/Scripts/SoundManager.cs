@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
         AudioSource audioSource = Instantiate(soundFXobj, gameCameraTransform.position, Quaternion.identity);
         audioSource.clip = soundFXClips[clipIndex];
         audioSource.Play();
-        Debug.Log("Cacca");
+        //Debug.Log("Cacca");
         float clipLength = soundFXClips[clipIndex].length;
         Destroy(audioSource.gameObject, clipLength);
     }
@@ -39,7 +39,7 @@ public class SoundManager : MonoBehaviour
         AudioSource audioSource = Instantiate(soundFXobj, gameCameraTransform.position, Quaternion.identity);
         audioSource.clip = clip;
         audioSource.Play();
-        Debug.Log("Cacca");
+       // Debug.Log("Cacca");
         float clipLength = clip.length;
         Destroy(audioSource.gameObject, clipLength);
     }
@@ -53,7 +53,7 @@ public class SoundManager : MonoBehaviour
         while (a.volume > 0)
         {
             a.volume -= startVolume * Time.deltaTime / duration;
-            Debug.Log(a.volume);
+            //Debug.Log(a.volume);
             yield return new WaitForEndOfFrame();
         }
 

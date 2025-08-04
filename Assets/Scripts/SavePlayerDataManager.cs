@@ -140,12 +140,12 @@ public class SavePlayerDataManager : MonoBehaviour
     /// <param name="ratio">valore di errore calcolato</param>
     public static void AddRatio(int level, int topic, float ratio)
     {
-        if (level == 1 && topic == 1) currentPlayerData.errorRatios.lv1To1.Add(ratio);
-        else if (level == 1 && topic == 2) currentPlayerData.errorRatios.lv1To2.Add(ratio);
-        else if (level == 2 && topic == 1) currentPlayerData.errorRatios.lv2To1.Add(ratio);
-        else if (level == 2 && topic == 2) currentPlayerData.errorRatios.lv2To2.Add(ratio);
-        else if (level == 3 && topic == 1) currentPlayerData.errorRatios.lv3To1.Add(ratio);
-        else if (level == 3 && topic == 2) currentPlayerData.errorRatios.lv3To2.Add(ratio);
+        if (level == 1 && topic == 1) currentPlayerData.errorRatios.lv1To1 = ratio;
+        else if (level == 1 && topic == 2) currentPlayerData.errorRatios.lv1To2 = ratio;
+        else if (level == 2 && topic == 1) currentPlayerData.errorRatios.lv2To1 = ratio;
+        else if (level == 2 && topic == 2) currentPlayerData.errorRatios.lv2To2 = ratio;
+        else if (level == 3 && topic == 1) currentPlayerData.errorRatios.lv3To1 = ratio;
+        else if (level == 3 && topic == 2) currentPlayerData.errorRatios.lv3To2 = ratio;
         Debug.Log("ratio addedd");
         string nuovoJson = JsonConvert.SerializeObject(playersList, Formatting.Indented);
         File.WriteAllText(path, nuovoJson);
@@ -159,39 +159,38 @@ public class SavePlayerDataManager : MonoBehaviour
     /// <param name="count">numero di volte dello sbaglio della chiave</param>
     public static void AddErrorCount(int level, int topic, string key, int count)
     {
-        List<int> targetList = null;
-
         if (level == 1 && topic == 1)
-            targetList = GetOrCreate(currentPlayerData.errorCounts.wordsErrorCountT1, key);
+            currentPlayerData.errorCounts.wordsErrorCountT1[key] = currentPlayerData.errorCounts.wordsErrorCountT1.TryGetValue(key, out int val) ? val + count : count;
         else if (level == 1 && topic == 2)
-            targetList = GetOrCreate(currentPlayerData.errorCounts.wordsErrorCountT2, key);
+            currentPlayerData.errorCounts.wordsErrorCountT2[key] = currentPlayerData.errorCounts.wordsErrorCountT2.TryGetValue(key, out int val) ? val + count : count;
         else if (level == 2 && topic == 1)
-            targetList = GetOrCreate(currentPlayerData.errorCounts.ideoErrorCountT1, key);
+            currentPlayerData.errorCounts.ideoErrorCountT1[key] = currentPlayerData.errorCounts.ideoErrorCountT1.TryGetValue(key, out int val) ? val + count : count;
         else if (level == 2 && topic == 2)
-            targetList = GetOrCreate(currentPlayerData.errorCounts.ideoErrorCountT2, key);
+            currentPlayerData.errorCounts.ideoErrorCountT2[key] = currentPlayerData.errorCounts.ideoErrorCountT2.TryGetValue(key, out int val) ? val + count : count;
         else if (level == 3 && topic == 1)
-            targetList = GetOrCreate(currentPlayerData.errorCounts.questErrorCountT1, key);
+            currentPlayerData.errorCounts.questErrorCountT1[key] = currentPlayerData.errorCounts.questErrorCountT1.TryGetValue(key, out int val) ? val + count : count;
         else if (level == 3 && topic == 2)
-            targetList = GetOrCreate(currentPlayerData.errorCounts.questErrorCountT2, key);
-
-        targetList?.Add(count);
-
+            currentPlayerData.errorCounts.questErrorCountT2[key] = currentPlayerData.errorCounts.questErrorCountT2.TryGetValue(key, out int val) ? val + count : count;
         Debug.Log("error count added");
-
         string nuovoJson = JsonConvert.SerializeObject(playersList, Formatting.Indented);
         File.WriteAllText(path, nuovoJson);
     }
 
-    // Helper per creare la lista se non esiste
-    private static List<int> GetOrCreate(Dictionary<string, List<int>> diz, string key)
+    /// <summary>
+    /// funzione che aggiunge l'error ratio al salvataggio corrente 
+    /// </summary>
+    /// <param name="level">numero livello da 1 a 2</param>
+    /// <param name="topic">numero topic da 1 a 2</param>
+    /// <param name="ratio">punti fatti sul livello</param>
+    public static void AddPoints(int level, int topic, float points)
     {
-        if (!diz.ContainsKey(key))
-        {
-            Debug.Log("Sono entrato nel cazzo");
-            diz[key] = new List<int>();
-        }
-
-        return diz[key];
+        if (level == 1 && topic == 1) currentPlayerData.pointsLv1To1 = points;
+        else if (level == 1 && topic == 2) currentPlayerData.pointsLv1to2 = points;
+        else if (level == 2 && topic == 1) currentPlayerData.pointsLv2To1 = points;
+        else if (level == 2 && topic == 2) currentPlayerData.pointsLv2To2 = points;
+        Debug.Log("points addedd");
+        string nuovoJson = JsonConvert.SerializeObject(playersList, Formatting.Indented);
+        File.WriteAllText(path, nuovoJson);
     }
 
 }

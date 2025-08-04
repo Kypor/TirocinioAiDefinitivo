@@ -15,14 +15,22 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     EventTrigger eventTriggerThirdLevelText;
     public GameObject pointsLabel;
-
-    public static int topicChosen = 1;
+    
+    public static int topicChosen = 1, levelIndex = 1;
     void Start()
     {
         mainPanel.SetActive(true);
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
 
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            
+
+        }
     }
     public void ChoseTopic()
     {
@@ -135,6 +143,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public IEnumerator LoadLevel(int level)
     {
+        levelIndex = level;
         levelPanel.SetActive(false);
         StartCoroutine(Fade(1, blackCanvas.GetComponent<CanvasGroup>()));
         yield return new WaitForSeconds(1f);

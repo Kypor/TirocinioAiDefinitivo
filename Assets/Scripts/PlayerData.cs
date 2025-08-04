@@ -9,24 +9,24 @@ using UnityEngine;
 public class ErrorRatios
 {
     // da vedere se mettere float (motivi di grafico)
-    public List<float> lv1To1 = new();
-    public List<float> lv1To2 = new();
-    public List<float> lv2To1 = new();
-    public List<float> lv2To2 = new();
-    public List<float> lv3To1 = new();
-    public List<float> lv3To2 = new();
+    public float lv1To1;
+    public float lv1To2;
+    public float lv2To1;
+    public float lv2To2;
+    public float lv3To1;
+    public float lv3To2;
 
 }
 
 [Serializable]
 public class ErrorCounts
 {
-    public Dictionary<string, List<int>> wordsErrorCountT1 = new();
-    public Dictionary<string, List<int>> wordsErrorCountT2 = new();
-    public Dictionary<string, List<int>> ideoErrorCountT1 = new();
-    public Dictionary<string, List<int>> ideoErrorCountT2 = new();
-    public Dictionary<string, List<int>> questErrorCountT1 = new();
-    public Dictionary<string, List<int>> questErrorCountT2 = new();
+    public Dictionary<string, int> wordsErrorCountT1 = new();
+    public Dictionary<string, int> wordsErrorCountT2 = new();
+    public Dictionary<string, int> ideoErrorCountT1 = new();
+    public Dictionary<string, int> ideoErrorCountT2 = new();
+    public Dictionary<string, int> questErrorCountT1 = new();
+    public Dictionary<string, int> questErrorCountT2 = new();
 
 }
 
@@ -43,6 +43,10 @@ public class PlayerData
 {
     public readonly string pcId;
     public string name;
+    public float pointsLv1To1 = 0f;
+    public float pointsLv1to2 = 0f;
+    public float pointsLv2To1 = 0f;
+    public float pointsLv2To2 = 0f;
     public ErrorRatios errorRatios;
     public ErrorCounts errorCounts;
 

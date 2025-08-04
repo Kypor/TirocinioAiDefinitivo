@@ -28,8 +28,8 @@ public class CountdownTimer : MonoBehaviour
     {
         if (timerText != null)
         {
-            int minutes = Mathf.FloorToInt(totalTime / 60);
-            int seconds = Mathf.FloorToInt(totalTime % 60);
+            int minutes = Mathf.FloorToInt(totalTime / 60) > 0 ? Mathf.FloorToInt(totalTime / 60) : 0;
+            int seconds = Mathf.FloorToInt(totalTime % 60) > 0 ? Mathf.FloorToInt(totalTime % 60) : 0;
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); // Display minutes and seconds
         }
     }

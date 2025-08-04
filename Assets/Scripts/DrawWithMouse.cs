@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class DrawWithMouse : MonoBehaviour
 {
-    public static List<LineRenderer> drawLineRenders = new List<LineRenderer>();
+    public static List<LineRenderer> drawLineRenders = new();
     Coroutine drawing;
     public RectTransform area;
     // Update is called once per frame

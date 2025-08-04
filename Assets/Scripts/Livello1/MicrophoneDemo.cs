@@ -22,8 +22,7 @@ namespace Whisper.Samples
         public MicrophoneRecord microphoneRecord;
         public bool streamSegments = true;
         public bool printLanguage = true;
-        [SerializeField]
-        public List<JapaneseWordArray> JapaneseWords = new List<JapaneseWordArray>();
+        public List<JapaneseWordArray> JapaneseWords = new();
 
         [SerializeField] private List<WordsPronunciation> wordsPronunciationList = new List<WordsPronunciation>();
 
@@ -185,6 +184,7 @@ namespace Whisper.Samples
             else
             {
                 StopAllCoroutines();
+                
                 StartCoroutine(pointsManagerScript.ShowResults());
 
             }

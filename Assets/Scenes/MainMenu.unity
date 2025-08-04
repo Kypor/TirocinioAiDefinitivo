@@ -2306,7 +2306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_text
-      value: Second topic
+      value: Supermarket
       objectReference: {fileID: 0}
     - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_fontSize
@@ -5942,7 +5942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_text
-      value: First topic
+      value: Casa
       objectReference: {fileID: 0}
     - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_fontSize
