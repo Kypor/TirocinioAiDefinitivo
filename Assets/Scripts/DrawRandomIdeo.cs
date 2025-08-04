@@ -103,7 +103,7 @@ public class DrawRandomIdeo : MonoBehaviour
             errorIndicator.color = new Color(0, 1, 0, 1f);
             SoundManager.instance.PlaySoundFX(1);
             Debug.Log("bravo");
-            //SavePlayerDataManager.AddErrorCount(2, MainMenuManager.topicChosen, ideoName.text, errorCount);
+            SavePlayerDataManager.AddErrorCount(2, MainMenuManager.topicChosen, ideoName.text, errorCount);
             errorCount = 0;
             return true;
         }

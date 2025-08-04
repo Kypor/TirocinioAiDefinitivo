@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
+
     [SerializeField] public Quests questsData;
     public Quest currentQuest;
     [SerializeField] public TextMeshProUGUI textMeshPro;
@@ -12,9 +13,12 @@ public class QuestManager : MonoBehaviour
     private int currentQuestID = 0;
     public bool allQuestsCompleted { get; private set; }
 
+    public float finalWaitSeconds;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         questPanel.SetActive(true);
         allQuestsCompleted = false;
 
@@ -32,7 +36,25 @@ public class QuestManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentQuestID >= questsData.quests.Count) return;
+        if (currentQuestID >= questsData.quests.Count)
+        {
+            textMeshPro.color = Color.green;
+            StartCoroutine(TextLerp(false));
+
+
+            if (CharacterBehaviour.gameFinished == true)
+            {
+                Debug.Log("Hai completato l'ultima quest!");
+                questPanel.SetActive(false);
+                textMeshPro.text = null;
+                allQuestsCompleted = true;
+            }
+            //StartCoroutine(finalQuestWait());
+
+            return;
+        }
+
+        //if (currentQuestID >= questsData.quests.Count) return;
 
         currentQuest = questsData.quests[currentQuestID];
 
@@ -43,13 +65,6 @@ public class QuestManager : MonoBehaviour
             currentQuestID++;
             SoundManager.instance.PlaySoundFX(2);
 
-            if (currentQuestID >= questsData.quests.Count)
-            {
-                Debug.Log("Hai completato l'ultima quest!");
-                StartCoroutine(finalQuestWait());
-
-                return;
-            }
 
             StartCoroutine(waitForNextQuest());
         }
@@ -67,7 +82,7 @@ public class QuestManager : MonoBehaviour
 
     private IEnumerator finalQuestWait()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(finalWaitSeconds);
         questPanel.SetActive(false);
         textMeshPro.text = null;
         allQuestsCompleted = true;
@@ -93,7 +108,7 @@ public class QuestManager : MonoBehaviour
 
         while (elapsedTime < 1f)
         {
-           // Debug.Log("Pu");
+            // Debug.Log("Pu");
             elapsedTime += Time.deltaTime;
             //canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / 0.5f);
             textMeshPro.transform.position = Vector2.Lerp(startPoint, endPoint, elapsedTime);

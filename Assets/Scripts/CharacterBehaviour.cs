@@ -48,6 +48,7 @@ public class CharacterBehaviour : MonoBehaviour
     [SerializeField] Transform sleepPosition;
     [SerializeField] Transform catInteractionPoint;
     public bool catInteraction;
+    public static bool gameFinished;
 
     private Camera cam;
 
@@ -65,6 +66,7 @@ public class CharacterBehaviour : MonoBehaviour
     NavMeshAgent agent;
     void Start()
     {
+        gameFinished = false;
         audioPlaying = false;
         soundManager = FindAnyObjectByType<SoundManager>();
         cam = FindAnyObjectByType<Camera>();
@@ -119,8 +121,11 @@ public class CharacterBehaviour : MonoBehaviour
                 agent.SetDestination(goalObject.transform.position);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) <= 2f)
                 {
-                    BringObjectsToCheckout(goalObject);
+                    
+                    BringObjectsToCheckout(goalObject);   
+                    gameFinished = true;                 
                     state = State.Idle;
+                    
                 }
                 break;
             case State.Dance:
@@ -233,7 +238,7 @@ public class CharacterBehaviour : MonoBehaviour
             {
                 if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower())
                 {
-                    //SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
+                    SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
                     errorCount = 0;
                     state = (State)System.Enum.Parse(typeof(State), verb, true);
                 }
@@ -287,6 +292,7 @@ public class CharacterBehaviour : MonoBehaviour
             Destroy(childArray[i].gameObject);
         }
         gameObject.transform.parent = null;
+        
     }
     private void Grab(GameObject gameObject)
     {

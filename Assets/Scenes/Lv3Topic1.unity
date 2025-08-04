@@ -8873,6 +8873,7 @@ MonoBehaviour:
     isCompleted: 0
   textMeshPro: {fileID: 456403716}
   questPanel: {fileID: 473695725}
+  finalWaitSeconds: 10
 --- !u!4 &1711242260
 Transform:
   m_ObjectHideFlags: 0

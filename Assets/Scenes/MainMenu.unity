@@ -431,7 +431,6 @@ GameObject:
   - component: {fileID: 135104401}
   - component: {fileID: 135104400}
   - component: {fileID: 135104404}
-  - component: {fileID: 135104405}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -547,21 +546,6 @@ MonoBehaviour:
   thirdLevelText: {fileID: 219718611}
   eventTriggerThirdLevelText: {fileID: 219718609}
   pointsLabel: {fileID: 1001831756}
---- !u!114 &135104405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135104399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a5fe5efebfb9149afe876bc3207b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tMP_InputField: {fileID: 1762330030}
-  savesDropdown: {fileID: 1790470889}
-  debugText: {fileID: 2058550236}
 --- !u!1 &163423689
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,6 +4964,53 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6602974201073372482, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
   m_PrefabInstance: {fileID: 1964743170}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1544351699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544351701}
+  - component: {fileID: 1544351700}
+  m_Layer: 0
+  m_Name: SaveData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1544351700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544351699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a5fe5efebfb9149afe876bc3207b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tMP_InputField: {fileID: 1762330030}
+  savesDropdown: {fileID: 1790470889}
+  debugText: {fileID: 2058550236}
+--- !u!4 &1544351701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544351699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1593110128
 GameObject:
   m_ObjectHideFlags: 0
@@ -6036,7 +6067,7 @@ PrefabInstance:
     - target: {fileID: 4113075352669578663, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 135104405}
+      objectReference: {fileID: 0}
     - target: {fileID: 4113075352669578663, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DeleteSave
@@ -7046,3 +7077,4 @@ SceneRoots:
   - {fileID: 135104403}
   - {fileID: 1259108138}
   - {fileID: 1354004992}
+  - {fileID: 1544351701}

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 
 public class SavePlayerDataManager : MonoBehaviour
 {
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static PlayerData currentPlayerData;
     [SerializeField]
@@ -16,13 +17,26 @@ public class SavePlayerDataManager : MonoBehaviour
     private readonly List<string> nameSaved = new();
     [SerializeField]
     private TextMeshProUGUI debugText;
-    private static readonly string path = "C:/Users/diego/Desktop/build tirocinio" + "/playerDataList.json";
+    private static string path;
+    private static int globalIndex;
+
+
     void Start()
     {
+        path = Application.persistentDataPath + "/playerDataList.json";
         tMP_InputField.onEndEdit.AddListener(delegate { AddNewPlayer(); });
         savesDropdown.ClearOptions();
         savesDropdown.AddOptions(LoadSaveDataNames());
         savesDropdown.onValueChanged.AddListener(ChangeSave);
+
+
+
+        if (playersList.players.Count > 0)
+        {
+            currentPlayerData = playersList.players[globalIndex];
+            savesDropdown.value = globalIndex;
+            Debug.Log("✅ Salvataggio corrente impostato: " + currentPlayerData.name);
+        }
 
     }
     List<string> LoadSaveDataNames()
@@ -53,6 +67,7 @@ public class SavePlayerDataManager : MonoBehaviour
 
     public void ChangeSave(int index)
     {
+        globalIndex = index;
         currentPlayerData = playersList.players[index];
         Debug.Log("✅ Salvataggio corrente impostato: " + currentPlayerData.name);
         debugText.text = "Salvataggio corrente impostato: " + currentPlayerData.name;
@@ -171,7 +186,11 @@ public class SavePlayerDataManager : MonoBehaviour
     private static List<int> GetOrCreate(Dictionary<string, List<int>> diz, string key)
     {
         if (!diz.ContainsKey(key))
+        {
+            Debug.Log("Sono entrato nel cazzo");
             diz[key] = new List<int>();
+        }
+
         return diz[key];
     }
 
