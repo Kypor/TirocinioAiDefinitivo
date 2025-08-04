@@ -9,6 +9,7 @@ public class CountdownTimer : MonoBehaviour
     private bool timerActive = true; // Flag to control timer activation
     [SerializeField]
     GameObject GameOverPanel;
+    GameObject bgMusic;
     void Update()
     {
         if (timerActive && totalTime > 0)
@@ -39,7 +40,10 @@ public class CountdownTimer : MonoBehaviour
 
     void OnTimerEnd()
     {
+        bgMusic = GameObject.Find("BackgroundMusic");
+        bgMusic.GetComponent<AudioSource>().Stop();
         SoundManager.instance.PlaySoundFX(4);
+
         PauseMenuManager pauseMenuManager = GetComponent<PauseMenuManager>();
         Debug.Log("Time's up!");
         StartCoroutine(pauseMenuManager.Fade(1, GameOverPanel.GetComponent<CanvasGroup>()));
