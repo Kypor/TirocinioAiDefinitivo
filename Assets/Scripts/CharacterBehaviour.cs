@@ -229,6 +229,8 @@ public class CharacterBehaviour : MonoBehaviour
         {
             state = State.Puzzled;
             pointsManagerScript.SubPoints(3);
+            errorCount++;
+            Debug.Log("Score inferiore a 0.9f");
         }
         else
         {
@@ -252,6 +254,7 @@ public class CharacterBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("Quest sbagliata");
                     pointsManagerScript.SubPoints(3);
                     errorCount++;
                     state = State.Puzzled;
