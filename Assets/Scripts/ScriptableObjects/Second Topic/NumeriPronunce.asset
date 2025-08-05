@@ -13,13 +13,9 @@ MonoBehaviour:
   m_Name: NumeriPronunce
   m_EditorClassIdentifier: 
   pronunciation:
-  - {fileID: 8300000, guid: 78c1468a5f7b4334f8f1999c74eaaf6a, type: 3}
-  - {fileID: 8300000, guid: 29a5211d4f8cb174eb26b37a2ed6316d, type: 3}
-  - {fileID: 8300000, guid: 4f22f65b10edb4147914105909a5fb43, type: 3}
-  - {fileID: 8300000, guid: 0f4ce88ce8bf1224391707ca892e2d94, type: 3}
-  - {fileID: 8300000, guid: e1321ffb69780424aac5015131ef7847, type: 3}
-  - {fileID: 8300000, guid: 151fa58a85947964aa6f690ab92d8b20, type: 3}
-  - {fileID: 8300000, guid: 0e59cd56a28449745bfb3e28cfb6e9e8, type: 3}
-  - {fileID: 8300000, guid: af5b4d06992056346ab281e82f2a2644, type: 3}
-  - {fileID: 8300000, guid: f75898e0f47b5cf46b3720ec1c3436dc, type: 3}
-  - {fileID: 8300000, guid: f21aac38ef2edca48ae22ea649ccbe88, type: 3}
+  - {fileID: 8300000, guid: 0a5d9b763b32dac4fb0ad76641cfa772, type: 3}
+  - {fileID: 8300000, guid: 5030e1185e4cd2e4693ccd1c493d84c1, type: 3}
+  - {fileID: 8300000, guid: 4da8e0d3cc2b8cf4e8818085d155500d, type: 3}
+  - {fileID: 8300000, guid: e5a6fddb2626e214389c6b10f23a52d2, type: 3}
+  - {fileID: 8300000, guid: 62ae165528435c1499d5f52df295babf, type: 3}
+  - {fileID: 8300000, guid: 2fb6f66e04d44664e82e0687ee468261, type: 3}

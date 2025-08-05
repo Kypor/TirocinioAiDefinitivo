@@ -223,7 +223,7 @@ namespace Whisper.Samples
 
         private string WordMeaningFunction()
         {
-            return "Try to say: " + "'" + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[3] + "'" + " in japanese";
+            return "Try to say in japanese:\n " + "'" + JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[3] + "'";
         }
 
         private string WordRomajiFunction()
