@@ -14,8 +14,10 @@ public class CharacterBehaviour : MonoBehaviour
         public string sentence;
         public string verb;
         public string noun;
-        
+
     }
+
+    PointsManagerScript pointsManagerScript;
 
     public string currentVerb { get; private set; }
     public string currentNoun { get; private set; }
@@ -61,11 +63,15 @@ public class CharacterBehaviour : MonoBehaviour
     private State state;
     private GameObject goalObject;
     [HideInInspector]
-    public List<string> sentences; 
+    public List<string> sentences;
 
     NavMeshAgent agent;
     void Start()
     {
+
+
+
+        pointsManagerScript = FindAnyObjectByType<PointsManagerScript>();
         gameFinished = false;
         audioPlaying = false;
         soundManager = FindAnyObjectByType<SoundManager>();
@@ -121,11 +127,11 @@ public class CharacterBehaviour : MonoBehaviour
                 agent.SetDestination(goalObject.transform.position);
                 if (Vector3.Distance(transform.position, goalObject.transform.position) <= 2f)
                 {
-                    
-                    BringObjectsToCheckout(goalObject);   
-                    gameFinished = true;                 
+
+                    BringObjectsToCheckout(goalObject);
+                    gameFinished = true;
                     state = State.Idle;
-                    
+
                 }
                 break;
             case State.Dance:
@@ -219,9 +225,10 @@ public class CharacterBehaviour : MonoBehaviour
     {
         // First we check that the score is > of 0.2, otherwise we let our agent perplexed;
         // This way we can handle strange input text (for instance if we write "Go see the dog!" the agent will be puzzled).
-        if (maxScore < 0.30f)
+        if (maxScore < 0.9f)
         {
             state = State.Puzzled;
+            pointsManagerScript.SubPoints(3);
         }
         else
         {
@@ -232,18 +239,20 @@ public class CharacterBehaviour : MonoBehaviour
 
             currentVerb = actionsList[maxScoreIndex].verb;
             currentNoun = actionsList[maxScoreIndex].noun;
-            
-            Debug.Log(" curent number " + currentNumber);
+
+
             if (questManager != null && questManager.currentQuest != null)
             {
                 if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower())
                 {
+                    pointsManagerScript.AddPoints(3);
                     SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
                     errorCount = 0;
                     state = (State)System.Enum.Parse(typeof(State), verb, true);
                 }
                 else
                 {
+                    pointsManagerScript.SubPoints(3);
                     errorCount++;
                     state = State.Puzzled;
                 }
@@ -292,7 +301,7 @@ public class CharacterBehaviour : MonoBehaviour
             Destroy(childArray[i].gameObject);
         }
         gameObject.transform.parent = null;
-        
+
     }
     private void Grab(GameObject gameObject)
     {

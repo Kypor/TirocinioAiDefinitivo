@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-
+    
     [SerializeField] public Quests questsData;
     public Quest currentQuest;
     [SerializeField] public TextMeshProUGUI textMeshPro;
@@ -17,6 +17,7 @@ public class QuestManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
 
         questPanel.SetActive(true);
         allQuestsCompleted = false;
@@ -41,6 +42,7 @@ public class QuestManager : MonoBehaviour
             StartCoroutine(TextLerp(false));
 
 
+
             if (CharacterBehaviour.gameFinished == true)
             {
                 Debug.Log("Hai completato l'ultima quest!");
@@ -60,6 +62,7 @@ public class QuestManager : MonoBehaviour
         if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun))
         {
             currentQuest.isCompleted = true;
+            
             Debug.Log("Quest completata: " + currentQuest.description);
             currentQuestID++;
             SoundManager.instance.PlaySoundFX(2);
@@ -67,6 +70,7 @@ public class QuestManager : MonoBehaviour
 
             StartCoroutine(waitForNextQuest());
         }
+        
     }
 
     private IEnumerator waitForNextQuest()

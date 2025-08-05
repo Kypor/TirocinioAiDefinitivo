@@ -8,6 +8,7 @@ public class MouseOverScript : MonoBehaviour
 {
     TextMeshProUGUI text;
     string txt;
+    Color textColor;
     MainMenuManager mainMenuManager;
     [SerializeField]
     float fadeTime = 0.2f;
@@ -17,6 +18,7 @@ public class MouseOverScript : MonoBehaviour
     {
         text = GetComponent<TextMeshProUGUI>();
         txt = text.text;
+        textColor = text.color;
     }
     public void MouseOver()
     {
@@ -61,7 +63,7 @@ public class MouseOverScript : MonoBehaviour
             text.text = txt;
             text.outlineWidth = 0f;
             text.outlineColor = Color.black;
-            text.color = Color.black;
+            text.color = textColor;
         }
         else
         {

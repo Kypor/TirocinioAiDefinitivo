@@ -26,7 +26,7 @@ public class PointsManagerScript : MonoBehaviour
     {
         bgMusic = GameObject.Find("BackgroundMusic");
 
-
+       
         switch (MainMenuManager.levelIndex)
         {
             case 1:
