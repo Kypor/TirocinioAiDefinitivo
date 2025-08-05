@@ -47,17 +47,42 @@ public class DrawWithMouse : MonoBehaviour
             
         }
     }
+    // public static void DestroyLines()
+    // {
+    //     if (drawLineRenders.Count != 0)
+    //     {
+    //         foreach (LineRenderer lr in drawLineRenders)
+    //         {
+    //             Destroy(lr.gameObject);
+    //         }
+    //         drawLineRenders.Clear();
+    //     }
+    // }
+
     public static void DestroyLines()
     {
-        if (drawLineRenders.Count != 0)
+        if (drawLineRenders == null || drawLineRenders.Count == 0)
+            return;
+
+        for (int i = drawLineRenders.Count - 1; i >= 0; i--)
         {
-            foreach (LineRenderer lr in drawLineRenders)
+            try
             {
-                Destroy(lr.gameObject);
+                LineRenderer lr = drawLineRenders[i];
+                if (lr != null && lr.gameObject != null)
+                {
+                    Destroy(lr.gameObject);
+                }
+                drawLineRenders.RemoveAt(i);
             }
-            drawLineRenders.Clear();
+            catch (MissingReferenceException)
+            {
+                drawLineRenders.RemoveAt(i);
+            }
         }
     }
+
+
     IEnumerator DrawLine()
     {
         LineRenderer line = null;

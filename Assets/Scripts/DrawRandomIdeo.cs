@@ -13,7 +13,7 @@ public class DrawRandomIdeo : MonoBehaviour
     // public int numberOfWords = 1;
     public Image errorIndicator;
     [SerializeField]
-    private TextMeshProUGUI text;
+    private TextMeshProUGUI wordText, translationText;
     [SerializeField] private TextMeshProUGUI ideoName;
     private CountdownTimer timer;
     private PointsManagerScript pointsManagerScript;
@@ -51,7 +51,8 @@ public class DrawRandomIdeo : MonoBehaviour
             //ideoName.text = currentIdeo.ideosInWord[currentNumberIndex].name;
             ideoName.text = currentIdeo.ideosInWord[0].name.Split("-")[1];
 
-            text.text = "Write the word: " + "'" + currentIdeo.word + "'" + "\n in japanese " + "\nTranslation: " + currentIdeo.traduzione;
+            wordText.text = currentIdeo.word;
+            translationText.text = "Translation: " + currentIdeo.traduzione;
 
             return currentIdeo.ideosInWord[0];
         }
