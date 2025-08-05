@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject backgroundPanel, mainPanel, topicPanel, levelPanel, blackCanvas;
+    GameObject backgroundPanel, mainPanel, topicPanel, levelPanel, blackCanvas, saveFilePanel;
     public float minPointsLv1Top1, minPointsLv2Top1;
     public float minPointsLv1Top2, minPointsLv2Top2;
     [SerializeField]
@@ -15,8 +15,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     EventTrigger eventTriggerThirdLevelText;
     public GameObject pointsLabel;
-    
     public static int topicChosen = 1, levelIndex = 1;
+
     void Start()
     {
         mainPanel.SetActive(true);
@@ -24,6 +24,7 @@ public class MainMenuManager : MonoBehaviour
         levelPanel.SetActive(false);
 
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -32,13 +33,23 @@ public class MainMenuManager : MonoBehaviour
 
         }
     }
+
+    public void ClickedPlay()
+    {
+        SoundManager.instance.PlaySoundFX(0);
+        saveFilePanel.SetActive(true);
+        mainPanel.SetActive(false);
+    }
+
     public void ChoseTopic()
     {
         SoundManager.instance.PlaySoundFX(0);
         mainPanel.SetActive(false);
+        saveFilePanel.SetActive(false);
         topicPanel.SetActive(true);
         levelPanel.SetActive(false);
     }
+
     public void ChoseLevel(int topic)
     {
         topicChosen = topic;
@@ -83,6 +94,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
         }
     }
+
     public void BackToTopic()
     {
         SoundManager.instance.PlaySoundFX(0);
@@ -90,6 +102,7 @@ public class MainMenuManager : MonoBehaviour
         topicPanel.SetActive(true);
         levelPanel.SetActive(false);
     }
+
     public void BackToMain()
     {
         SoundManager.instance.PlaySoundFX(0);
@@ -97,11 +110,13 @@ public class MainMenuManager : MonoBehaviour
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
     }
+
     public void Level1()
     {
         SoundManager.instance.PlaySoundFX(0);
         StartCoroutine(LoadLevel(1));
     }
+
     public void Level2()
     {
         SoundManager.instance.PlaySoundFX(0);
@@ -118,6 +133,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
         }
     }
+
     public void Level3()
     {
         switch (topicChosen)
@@ -141,6 +157,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
         }
     }
+
     public IEnumerator LoadLevel(int level)
     {
         levelIndex = level;
@@ -149,6 +166,7 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         StartCoroutine(LoadYourAsyncScene(level));
     }
+
     IEnumerator LoadYourAsyncScene(int level)
     {
         if (SavePlayerDataManager.currentPlayerData == null)
