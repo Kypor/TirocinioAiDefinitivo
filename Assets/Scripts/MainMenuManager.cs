@@ -26,15 +26,6 @@ public class MainMenuManager : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-
-
-        }
-    }
-
     public void ClickedPlay()
     {
         SoundManager.instance.PlaySoundFX(0);
@@ -104,6 +95,16 @@ public class MainMenuManager : MonoBehaviour
         mainPanel.SetActive(false);
         topicPanel.SetActive(true);
         levelPanel.SetActive(false);
+        saveFilePanel.SetActive(false);
+    }
+
+    public void BackToSave()
+    {
+        SoundManager.instance.PlaySoundFX(0);
+        mainPanel.SetActive(false);
+        topicPanel.SetActive(false);
+        levelPanel.SetActive(false);
+        saveFilePanel.SetActive(true);
     }
 
     public void BackToMain()
@@ -112,6 +113,7 @@ public class MainMenuManager : MonoBehaviour
         mainPanel.SetActive(true);
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
+        saveFilePanel.SetActive(false);
     }
 
     public void Level1()
