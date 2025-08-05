@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DrawRandomIdeo : MonoBehaviour
 {
-    
+
     public JapaneseIdeoArray japaneseIdeoArray;
     public Image partitionIdeoImage, ideoImage;
     private ListWrapper currentIdeo;
-    private int currentNumberIndex = 0, currentIdeoIndex = 0, wordsCount = 0, errorCount = 0;
+    private int currentNumberIndex = 0, currentIdeoIndex = 0, wordsCount = 0, errorCount = 0, currentIdeoLength = 0;
     // public int numberOfWords = 1;
     public Image errorIndicator;
     [SerializeField]
@@ -70,15 +71,25 @@ public class DrawRandomIdeo : MonoBehaviour
         {
             if (currentNumberIndex < currentIdeo.ideosInWord.Count - 1)
             {
+                currentIdeoLength += ideoName.text.Length;
+                string newText = currentIdeo.word[..(currentIdeoLength-1)];
+                string[] fullWord = currentIdeo.word.Split(newText, 2, System.StringSplitOptions.None);
+                Debug.Log(currentIdeoLength);
+                Debug.Log(" new text " + newText);
+                Debug.Log(fullWord[0]);
+                Debug.Log(fullWord[1]);
+
+                wordText.text = "<color=green>" + newText + "</color>" + fullWord[1];
                 currentNumberIndex++;
                 ideoImage.sprite = currentIdeo.ideosInWord[currentNumberIndex];
-                //ideoName.text = currentIdeo.ideosInWord[currentNumberIndex].name;
-                ideoName.text = currentIdeo.ideosInWord[currentNumberIndex].name.Split("-")[1];
+
+                ideoName.text = currentIdeo.ideosInWord[currentNumberIndex].name.Split("- ")[1];
                 //Debug.Log("cambio");
                 DrawWithMouse.DestroyLines();
             }
             else
             {
+                currentIdeoLength = 0;
                 ResetIdeo();
                 DrawWithMouse.DestroyLines();
                 Debug.Log("resettato");
