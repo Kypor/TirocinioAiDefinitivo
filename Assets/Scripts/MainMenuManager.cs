@@ -16,7 +16,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     EventTrigger eventTriggerThirdLevelText;
     public GameObject pointsLabel;
-    public static int topicChosen = 1, levelIndex = 1;
+    public static int topicChosen = 2, levelIndex = 1;
 
     void Start()
     {
