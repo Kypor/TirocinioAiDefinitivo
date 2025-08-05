@@ -138,7 +138,40 @@ public class SavePlayerDataManager : MonoBehaviour
     /// <param name="level">numero livello da 1 a 3</param>
     /// <param name="topic">numero topic da 1 a 2</param>
     /// <param name="ratio">valore di errore calcolato</param>
-    public static void AddRatio(int level, int topic, float ratio)
+    public static void CalcuateAndAddRatio(int level, int topic, float maxPoints)
+    {
+        if (level == 1 && topic == 1)
+        {
+            AddRatio(level, topic, currentPlayerData.pointsLv1To1 * 100 / maxPoints);
+        }
+        else if (level == 1 && topic == 2)
+        {
+            AddRatio(level, topic, currentPlayerData.pointsLv1To2 * 100 / maxPoints);
+        }
+        else if (level == 2 && topic == 1)
+        {
+            AddRatio(level, topic, currentPlayerData.pointsLv2To1 * 100 / maxPoints);
+        }
+        else if (level == 2 && topic == 2)
+        {
+            AddRatio(level, topic, currentPlayerData.pointsLv2To2 * 100 / maxPoints);
+        }
+        else if (level == 3 && topic == 1)
+        {
+            AddRatio(level, topic, currentPlayerData.pointsLv3To1 * 100 / maxPoints);
+        }
+        else if (level == 3 && topic == 2)
+        {
+            AddRatio(level, topic, currentPlayerData.pointsLv3To2 * 100 / maxPoints);
+        }
+    }
+    /// <summary>
+    /// funzione che aggiunge l'error ratio al salvataggio corrente 
+    /// </summary>
+    /// <param name="level">numero livello da 1 a 3</param>
+    /// <param name="topic">numero topic da 1 a 2</param>
+    /// <param name="ratio">valore di errore calcolato</param>
+    private static void AddRatio(int level, int topic, float ratio)
     {
         if (level == 1 && topic == 1) currentPlayerData.errorRatios.lv1To1 = ratio;
         else if (level == 1 && topic == 2) currentPlayerData.errorRatios.lv1To2 = ratio;
@@ -177,17 +210,19 @@ public class SavePlayerDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// funzione che aggiunge l'error ratio al salvataggio corrente 
+    /// funzione che setta i punteggi 
     /// </summary>
     /// <param name="level">numero livello da 1 a 2</param>
     /// <param name="topic">numero topic da 1 a 2</param>
     /// <param name="ratio">punti fatti sul livello</param>
-    public static void AddPoints(int level, int topic, float points)
+    public static void SetPoints(int level, int topic, float points)
     {
         if (level == 1 && topic == 1) currentPlayerData.pointsLv1To1 = points;
-        else if (level == 1 && topic == 2) currentPlayerData.pointsLv1to2 = points;
+        else if (level == 1 && topic == 2) currentPlayerData.pointsLv1To2 = points;
         else if (level == 2 && topic == 1) currentPlayerData.pointsLv2To1 = points;
         else if (level == 2 && topic == 2) currentPlayerData.pointsLv2To2 = points;
+        else if (level == 3 && topic == 1) currentPlayerData.pointsLv3To1 = points;
+        else if (level == 3 && topic == 2) currentPlayerData.pointsLv3To2 = points;
         Debug.Log("points addedd");
         string nuovoJson = JsonConvert.SerializeObject(playersList, Formatting.Indented);
         File.WriteAllText(path, nuovoJson);

@@ -8846,6 +8846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1711242260}
   - component: {fileID: 1711242259}
+  - component: {fileID: 1711242261}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -8874,7 +8875,6 @@ MonoBehaviour:
     isCompleted: 0
   textMeshPro: {fileID: 456403716}
   questPanel: {fileID: 473695725}
-  finalWaitSeconds: 10
 --- !u!4 &1711242260
 Transform:
   m_ObjectHideFlags: 0
@@ -8890,6 +8890,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2113168347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1711242261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711242258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f767c59bbd04c64b8bdb5df9d495b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalPointsText: {fileID: 0}
+  finalPointText: {fileID: 0}
+  finishGamePanel: {fileID: 0}
+  basePoints: 100
+  penalityPercentage: 10
+  fullStarSprite: {fileID: 0}
+  emptyStarSprite: {fileID: 0}
+  starsImages: []
 --- !u!4 &1714317289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1238407291099777220, guid: 29bd4cc63be12784a9db770b08ae977d, type: 3}

@@ -44,9 +44,11 @@ public class PlayerData
     public readonly string pcId;
     public string name;
     public float pointsLv1To1 = 0f;
-    public float pointsLv1to2 = 0f;
+    public float pointsLv1To2 = 0f;
     public float pointsLv2To1 = 0f;
     public float pointsLv2To2 = 0f;
+    public float pointsLv3To1 = 0f;
+    public float pointsLv3To2 = 0f;
     public ErrorRatios errorRatios;
     public ErrorCounts errorCounts;
 

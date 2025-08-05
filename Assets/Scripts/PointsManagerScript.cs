@@ -27,7 +27,6 @@ public class PointsManagerScript : MonoBehaviour
         bgMusic = GameObject.Find("BackgroundMusic");
 
 
-        currSceneIndex = SceneManager.GetActiveScene().buildIndex;
         switch (MainMenuManager.levelIndex)
         {
             case 1:
@@ -35,6 +34,9 @@ public class PointsManagerScript : MonoBehaviour
                 break;
             case 2:
                 numberOfWords = GetComponent<DrawRandomIdeo>().japaneseIdeoArray.ideos.Count;
+                break;
+            case 3:
+                numberOfWords = GetComponent<QuestManager>().questsData.quests.Count;
                 break;
             default:
                 break;
@@ -95,15 +97,15 @@ public class PointsManagerScript : MonoBehaviour
             switch (MainMenuManager.topicChosen)
             {
                 case 1:
-                    PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
+                    //PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
                     Debug.Log("aggiunti punti primo livello primo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
-                    
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
+
                     break;
                 case 2:
-                    PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
+                    //PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
                     Debug.Log("aggiunti punti primo livello secondo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
                     break;
                 default:
                     break;
@@ -114,14 +116,32 @@ public class PointsManagerScript : MonoBehaviour
             switch (MainMenuManager.topicChosen)
             {
                 case 1:
-                    PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
+                    //PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
                     Debug.Log("aggiunti punti secondo livello primo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
                     break;
                 case 2:
-                    PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
+                    //PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
                     Debug.Log("aggiunti punti secondo livello secondo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (level == 3)
+        {
+            switch (MainMenuManager.topicChosen)
+            {
+                case 1:
+                    //PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
+                    Debug.Log("aggiunti punti secondo livello primo topic");
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    break;
+                case 2:
+                    //PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
+                    Debug.Log("aggiunti punti secondo livello secondo topic");
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
                     break;
                 default:
                     break;
@@ -139,14 +159,14 @@ public class PointsManagerScript : MonoBehaviour
             switch (MainMenuManager.topicChosen)
             {
                 case 1:
-                    PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
+                    //PlayerPrefs.SetFloat("FirstTopicLevel1Points", totalPoints);
                     Debug.Log("sottratti punti primo livello primo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
                     break;
                 case 2:
-                    PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
+                    //PlayerPrefs.SetFloat("SecondTopicLevel1Points", totalPoints);
                     Debug.Log("sottratti punti primo livello secondo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
                     break;
                 default:
                     break;
@@ -157,14 +177,32 @@ public class PointsManagerScript : MonoBehaviour
             switch (MainMenuManager.topicChosen)
             {
                 case 1:
-                    PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
+                    //PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
                     Debug.Log("sottratti punti secondo livello primo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
                     break;
                 case 2:
-                    PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
+                    //PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
                     Debug.Log("sottratti punti secondo livello secondo topic");
-                    SavePlayerDataManager.AddPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (level == 3)
+        {
+            switch (MainMenuManager.topicChosen)
+            {
+                case 1:
+                    //PlayerPrefs.SetFloat("FirstTopicLevel2Points", totalPoints);
+                    Debug.Log("aggiunti punti secondo livello primo topic");
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
+                    break;
+                case 2:
+                    //PlayerPrefs.SetFloat("SecondTopicLevel2Points", totalPoints);
+                    Debug.Log("aggiunti punti secondo livello secondo topic");
+                    SavePlayerDataManager.SetPoints(level, MainMenuManager.topicChosen, totalPoints);
                     break;
                 default:
                     break;
