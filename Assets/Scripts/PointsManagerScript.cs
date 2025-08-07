@@ -17,8 +17,6 @@ public class PointsManagerScript : MonoBehaviour
     private int numberOfWords;
     [SerializeField] Sprite fullStarSprite, emptyStarSprite;
     [SerializeField] List<Image> starsImages = new List<Image>();
-    int currSceneIndex;
-
     GameObject bgMusic;
 
 
@@ -26,7 +24,7 @@ public class PointsManagerScript : MonoBehaviour
     {
         bgMusic = GameObject.Find("BackgroundMusic");
 
-       
+
         switch (MainMenuManager.levelIndex)
         {
             case 1:
@@ -214,12 +212,27 @@ public class PointsManagerScript : MonoBehaviour
     {
         float performanceRatio = totalPoints / (numberOfWords * basePoints);
         int stars;
-        Debug.Log(numberOfWords);
         if (performanceRatio >= 0.90f) stars = 3;
         else if (performanceRatio >= 0.66f) stars = 2;
         else if (performanceRatio >= 0.33f) stars = 1;
         else stars = 0;
-        Debug.Log(stars);
+        switch (MainMenuManager.levelIndex)
+        {
+            case 1:
+                PlayerPrefs.SetInt("starsLv1", stars);
+                //PointsLabelScript.starsLv1 = stars;
+                break;
+            case 2:
+                PlayerPrefs.SetInt("starsLv2", stars);
+                //PointsLabelScript.starsLv2 = stars;
+                break;
+            case 3:
+                PlayerPrefs.SetInt("starsLv3", stars);
+                //PointsLabelScript.starsLv3 = stars;
+                break;
+            default:
+                break;
+        }
         for (int i = 0; i < stars; i++)
         {
             SoundManager.instance.PlaySoundFX(3);
