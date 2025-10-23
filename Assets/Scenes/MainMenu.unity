@@ -546,9 +546,16 @@ MonoBehaviour:
   minPointsLv1Top2: 400
   minPointsLv2Top2: 400
   minPointsLv3Top2: 400
+  IdeoArray1: {fileID: 11400000, guid: 982fe451a6101f84b97bc3570f21a942, type: 2}
+  IdeoArray2: {fileID: 11400000, guid: cef6923cc52036c4faedd31e6bab62ab, type: 2}
+  WordArray1: {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}
+  WordArray2: {fileID: 11400000, guid: 81c7942aa1ed5f54c8f467ffe711542e, type: 2}
+  QuestArray1: {fileID: 11400000, guid: da554d27fb3e1c6498fc7ae0a6409504, type: 2}
+  QuestArray2: {fileID: 11400000, guid: a5364061ec7345f488587313a8fe0931, type: 2}
   thirdLevelText: {fileID: 219718611}
   eventTriggerThirdLevelText: {fileID: 219718609}
   pointsLabel: {fileID: 2096892740}
+  AllStars: 000000000000000000000000000000000000000000000000
 --- !u!1 &163423689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &280862866
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1084,9 +1091,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1601926983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 202.385, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &280862867
@@ -1224,7 +1231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &331525357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1239,9 +1246,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1601926983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 82.384995, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331525358
@@ -3279,16 +3286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab78670c661efc4caf10935e08d471f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelPoints: {fileID: 664799430}
-  secondLevelPoints: {fileID: 1644651104}
-  thirdLevelPoints: {fileID: 1825389718}
-  fistLevelMinPoints: {fileID: 1669323221}
-  secondLevelMinPoints: {fileID: 538274868}
-  thirdLevelMinPoints: {fileID: 1496517729}
   holderLevel1: {fileID: 0}
   holderLevel2: {fileID: 0}
   holderLevel3: {fileID: 0}
   fullStarSprite: {fileID: 0}
+  emptyStarSprite: {fileID: 0}
 --- !u!225 &1001831761
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3697,6 +3699,18 @@ PrefabInstance:
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 7f00e82227172fb44be3f1dba94a54df, type: 2}
+    - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3301887
+      objectReference: {fileID: 0}
     - target: {fileID: 4264615636672223593, guid: 04552f3a4f4d2fd468406c7b5c91fc5c, type: 3}
       propertyPath: m_fontSizeBase
       value: 72
@@ -4300,7 +4314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1158292141
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4315,9 +4329,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1601926983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 142.385, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158292142
@@ -6134,7 +6148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1601926983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6152,9 +6166,9 @@ RectTransform:
   - {fileID: 280862866}
   m_Father: {fileID: 2096892741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 202.36823, y: -254}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 404.77, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1601926984
@@ -8537,8 +8551,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 629, y: 118.05165}
-  m_SizeDelta: {x: 404.7365, y: 355.0866}
+  m_AnchoredPosition: {x: 629, y: 32.001}
+  m_SizeDelta: {x: 404.7365, y: 527.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2096892742
 MonoBehaviour:
@@ -8590,16 +8604,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab78670c661efc4caf10935e08d471f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelPoints: {fileID: 0}
-  secondLevelPoints: {fileID: 0}
-  thirdLevelPoints: {fileID: 0}
-  fistLevelMinPoints: {fileID: 0}
-  secondLevelMinPoints: {fileID: 0}
-  thirdLevelMinPoints: {fileID: 0}
   holderLevel1: {fileID: 1379392406}
   holderLevel2: {fileID: 877812572}
   holderLevel3: {fileID: 1601926982}
   fullStarSprite: {fileID: 21300000, guid: 550c53db1c3180040a5a05a0b8cbf987, type: 3}
+  emptyStarSprite: {fileID: 21300000, guid: e1437364f57c351409247808a42cc888, type: 3}
 --- !u!114 &2096892745
 MonoBehaviour:
   m_ObjectHideFlags: 0

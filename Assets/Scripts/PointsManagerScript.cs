@@ -216,23 +216,7 @@ public class PointsManagerScript : MonoBehaviour
         else if (performanceRatio >= 0.66f) stars = 2;
         else if (performanceRatio >= 0.33f) stars = 1;
         else stars = 0;
-        switch (MainMenuManager.levelIndex)
-        {
-            case 1:
-                PlayerPrefs.SetInt("starsLv1", stars);
-                //PointsLabelScript.starsLv1 = stars;
-                break;
-            case 2:
-                PlayerPrefs.SetInt("starsLv2", stars);
-                //PointsLabelScript.starsLv2 = stars;
-                break;
-            case 3:
-                PlayerPrefs.SetInt("starsLv3", stars);
-                //PointsLabelScript.starsLv3 = stars;
-                break;
-            default:
-                break;
-        }
+
         for (int i = 0; i < stars; i++)
         {
             SoundManager.instance.PlaySoundFX(3);

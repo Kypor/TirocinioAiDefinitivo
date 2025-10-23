@@ -23,16 +23,10 @@ public class MouseOverScript : MonoBehaviour
 
     public void MouseOver()
     {
-        if (gameObject.tag == "PlayButton")
+        if (gameObject.CompareTag("PlayButton"))
         {
-            Debug.Log("PlayButton");
-            if (SavePlayerDataManager.currentPlayerData == null)
+            if (SavePlayerDataManager.currentPlayerData != null)
             {
-
-            }
-            else
-            {
-                Debug.Log("Entratoh");
                 text.text = "<b>" + txt + "</b>";
                 text.outlineWidth = 0.2f;
                 text.outlineColor = Color.green;
@@ -41,7 +35,7 @@ public class MouseOverScript : MonoBehaviour
 
         }
 
-        else if (gameObject.tag != "ThirdLevelTag")
+        else if (!gameObject.CompareTag("ThirdLevelTag"))
         {
             text.text = "<b>" + txt + "</b>";
             text.outlineWidth = 0.2f;
@@ -77,14 +71,14 @@ public class MouseOverScript : MonoBehaviour
     }
     public void MouseExit()
     {
-        if (gameObject.tag == "PlayButton")
+        if (gameObject.CompareTag("PlayButton"))
         {
             text.text = txt;
             text.outlineWidth = 0f;
             text.outlineColor = Color.black;
             text.color = Color.black;
         }
-        else if (gameObject.tag != "ThirdLevelTag")
+        else if (!gameObject.CompareTag("ThirdLevelTag"))
         {
 
             text.text = txt;
@@ -121,12 +115,14 @@ public class MouseOverScript : MonoBehaviour
     {
         StopAllCoroutines();
         mainMenuManager = FindFirstObjectByType<MainMenuManager>().GetComponent<MainMenuManager>();
+        mainMenuManager.FillStars();
         StartCoroutine(Fade(1, mainMenuManager.pointsLabel.GetComponent<CanvasGroup>()));
     }
     public void UnShowPoints()
     {
         StopAllCoroutines();
         mainMenuManager = FindFirstObjectByType<MainMenuManager>().GetComponent<MainMenuManager>();
+        mainMenuManager.FillStars();
         StartCoroutine(Fade(0, mainMenuManager.pointsLabel.GetComponent<CanvasGroup>()));
     }
     public IEnumerator Fade(float end, CanvasGroup canvasGroup)

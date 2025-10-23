@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -10,18 +12,24 @@ public class MainMenuManager : MonoBehaviour
     GameObject backgroundPanel, mainPanel, topicPanel, levelPanel, blackCanvas, saveFilePanel;
     public float minPointsLv1Top1, minPointsLv2Top1, minPointsLv3Top1;
     public float minPointsLv1Top2, minPointsLv2Top2, minPointsLv3Top2;
-
+    [SerializeField]
+    private JapaneseIdeoArray IdeoArray1, IdeoArray2;
+    [SerializeField]
+    private JapaneseWordArray WordArray1, WordArray2;
+    [SerializeField]
+    private Quests QuestArray1, QuestArray2;
     [SerializeField]
     TextMeshProUGUI thirdLevelText;
     [SerializeField]
     EventTrigger eventTriggerThirdLevelText;
-    
     public GameObject pointsLabel;
+    [SerializeField]
     public static int topicChosen = 2, levelIndex = 1;
+    public List<int> AllStars = new();
 
     void Start()
     {
-        
+
         mainPanel.SetActive(true);
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
@@ -50,6 +58,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ChoseLevel(int topic)
     {
+        FillStars();
         topicChosen = topic;
         switch (topic)
         {
@@ -220,5 +229,32 @@ public class MainMenuManager : MonoBehaviour
             yield return null;
         }
         canvasGroup.alpha = end;
+    }
+    public void FillStars()
+    {
+        float RatiostarsLv1T1 = SavePlayerDataManager.currentPlayerData.pointsLv1To1 / (WordArray1.paroleConPronunce.Count * 100);
+        float RatiostarsLv1T2 = SavePlayerDataManager.currentPlayerData.pointsLv1To2 / (IdeoArray1.ideos.Count * 100);
+        float RatiostarsLv2T1 = SavePlayerDataManager.currentPlayerData.pointsLv2To1 / (WordArray2.paroleConPronunce.Count * 100);
+        float RatiostarsLv2T2 = SavePlayerDataManager.currentPlayerData.pointsLv2To2 / (IdeoArray2.ideos.Count * 100);
+        float RatiostarsLv3T1 = SavePlayerDataManager.currentPlayerData.pointsLv3To1 / (QuestArray1.quests.Count * 100);
+        float RatiostarsLv3T2 = SavePlayerDataManager.currentPlayerData.pointsLv3To2 / (QuestArray2.quests.Count * 100);
+        List<float> Ratios = new()
+        {
+            RatiostarsLv1T1,
+            RatiostarsLv1T2,
+            RatiostarsLv2T1,
+            RatiostarsLv2T2,
+            RatiostarsLv3T1,
+            RatiostarsLv3T2
+        };
+        int index = 0;
+        foreach (float ratio in Ratios)
+        {
+            if (ratio >= 0.90f) AllStars[index] = 3;
+            else if (ratio >= 0.66f) AllStars[index] = 2;
+            else if (ratio >= 0.33f) AllStars[index] = 1;
+            else AllStars[index] = 0;
+            index++;
+        }
     }
 }
