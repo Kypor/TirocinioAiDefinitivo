@@ -31,8 +31,11 @@ public class RunMiniLM : MonoBehaviour
 
     Worker engine, dotScore;
 
+    public bool isEnter;
+
     void Start()
     {
+        isEnter = false;
         //tokens = vocabAsset.text.Split("\r\n");
         tokens = File.ReadAllLines("Assets/vocab.txt");
 
@@ -42,11 +45,13 @@ public class RunMiniLM : MonoBehaviour
         dotScore = CreateDotScoreModel();
 
 
-        tMP_InputField.onEndEdit.AddListener(delegate { Paolo(); });
+        tMP_InputField.onEndEdit.AddListener(  Paolo );
+
     }
-    public void Paolo()
+    public void Paolo(string text)
     {
-        var tokens1 = GetTokens(tMP_InputField.text);
+        isEnter = true;
+        var tokens1 = GetTokens(text);
         using Tensor<float> embedding1 = GetEmbedding(tokens1);
         for (int i = 0; i < characterBehaviour.actionsList.Count; i++)
         {
