@@ -3,6 +3,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.EventSystems;
 
 public class SavePlayerDataManager : MonoBehaviour
 {
@@ -20,9 +21,16 @@ public class SavePlayerDataManager : MonoBehaviour
     private static string path;
     private static int globalIndex;
 
+    [SerializeField]
+    EventTrigger playButtonTrigger;
+
+    [SerializeField]
+    TextMeshProUGUI playButton;
+
 
     void Start()
     {
+        playButtonTrigger.enabled = false;
         path = Application.persistentDataPath + "/playerDataList.json";
         tMP_InputField.onEndEdit.AddListener(delegate { AddNewPlayer(); });
         savesDropdown.ClearOptions();
@@ -32,9 +40,12 @@ public class SavePlayerDataManager : MonoBehaviour
         
 
         if (playersList.players.Count > 0)
-        {
+        {   
+            
             currentPlayerData = playersList.players[globalIndex];
             savesDropdown.value = globalIndex;
+            playButtonTrigger.enabled = true;
+            playButton.color = Color.black;
             Debug.Log("✅ Salvataggio corrente impostato: " + currentPlayerData.name);
         }
 
@@ -71,6 +82,9 @@ public class SavePlayerDataManager : MonoBehaviour
         currentPlayerData = playersList.players[index];
         Debug.Log("✅ Salvataggio corrente impostato: " + currentPlayerData.name);
         debugText.text = "Salvataggio corrente impostato: " + currentPlayerData.name;
+
+        playButtonTrigger.enabled = true;
+        playButton.color = Color.black;
     }
     public void AddNewPlayer()
     {
@@ -124,6 +138,12 @@ public class SavePlayerDataManager : MonoBehaviour
                 // Aggiorna il dropdown
                 savesDropdown.ClearOptions();
                 savesDropdown.AddOptions(LoadSaveDataNames());
+                currentPlayerData = null;
+
+                tMP_InputField.text = string.Empty;
+
+                playButtonTrigger.enabled = false;
+                playButton.color = Color.gray;
             }
             else
             {

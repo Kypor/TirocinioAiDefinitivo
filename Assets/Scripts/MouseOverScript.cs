@@ -20,9 +20,28 @@ public class MouseOverScript : MonoBehaviour
         txt = text.text;
         textColor = text.color;
     }
+
     public void MouseOver()
     {
-        if (gameObject.tag != "ThirdLevelTag")
+        if (gameObject.tag == "PlayButton")
+        {
+            Debug.Log("PlayButton");
+            if (SavePlayerDataManager.currentPlayerData == null)
+            {
+
+            }
+            else
+            {
+                Debug.Log("Entratoh");
+                text.text = "<b>" + txt + "</b>";
+                text.outlineWidth = 0.2f;
+                text.outlineColor = Color.green;
+                text.color = Color.green;
+            }
+
+        }
+
+        else if (gameObject.tag != "ThirdLevelTag")
         {
             text.text = "<b>" + txt + "</b>";
             text.outlineWidth = 0.2f;
@@ -58,8 +77,16 @@ public class MouseOverScript : MonoBehaviour
     }
     public void MouseExit()
     {
-        if (gameObject.tag != "ThirdLevelTag")
+        if (gameObject.tag == "PlayButton")
         {
+            text.text = txt;
+            text.outlineWidth = 0f;
+            text.outlineColor = Color.black;
+            text.color = Color.black;
+        }
+        else if (gameObject.tag != "ThirdLevelTag")
+        {
+
             text.text = txt;
             text.outlineWidth = 0f;
             text.outlineColor = Color.black;

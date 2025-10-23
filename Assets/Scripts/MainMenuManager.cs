@@ -15,11 +15,13 @@ public class MainMenuManager : MonoBehaviour
     TextMeshProUGUI thirdLevelText;
     [SerializeField]
     EventTrigger eventTriggerThirdLevelText;
+    
     public GameObject pointsLabel;
     public static int topicChosen = 2, levelIndex = 1;
 
     void Start()
     {
+        
         mainPanel.SetActive(true);
         topicPanel.SetActive(false);
         levelPanel.SetActive(false);
@@ -35,11 +37,15 @@ public class MainMenuManager : MonoBehaviour
 
     public void ChoseTopic()
     {
-        SoundManager.instance.PlaySoundFX(0);
-        mainPanel.SetActive(false);
-        saveFilePanel.SetActive(false);
-        topicPanel.SetActive(true);
-        levelPanel.SetActive(false);
+        if (SavePlayerDataManager.currentPlayerData != null)
+        {
+            SoundManager.instance.PlaySoundFX(0);
+            mainPanel.SetActive(false);
+            saveFilePanel.SetActive(false);
+            topicPanel.SetActive(true);
+            levelPanel.SetActive(false);
+        }
+
     }
 
     public void ChoseLevel(int topic)
