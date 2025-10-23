@@ -238,13 +238,14 @@ public class MainMenuManager : MonoBehaviour
         float RatiostarsLv2T2 = SavePlayerDataManager.currentPlayerData.pointsLv2To2 / (IdeoArray2.ideos.Count * 100);
         float RatiostarsLv3T1 = SavePlayerDataManager.currentPlayerData.pointsLv3To1 / (QuestArray1.quests.Count * 100);
         float RatiostarsLv3T2 = SavePlayerDataManager.currentPlayerData.pointsLv3To2 / (QuestArray2.quests.Count * 100);
+
         List<float> Ratios = new()
         {
             RatiostarsLv1T1,
-            RatiostarsLv1T2,
             RatiostarsLv2T1,
-            RatiostarsLv2T2,
             RatiostarsLv3T1,
+            RatiostarsLv1T2,
+            RatiostarsLv2T2,
             RatiostarsLv3T2
         };
         int index = 0;
