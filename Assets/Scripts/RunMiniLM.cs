@@ -37,7 +37,9 @@ public class RunMiniLM : MonoBehaviour
     {
         isEnter = false;
         //tokens = vocabAsset.text.Split("\r\n");
-        tokens = File.ReadAllLines("Assets/vocab.txt");
+        //tokens = File.ReadAllLines("Assets/vocab.txt");
+        string path = Path.Combine(Application.streamingAssetsPath, "vocab.txt");
+        tokens = File.ReadAllLines(path);
 
         scores = new float[characterBehaviour.actionsList.Count];
         engine = CreateMLModel();
@@ -45,7 +47,7 @@ public class RunMiniLM : MonoBehaviour
         dotScore = CreateDotScoreModel();
 
 
-        tMP_InputField.onEndEdit.AddListener(  Paolo );
+        tMP_InputField.onEndEdit.AddListener(Paolo);
 
     }
     public void Paolo(string text)
@@ -60,7 +62,7 @@ public class RunMiniLM : MonoBehaviour
             float score = GetDotScore(embedding1, embedding2);
             scores[i] = score;
         }
-        characterBehaviour.Utility(scores[GetMaxIndex(scores)], GetMaxIndex(scores));         
+        characterBehaviour.Utility(scores[GetMaxIndex(scores)], GetMaxIndex(scores));
 
     }
     float GetDotScore(Tensor<float> A, Tensor<float> B)
