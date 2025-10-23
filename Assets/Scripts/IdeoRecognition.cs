@@ -28,7 +28,7 @@ public class IdeoRecognition : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(TakeScreenshot());
         }

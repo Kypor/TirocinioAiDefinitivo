@@ -4,7 +4,7 @@ using UnityEngine.UI; // Required for UI elements like Text
 
 public class CountdownTimer : MonoBehaviour
 {
-    public float totalTime = 90f; // Total time for the countdown in seconds
+    public float totalTime = 120f; // Total time for the countdown in seconds
     public TextMeshProUGUI timerText; // Reference to a UI Text element to display the timer
     private bool timerActive = true; // Flag to control timer activation
     [SerializeField]
