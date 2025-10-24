@@ -5428,6 +5428,7 @@ MonoBehaviour:
   tMP_InputField: {fileID: 1468278776}
   scores: []
   characterBehaviour: {fileID: 1839254893}
+  isEnter: 0
 --- !u!1 &335969245
 GameObject:
   m_ObjectHideFlags: 0
@@ -26630,10 +26631,10 @@ MonoBehaviour:
   catInteractionPoint: {fileID: 0}
   catInteraction: 0
   actionsList:
-  - sentence: Tell hi to the clerk
+  - sentence: Tell hello to the clerk
     verb: Greet
     noun: Clerk
-  - sentence: Take some apples
+  - sentence: Take apple
     verb: GetObject
     noun: Apple
   - sentence: Take meat
@@ -26642,9 +26643,9 @@ MonoBehaviour:
   - sentence: Take fish
     verb: GetObject
     noun: Fish
-  - sentence: Take vegetables
+  - sentence: Take vegetable
     verb: GetObject
-    noun: Vegetables
+    noun: Vegetable
   - sentence: Pay
     verb: BringObjectsToCheckout
     noun: Checkout
@@ -31907,7 +31908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6025266506492019420, guid: 0d387609ca2573a4786b10c410c21aec, type: 3}
       propertyPath: m_Name
-      value: Vegetables
+      value: Vegetable
       objectReference: {fileID: 0}
     - target: {fileID: 7357760275972167198, guid: 0d387609ca2573a4786b10c410c21aec, type: 3}
       propertyPath: m_UseGravity

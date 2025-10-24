@@ -225,7 +225,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         // First we check that the score is > of 0.2, otherwise we let our agent perplexed;
         // This way we can handle strange input text (for instance if we write "Go see the dog!" the agent will be puzzled).
-        if (maxScore < 0.9f)
+        if (maxScore < 0.75f)
         {
             state = State.Puzzled;
             pointsManagerScript.SubPoints(3);
@@ -245,7 +245,7 @@ public class CharacterBehaviour : MonoBehaviour
 
             if (questManager != null && questManager.currentQuest != null)
             {
-                if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower())
+                if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower() && currentNoun.ToLower() == questManager.currentQuest.requiredNoun.ToLower())
                 {
                     pointsManagerScript.AddPoints(3);
                     SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
@@ -261,7 +261,11 @@ public class CharacterBehaviour : MonoBehaviour
                 }
             }
             else
-                state = (State)System.Enum.Parse(typeof(State), verb, true);
+            {
+                Debug.LogWarning("Nessuna quest attiva — comando ignorato.");
+                state = State.Puzzled;
+            }
+
         }
 
         // Set the Robot State == verb

@@ -19,6 +19,7 @@ public class SavePlayerDataManager : MonoBehaviour
     private readonly List<string> nameSaved = new();
     [SerializeField]
     private TextMeshProUGUI debugText;
+
     private static string path;
     private static int globalIndex;
 
@@ -31,6 +32,7 @@ public class SavePlayerDataManager : MonoBehaviour
 
     void Start()
     {
+        debugText.text = string.Empty;
         playButtonTrigger.enabled = false;
         path = Application.persistentDataPath + "/playerDataList" + Environment.MachineName + ".json";
         tMP_InputField.onEndEdit.AddListener(delegate { AddNewPlayer(); });
@@ -84,6 +86,8 @@ public class SavePlayerDataManager : MonoBehaviour
         Debug.Log("✅ Salvataggio corrente impostato: " + currentPlayerData.name);
         debugText.text = "Salvataggio corrente impostato: " + currentPlayerData.name;
 
+        savesDropdown.value = index;
+
         playButtonTrigger.enabled = true;
         playButton.color = Color.black;
     }
@@ -104,7 +108,7 @@ public class SavePlayerDataManager : MonoBehaviour
             if (existingName)
             {
                 Debug.LogWarning(" Nome già esistente: " + tMP_InputField.text);
-                debugText.text = " Nome già esistente: " + tMP_InputField.text;
+                debugText.text = "Name alreay exists: " + tMP_InputField.text;
                 return;
             }
         }
@@ -120,6 +124,9 @@ public class SavePlayerDataManager : MonoBehaviour
         savesDropdown.ClearOptions();
         savesDropdown.AddOptions(LoadSaveDataNames());
         ChangeSave(nameSaved.Count - 1);
+
+        tMP_InputField.text = string.Empty;
+
     }
     public void DeleteSave()
     {
@@ -130,7 +137,7 @@ public class SavePlayerDataManager : MonoBehaviour
             if (savesDropdown.value >= 0 && savesDropdown.value < playersList.players.Count)
             {
                 Debug.Log("Eliminato: " + playersList.players[savesDropdown.value].name);
-                debugText.text = "Eliminato: " + playersList.players[savesDropdown.value].name;
+                debugText.text = playersList.players[savesDropdown.value].name + ": deleted";
                 playersList.players.RemoveAt(savesDropdown.value);
 
                 string nuovoJson = JsonConvert.SerializeObject(playersList, Formatting.Indented);
@@ -139,12 +146,22 @@ public class SavePlayerDataManager : MonoBehaviour
                 // Aggiorna il dropdown
                 savesDropdown.ClearOptions();
                 savesDropdown.AddOptions(LoadSaveDataNames());
-                currentPlayerData = null;
+                if (playersList.players.Count > 0)
+                    currentPlayerData = playersList.players[0];
+                else
+                    currentPlayerData = null;
+
+
 
                 tMP_InputField.text = string.Empty;
 
-                playButtonTrigger.enabled = false;
-                playButton.color = Color.gray;
+                if (playersList.players.Count == 0)
+                {
+                    playButtonTrigger.enabled = false;
+                    playButton.color = Color.gray;
+                }
+
+
             }
             else
             {

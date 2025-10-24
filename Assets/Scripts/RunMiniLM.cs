@@ -4,6 +4,7 @@ using System.IO;
 using Unity.InferenceEngine;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class RunMiniLM : MonoBehaviour
 {
@@ -47,9 +48,19 @@ public class RunMiniLM : MonoBehaviour
         dotScore = CreateDotScoreModel();
 
 
-        tMP_InputField.onEndEdit.AddListener(Paolo);
+        tMP_InputField.onEndEdit.AddListener(OnInputEnd);
 
     }
+    private void OnInputEnd(string text)
+    {
+        // Controlla se l'utente ha premuto Invio
+        if (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            Paolo(text); // esegui la logica solo se è stato premuto Invio
+        }
+    }
+
+
     public void Paolo(string text)
     {
         isEnter = true;

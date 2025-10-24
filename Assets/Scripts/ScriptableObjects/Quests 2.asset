@@ -19,7 +19,7 @@ MonoBehaviour:
     requiredNoun: Clerk
     isCompleted: 1
   - questID: 1
-    description: "Take some \u308A\u3093\u3054"
+    description: "Take \u308A\u3093\u3054"
     requiredVerb: GetObject
     requiredNoun: Apple
     isCompleted: 1
@@ -31,15 +31,15 @@ MonoBehaviour:
   - questID: 3
     description: "Take \u3084\u3055\u3044"
     requiredVerb: GetObject
-    requiredNoun: Vegetables
-    isCompleted: 1
+    requiredNoun: Vegetable
+    isCompleted: 0
   - questID: 4
     description: "Take \u3055\u304B\u306A"
     requiredVerb: GetObject
     requiredNoun: Fish
-    isCompleted: 1
+    isCompleted: 0
   - questID: 5
     description: "\u306F\u3089\u3044\u307E\u3059"
     requiredVerb: BringObjectsToCheckout
     requiredNoun: Checkout
-    isCompleted: 1
+    isCompleted: 0

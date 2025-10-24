@@ -38,6 +38,10 @@ public class CountdownTimer : MonoBehaviour
     {
         timerActive = false;
     }
+    public void ResumeTimer()
+    {
+        timerActive = true;
+    }
 
     void OnTimerEnd()
     {

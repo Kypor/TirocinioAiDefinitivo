@@ -5,6 +5,13 @@ using System.Collections;
 public class PauseMenuManager : MonoBehaviour
 {
     public GameObject settingsPanel;
+    private CountdownTimer countdownTimer;
+
+    private void Start()
+    {
+        countdownTimer = FindAnyObjectByType<CountdownTimer>();
+        ShowSettings();
+    }
 
     public void Update()
     {
@@ -32,14 +39,16 @@ public class PauseMenuManager : MonoBehaviour
         StartCoroutine(Fade(1, settingsPanel.GetComponent<CanvasGroup>()));
         settingsPanel.GetComponent<CanvasGroup>().interactable = true;
         settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        countdownTimer.StopTimer();
     }
 
-    void UnShowSettings()
+    public void UnShowSettings()
     {
         StopAllCoroutines();
         StartCoroutine(Fade(0, settingsPanel.GetComponent<CanvasGroup>()));
         settingsPanel.GetComponent<CanvasGroup>().interactable = false;
         settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        countdownTimer.ResumeTimer();
     }
 
     public IEnumerator Fade(float end, CanvasGroup canvasGroup)
