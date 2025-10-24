@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Whisper.Samples;
 using UnityEngine.SceneManagement;
 using System;
+using Unity.VisualScripting;
 
 public class PointsManagerScript : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class PointsManagerScript : MonoBehaviour
                 break;
 
         }
+        Debug.Log(numberOfWords);
         EmptyStars();
         totalPoints = 0f;
         totalPointsText.text = "Points : " + totalPoints.ToString();

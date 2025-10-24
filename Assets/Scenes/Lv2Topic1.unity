@@ -4586,6 +4586,7 @@ MonoBehaviour:
   - {fileID: 1941293529}
   - {fileID: 1111463068}
   - {fileID: 598132457}
+  timerScript: {fileID: 2110774187}
 --- !u!114 &2110774189
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -546,12 +546,12 @@ MonoBehaviour:
   minPointsLv1Top2: 400
   minPointsLv2Top2: 400
   minPointsLv3Top2: 400
-  IdeoArray1: {fileID: 11400000, guid: 982fe451a6101f84b97bc3570f21a942, type: 2}
-  IdeoArray2: {fileID: 11400000, guid: cef6923cc52036c4faedd31e6bab62ab, type: 2}
-  WordArray1: {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}
-  WordArray2: {fileID: 11400000, guid: 81c7942aa1ed5f54c8f467ffe711542e, type: 2}
-  QuestArray1: {fileID: 11400000, guid: da554d27fb3e1c6498fc7ae0a6409504, type: 2}
-  QuestArray2: {fileID: 11400000, guid: a5364061ec7345f488587313a8fe0931, type: 2}
+  IdeoArrayT1: {fileID: 11400000, guid: 982fe451a6101f84b97bc3570f21a942, type: 2}
+  IdeoArrayT2: {fileID: 11400000, guid: cef6923cc52036c4faedd31e6bab62ab, type: 2}
+  WordArrayT1: {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}
+  WordArrayT2: {fileID: 11400000, guid: 81c7942aa1ed5f54c8f467ffe711542e, type: 2}
+  QuestArrayT1: {fileID: 11400000, guid: da554d27fb3e1c6498fc7ae0a6409504, type: 2}
+  QuestArrayT2: {fileID: 11400000, guid: a5364061ec7345f488587313a8fe0931, type: 2}
   thirdLevelText: {fileID: 219718611}
   eventTriggerThirdLevelText: {fileID: 219718609}
   pointsLabel: {fileID: 2096892740}

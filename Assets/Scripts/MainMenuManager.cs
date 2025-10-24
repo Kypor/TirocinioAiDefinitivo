@@ -13,11 +13,11 @@ public class MainMenuManager : MonoBehaviour
     public float minPointsLv1Top1, minPointsLv2Top1, minPointsLv3Top1;
     public float minPointsLv1Top2, minPointsLv2Top2, minPointsLv3Top2;
     [SerializeField]
-    private JapaneseIdeoArray IdeoArray1, IdeoArray2;
+    private JapaneseIdeoArray IdeoArrayT1, IdeoArrayT2;
     [SerializeField]
-    private JapaneseWordArray WordArray1, WordArray2;
+    private JapaneseWordArray WordArrayT1, WordArrayT2;
     [SerializeField]
-    private Quests QuestArray1, QuestArray2;
+    private Quests QuestArrayT1, QuestArrayT2;
     [SerializeField]
     TextMeshProUGUI thirdLevelText;
     [SerializeField]
@@ -232,12 +232,12 @@ public class MainMenuManager : MonoBehaviour
     }
     public void FillStars()
     {
-        float RatiostarsLv1T1 = SavePlayerDataManager.currentPlayerData.pointsLv1To1 / (WordArray1.paroleConPronunce.Count * 100);
-        float RatiostarsLv1T2 = SavePlayerDataManager.currentPlayerData.pointsLv1To2 / (IdeoArray1.ideos.Count * 100);
-        float RatiostarsLv2T1 = SavePlayerDataManager.currentPlayerData.pointsLv2To1 / (WordArray2.paroleConPronunce.Count * 100);
-        float RatiostarsLv2T2 = SavePlayerDataManager.currentPlayerData.pointsLv2To2 / (IdeoArray2.ideos.Count * 100);
-        float RatiostarsLv3T1 = SavePlayerDataManager.currentPlayerData.pointsLv3To1 / (QuestArray1.quests.Count * 100);
-        float RatiostarsLv3T2 = SavePlayerDataManager.currentPlayerData.pointsLv3To2 / (QuestArray2.quests.Count * 100);
+        float RatiostarsLv1T1 = SavePlayerDataManager.currentPlayerData.pointsLv1To1 / (WordArrayT1.paroleConPronunce.Count * 100);
+        float RatiostarsLv1T2 = SavePlayerDataManager.currentPlayerData.pointsLv1To2 / (WordArrayT2.paroleConPronunce.Count * 100);
+        float RatiostarsLv2T1 = SavePlayerDataManager.currentPlayerData.pointsLv2To1 / (IdeoArrayT1.ideos.Count * 100);
+        float RatiostarsLv2T2 = SavePlayerDataManager.currentPlayerData.pointsLv2To2 / (IdeoArrayT2.ideos.Count * 100);
+        float RatiostarsLv3T1 = SavePlayerDataManager.currentPlayerData.pointsLv3To1 / (QuestArrayT1.quests.Count * 100);
+        float RatiostarsLv3T2 = SavePlayerDataManager.currentPlayerData.pointsLv3To2 / (QuestArrayT2.quests.Count * 100);
 
         List<float> Ratios = new()
         {

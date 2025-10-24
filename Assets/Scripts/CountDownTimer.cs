@@ -12,6 +12,7 @@ public class CountdownTimer : MonoBehaviour
     GameObject bgMusic;
     void Update()
     {
+        //Debug.Log(totalTime);
         if (timerActive && totalTime > 0)
         {
             totalTime -= Time.deltaTime;

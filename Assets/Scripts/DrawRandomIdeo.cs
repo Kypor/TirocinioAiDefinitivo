@@ -72,7 +72,7 @@ public class DrawRandomIdeo : MonoBehaviour
             if (currentNumberIndex < currentIdeo.ideosInWord.Count - 1)
             {
                 currentIdeoLength += ideoName.text.Length;
-                string newText = currentIdeo.word[..(currentIdeoLength-1)];
+                string newText = currentIdeo.word[..(currentIdeoLength - 1)];
                 string[] fullWord = currentIdeo.word.Split(newText, 2, System.StringSplitOptions.None);
                 Debug.Log(currentIdeoLength);
                 Debug.Log(" new text " + newText);
@@ -117,6 +117,7 @@ public class DrawRandomIdeo : MonoBehaviour
             Debug.Log("bravo");
             SavePlayerDataManager.AddErrorCount(2, MainMenuManager.topicChosen, ideoName.text, errorCount);
             errorCount = 0;
+            timer.totalTime += 10f;
             return true;
         }
         errorIndicator.color = new Color(1, 0, 0, 1f);

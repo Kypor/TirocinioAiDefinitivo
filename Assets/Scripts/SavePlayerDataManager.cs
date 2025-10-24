@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.EventSystems;
+using System;
 
 public class SavePlayerDataManager : MonoBehaviour
 {
@@ -31,17 +32,17 @@ public class SavePlayerDataManager : MonoBehaviour
     void Start()
     {
         playButtonTrigger.enabled = false;
-        path = Application.persistentDataPath + "/playerDataList.json";
+        path = Application.persistentDataPath + "/playerDataList" + Environment.MachineName + ".json";
         tMP_InputField.onEndEdit.AddListener(delegate { AddNewPlayer(); });
         savesDropdown.ClearOptions();
         savesDropdown.AddOptions(LoadSaveDataNames());
         savesDropdown.onValueChanged.AddListener(ChangeSave);
 
-        
+
 
         if (playersList.players.Count > 0)
-        {   
-            
+        {
+
             currentPlayerData = playersList.players[globalIndex];
             savesDropdown.value = globalIndex;
             playButtonTrigger.enabled = true;
