@@ -11,6 +11,7 @@ public class Quest
 {
     public int questID;
     public string description;
+    public string tokenSentence;
     public string requiredVerb;
     public string requiredNoun;
     

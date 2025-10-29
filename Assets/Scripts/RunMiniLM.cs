@@ -34,6 +34,8 @@ public class RunMiniLM : MonoBehaviour
 
     public bool isEnter;
 
+    QuestManager questManager;
+
     void Start()
     {
         isEnter = false;
@@ -47,7 +49,7 @@ public class RunMiniLM : MonoBehaviour
 
         dotScore = CreateDotScoreModel();
 
-
+        questManager = FindAnyObjectByType<QuestManager>();
         tMP_InputField.onEndEdit.AddListener(OnInputEnd);
 
     }
@@ -61,19 +63,36 @@ public class RunMiniLM : MonoBehaviour
     }
 
 
+    // public void Paolo(string text)
+    // {
+    //     isEnter = true;
+    //     var tokens1 = GetTokens(text);
+    //     using Tensor<float> embedding1 = GetEmbedding(tokens1);
+    //     for (int i = 0; i < characterBehaviour.actionsList.Count; i++)
+    //     {
+    //         var tokens2 = GetTokens(characterBehaviour.actionsList[i].sentence);
+    //         using Tensor<float> embedding2 = GetEmbedding(tokens2);
+    //         float score = GetDotScore(embedding1, embedding2);
+    //         scores[i] = score;
+    //     }
+    //     characterBehaviour.Utility(scores[GetMaxIndex(scores)], GetMaxIndex(scores));
+
+    // }
     public void Paolo(string text)
     {
         isEnter = true;
         var tokens1 = GetTokens(text);
         using Tensor<float> embedding1 = GetEmbedding(tokens1);
-        for (int i = 0; i < characterBehaviour.actionsList.Count; i++)
-        {
-            var tokens2 = GetTokens(characterBehaviour.actionsList[i].sentence);
-            using Tensor<float> embedding2 = GetEmbedding(tokens2);
-            float score = GetDotScore(embedding1, embedding2);
-            scores[i] = score;
-        }
-        characterBehaviour.Utility(scores[GetMaxIndex(scores)], GetMaxIndex(scores));
+
+        string questSentence = questManager.currentQuest.tokenSentence;
+        
+        var tokens2 = GetTokens(questSentence);
+        using Tensor<float> embedding2 = GetEmbedding(tokens2);
+        float score = GetDotScore(embedding1, embedding2);
+
+        Debug.LogWarning(text + " " + score);
+
+        characterBehaviour.Utility(score);
 
     }
     float GetDotScore(Tensor<float> A, Tensor<float> B)

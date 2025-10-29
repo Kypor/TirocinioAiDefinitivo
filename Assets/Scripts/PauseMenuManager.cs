@@ -27,11 +27,12 @@ public class PauseMenuManager : MonoBehaviour
         {
             ShowSettings();
         }
-        else if(settingsPanel.GetComponent<CanvasGroup>().alpha == 1)
+        else if (settingsPanel.GetComponent<CanvasGroup>().alpha == 1)
         {
             UnShowSettings();
         }
     }
+
 
     void ShowSettings()
     {

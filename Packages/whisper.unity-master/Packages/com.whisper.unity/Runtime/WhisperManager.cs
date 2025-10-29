@@ -15,37 +15,37 @@ namespace Whisper
     {
         [Tooltip("Log level for whisper loading and inference")]
         public LogLevel logLevel = LogLevel.Log;
-        
+
         [Header("Model")]
-        [SerializeField] 
+        [SerializeField]
         [Tooltip("Path to model weights file")]
         private string modelPath = "Whisper/ggml-tiny.bin";
-        
+
         [SerializeField]
         [Tooltip("Determines whether the StreamingAssets folder should be prepended to the model path")]
         private bool isModelPathInStreamingAssets = true;
-        
-        [SerializeField] 
+
+        [SerializeField]
         [Tooltip("Should model weights be loaded on awake?")]
         private bool initOnAwake = true;
-        
+
         [Header("Inference")]
         [Tooltip("Try to load whisper in GPU for faster inference")]
         [SerializeField]
         private bool useGpu;
-        
+
         [Tooltip("Use the Flash Attention algorithm for faster inference")]
         [SerializeField]
         private bool flashAttention;
 
-        [Header("Language")] 
+        [Header("Language")]
         [Tooltip("Output text language. Use empty or \"auto\" for auto-detection.")]
         public string language = "en";
 
         [Tooltip("Force output text to English translation. Improves translation quality.")]
         public bool translateToEnglish;
 
-        [Header("Advanced settings")] 
+        [Header("Advanced settings")]
         [SerializeField]
         private WhisperSamplingStrategy strategy = WhisperSamplingStrategy.WHISPER_SAMPLING_GREEDY;
 
@@ -63,7 +63,7 @@ namespace Whisper
         [TextArea]
         public string initialPrompt;
 
-        [Header("Streaming settings")] 
+        [Header("Streaming settings")]
         [Tooltip("Minimal portions of audio that will be processed by whisper stream in seconds.")]
         public float stepSec = 3f;
 
@@ -72,7 +72,7 @@ namespace Whisper
 
         [Tooltip("How many seconds of audio will be recurrently transcribe until context update.")]
         public float lengthSec = 10f;
-        
+
         [Tooltip("Should stream modify whisper prompt for better context handling?")]
         public bool updatePrompt = true;
 
@@ -94,7 +94,7 @@ namespace Whisper
         /// Raised when whisper transcribed a new text segment from audio. 
         /// </summary>
         public event OnNewSegmentDelegate OnNewSegment;
-        
+
         /// <summary>
         /// Raised when whisper made some progress in transcribing audio.
         /// Progress changes from 0 to 100 included.
@@ -118,7 +118,7 @@ namespace Whisper
                 modelPath = value;
             }
         }
-        
+
         public bool IsModelPathInStreamingAssets
         {
             get => isModelPathInStreamingAssets;
@@ -132,7 +132,7 @@ namespace Whisper
                 isModelPathInStreamingAssets = value;
             }
         }
-        
+
         /// <summary>
         /// Checks if whisper weights are loaded and ready to be used.
         /// </summary>
@@ -146,7 +146,7 @@ namespace Whisper
         private async void Awake()
         {
             LogUtils.Level = logLevel;
-            
+
             if (!initOnAwake)
                 return;
             await InitModel();
@@ -192,7 +192,7 @@ namespace Whisper
                 _whisper = await WhisperWrapper.InitFromFileAsync(path, context);
                 _params = WhisperParams.GetDefaultParams(strategy);
                 UpdateParams();
-                
+
                 _whisper.OnNewSegment += OnNewSegmentHandler;
                 _whisper.OnProgress += OnProgressHandler;
             }
@@ -203,7 +203,7 @@ namespace Whisper
 
             IsLoading = false;
         }
-        
+
         /// <summary>
         /// Checks if currently loaded whisper model supports multilingual transcription.
         /// </summary>
@@ -232,7 +232,7 @@ namespace Whisper
             var res = await _whisper.GetTextAsync(clip, _params);
             return res;
         }
-        
+
         /// <summary>
         /// Start async transcription of audio buffer.
         /// </summary>
@@ -250,7 +250,7 @@ namespace Whisper
             var res = await _whisper.GetTextAsync(samples, frequency, channels, _params);
             return res;
         }
-        
+
         /// <summary>
         /// Create a new instance of Whisper streaming transcription.
         /// </summary>
@@ -272,7 +272,7 @@ namespace Whisper
             var stream = new WhisperStream(_whisper, param);
             return stream;
         }
-        
+
         /// <summary>
         /// Create a new instance of Whisper streaming transcription from microphone input.
         /// </summary>
@@ -285,7 +285,7 @@ namespace Whisper
                 LogUtils.Error("Model weights aren't loaded! Load model first!");
                 return null;
             }
-            
+
             // TODO: unity support only single input channel for microphone
             var channels = 1;
             var frequency = microphone.frequency;
@@ -295,7 +295,7 @@ namespace Whisper
             var stream = new WhisperStream(_whisper, param, microphone);
             return stream;
         }
-        
+
         private void UpdateParams()
         {
             _params.Language = language;
@@ -307,7 +307,7 @@ namespace Whisper
             _params.TokenTimestamps = tokensTimestamps;
             _params.InitialPrompt = initialPrompt;
         }
-        
+
         private WhisperContextParams CreateContextParams()
         {
             var context = WhisperContextParams.GetDefaultParams();
@@ -332,7 +332,7 @@ namespace Whisper
 
             return IsLoaded;
         }
-        
+
         private void OnNewSegmentHandler(WhisperSegment segment)
         {
             _dispatcher.Execute(() =>
@@ -340,7 +340,7 @@ namespace Whisper
                 OnNewSegment?.Invoke(segment);
             });
         }
-        
+
         private void OnProgressHandler(int progress)
         {
             _dispatcher.Execute(() =>
@@ -348,5 +348,38 @@ namespace Whisper
                 OnProgress?.Invoke(progress);
             });
         }
+
+        public async Task ReloadModel()
+        {
+            if (IsLoading)
+            {
+                LogUtils.Warning("Il modello è già in fase di caricamento!");
+                return;
+            }
+
+            if (IsLoaded)
+            {
+                Debug.Log("Sto scaricando il modello corrente...");
+                _whisper = null;
+                _params = null;
+            }
+
+            await InitModel();
+        }
+
+        public async void SetUseGpu(bool value)
+        {
+            if (useGpu == value)
+                return;
+
+            useGpu = value;
+            Debug.Log($"Modalità GPU impostata su: {useGpu}");
+
+            if (IsLoaded)
+            {
+                await ReloadModel();
+            }
+        }
+
     }
 }

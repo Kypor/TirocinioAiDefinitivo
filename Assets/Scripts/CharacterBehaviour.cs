@@ -221,55 +221,89 @@ public class CharacterBehaviour : MonoBehaviour
     /// </summary>
     /// <param name="maxValue">Value of the option with the highest score</param>
     /// <param name="maxIndex">Index of the option with the highest score</param>
-    public void Utility(float maxScore, int maxScoreIndex)
+    // public void Utility(float maxScore, int maxScoreIndex)
+    // {
+    //     // First we check that the score is > of 0.2, otherwise we let our agent perplexed;
+    //     // This way we can handle strange input text (for instance if we write "Go see the dog!" the agent will be puzzled).
+    //     if (maxScore < 0.75f)
+    //     {
+    //         state = State.Puzzled;
+    //         pointsManagerScript.SubPoints(3);
+    //         errorCount++;
+    //         Debug.Log("Score inferiore a 0.9f");
+    //     }
+    //     else
+    //     {
+    //         // Get the verb and noun (if there is one)
+    //         goalObject = GameObject.Find(actionsList[maxScoreIndex].noun);
+
+    //         string verb = actionsList[maxScoreIndex].verb;
+
+    //         currentVerb = actionsList[maxScoreIndex].verb;
+    //         currentNoun = actionsList[maxScoreIndex].noun;
+
+
+    //         if (questManager != null && questManager.currentQuest != null)
+    //         {
+
+    //             // if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower() && currentNoun.ToLower() == questManager.currentQuest.requiredNoun.ToLower())
+    //             // {
+    //             //     pointsManagerScript.AddPoints(3);
+    //             //     SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
+    //             //     errorCount = 0;
+    //             //     state = (State)System.Enum.Parse(typeof(State), verb, true);
+    //             // }
+    //             if (maxScore > 0.9f)
+    //             {
+    //                 pointsManagerScript.AddPoints(3);
+    //                 SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
+    //                 errorCount = 0;
+    //                 state = (State)System.Enum.Parse(typeof(State), verb, true);
+    //             }
+    //             else
+    //             {
+    //                 Debug.Log("Quest sbagliata");
+    //                 pointsManagerScript.SubPoints(3);
+    //                 errorCount++;
+    //                 state = State.Puzzled;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             Debug.LogWarning("Nessuna quest attiva — comando ignorato.");
+    //             state = State.Puzzled;
+    //         }
+
+    //     }
+
+    //     // Set the Robot State == verb
+
+    // }
+
+    public void Utility(float score)
     {
-        // First we check that the score is > of 0.2, otherwise we let our agent perplexed;
-        // This way we can handle strange input text (for instance if we write "Go see the dog!" the agent will be puzzled).
-        if (maxScore < 0.75f)
+
+
+        if (score > 0.85f)
         {
-            state = State.Puzzled;
-            pointsManagerScript.SubPoints(3);
-            errorCount++;
-            Debug.Log("Score inferiore a 0.9f");
+            goalObject = GameObject.Find(questManager.currentQuest.requiredNoun);
+            currentVerb = questManager.currentQuest.requiredVerb;
+            currentNoun = questManager.currentQuest.requiredNoun;
+            
+            pointsManagerScript.AddPoints(3);
+            SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
+            errorCount = 0;
+            state = (State)System.Enum.Parse(typeof(State), currentVerb, true);
+
+
         }
         else
         {
-            // Get the verb and noun (if there is one)
-            goalObject = GameObject.Find(actionsList[maxScoreIndex].noun);
-
-            string verb = actionsList[maxScoreIndex].verb;
-
-            currentVerb = actionsList[maxScoreIndex].verb;
-            currentNoun = actionsList[maxScoreIndex].noun;
-
-
-            if (questManager != null && questManager.currentQuest != null)
-            {
-                if (verb.ToLower() == questManager.currentQuest.requiredVerb.ToLower() && currentNoun.ToLower() == questManager.currentQuest.requiredNoun.ToLower())
-                {
-                    pointsManagerScript.AddPoints(3);
-                    SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
-                    errorCount = 0;
-                    state = (State)System.Enum.Parse(typeof(State), verb, true);
-                }
-                else
-                {
-                    Debug.Log("Quest sbagliata");
-                    pointsManagerScript.SubPoints(3);
-                    errorCount++;
-                    state = State.Puzzled;
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Nessuna quest attiva — comando ignorato.");
-                state = State.Puzzled;
-            }
-
+            Debug.Log("Quest sbagliata");
+            pointsManagerScript.SubPoints(3);
+            errorCount++;
+            state = State.Puzzled;
         }
-
-        // Set the Robot State == verb
-
     }
     private void Greeting(GameObject gameObject)
     {

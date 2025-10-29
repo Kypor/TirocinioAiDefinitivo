@@ -15,31 +15,37 @@ MonoBehaviour:
   quests:
   - questID: 0
     description: "Tell \u3053\u3093\u306B\u3061\u306F to the clerk"
+    tokenSentence: Tell hello to the clerk
     requiredVerb: Greet
     requiredNoun: Clerk
     isCompleted: 1
   - questID: 1
     description: "Take \u308A\u3093\u3054"
+    tokenSentence: Take apples
     requiredVerb: GetObject
     requiredNoun: Apple
     isCompleted: 1
   - questID: 2
     description: "Take \u306B\u304F"
+    tokenSentence: Take meat
     requiredVerb: GetObject
     requiredNoun: Meat
     isCompleted: 1
   - questID: 3
     description: "Take \u3084\u3055\u3044"
+    tokenSentence: Take vegetable
     requiredVerb: GetObject
     requiredNoun: Vegetable
-    isCompleted: 0
+    isCompleted: 1
   - questID: 4
     description: "Take \u3055\u304B\u306A"
+    tokenSentence: Take fish
     requiredVerb: GetObject
     requiredNoun: Fish
-    isCompleted: 0
+    isCompleted: 1
   - questID: 5
     description: "\u306F\u3089\u3044\u307E\u3059"
+    tokenSentence: Pay
     requiredVerb: BringObjectsToCheckout
     requiredNoun: Checkout
-    isCompleted: 0
+    isCompleted: 1

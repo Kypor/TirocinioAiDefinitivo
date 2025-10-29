@@ -15,36 +15,43 @@ MonoBehaviour:
   quests:
   - questID: 0
     description: "Take off \u304F\u3064"
+    tokenSentence: Take off shoes
     requiredVerb: Kneel
     requiredNoun: 
-    isCompleted: 0
+    isCompleted: 1
   - questID: 1
     description: "Pet the \u306D\u3053"
+    tokenSentence: Pet the cat
     requiredVerb: Pet
     requiredNoun: Mimmo
-    isCompleted: 0
+    isCompleted: 1
   - questID: 2
     description: "Drink \u307F\u305A"
+    tokenSentence: Drink water
     requiredVerb: Eat
     requiredNoun: Bottle
-    isCompleted: 0
+    isCompleted: 1
   - questID: 3
     description: "\u304A\u3069\u308A\u307E\u3059"
+    tokenSentence: Dance
     requiredVerb: Dance
     requiredNoun: 
-    isCompleted: 0
+    isCompleted: 1
   - questID: 4
     description: "Eat the \u3054\u306F\u3093"
+    tokenSentence: Eat the rice
     requiredVerb: Eat
     requiredNoun: RiceAll
-    isCompleted: 0
+    isCompleted: 1
   - questID: 5
     description: "Grab the \u3075\u304F"
+    tokenSentence: Grab the clothes
     requiredVerb: GetObject
     requiredNoun: Clothes
-    isCompleted: 0
+    isCompleted: 1
   - questID: 6
     description: "Bring clothes to the \u3057\u3093\u3057\u3064"
+    tokenSentence: Bring clothes to the bedroom
     requiredVerb: BringObjectsToCheckout
     requiredNoun: Closet
-    isCompleted: 0
+    isCompleted: 1
