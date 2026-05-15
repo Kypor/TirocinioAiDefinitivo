@@ -14,4 +14,6 @@ public class ListWrapper
     public string word;
     public string traduzione;
     public List<Sprite> ideosInWord;
+    public string hiraganaWord;
+    public AudioClip wordAudio;
 }

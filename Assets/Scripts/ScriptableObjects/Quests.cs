@@ -14,29 +14,30 @@ public class Quest
     public string tokenSentence;
     public string requiredVerb;
     public string requiredNoun;
-    
+
     public bool isCompleted;
+    public bool lastQuest;
 
     public bool CheckCondition(string currentVerb, string currentNoun)
     {
-        
-        
-            if (string.IsNullOrEmpty(requiredNoun))
-            {
-                // Se il noun e il numero non sono richiesti, controlla solo il verbo
-                Debug.Log("caso solo verbo");
-                return !isCompleted && currentVerb == requiredVerb;
-            }
-            else
-            {
-                Debug.Log("caso  verbo e noun");
 
-                return !isCompleted && currentVerb == requiredVerb && currentNoun == requiredNoun;
-            }
-        
-        
-        
-    
-        
+
+        if (string.IsNullOrEmpty(requiredNoun))
+        {
+            // Se il noun e il numero non sono richiesti, controlla solo il verbo
+            Debug.Log("caso solo verbo");
+            return !isCompleted && currentVerb == requiredVerb;
+        }
+        else
+        {
+            Debug.Log("caso  verbo e noun");
+
+            return !isCompleted && currentVerb == requiredVerb && currentNoun == requiredNoun;
+        }
+
+
+
+
+
     }
 }

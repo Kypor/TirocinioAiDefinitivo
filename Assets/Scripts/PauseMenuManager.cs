@@ -6,6 +6,7 @@ public class PauseMenuManager : MonoBehaviour
 {
     public GameObject settingsPanel;
     private CountdownTimer countdownTimer;
+    public bool firstClose = true;
 
     private void Start()
     {
@@ -50,6 +51,12 @@ public class PauseMenuManager : MonoBehaviour
         settingsPanel.GetComponent<CanvasGroup>().interactable = false;
         settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
         countdownTimer.ResumeTimer();
+
+        if(firstClose)
+        {
+            firstClose = false;
+            FindAnyObjectByType<DrawRandomIdeo>().PlayWordAudio();
+        }
     }
 
     public IEnumerator Fade(float end, CanvasGroup canvasGroup)

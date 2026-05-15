@@ -17,8 +17,7 @@ public class QuestManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-
+        Debug.Log("QuestManager instance: " + gameObject.name);
         questPanel.SetActive(true);
         allQuestsCompleted = false;
 
@@ -43,12 +42,27 @@ public class QuestManager : MonoBehaviour
 
 
 
-            if (CharacterBehaviour.gameFinished == true)
+            /*if (CharacterBehaviour.gameFinished == true)
             {
                 Debug.Log("Hai completato l'ultima quest!");
                 questPanel.SetActive(false);
                 textMeshPro.text = null;
                 allQuestsCompleted = true;
+            }
+            else
+            {
+                questPanel.SetActive(false);
+                textMeshPro.text = null;
+                allQuestsCompleted = true;
+                Debug.Log("Entra qui");
+            }*/
+
+            if(questsData.quests[questsData.quests.Count - 1].lastQuest)
+            {
+                Debug.Log("Hai completato l'ultima quest!");
+                questPanel.SetActive(false);
+                textMeshPro.text = null;
+                allQuestsCompleted = true;;
             }
             //StartCoroutine(finalQuestWait());
 
@@ -59,7 +73,7 @@ public class QuestManager : MonoBehaviour
 
         currentQuest = questsData.quests[currentQuestID];
 
-        if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun))
+        /*if (currentQuest.CheckCondition(character.currentVerb, character.currentNoun))
         {
             currentQuest.isCompleted = true;
             
@@ -70,12 +84,50 @@ public class QuestManager : MonoBehaviour
 
             StartCoroutine(waitForNextQuest());
         }
-        
+        else
+        {
+            StartCoroutine(waitForNextQuestWrong());
+        }*/
+
+        if(character.questCompletedCorrectly)
+        {
+            currentQuest.isCompleted = true;
+            
+            Debug.Log("Quest completata: " + currentQuest.description);
+            currentQuestID++;
+            SoundManager.instance.PlaySoundFX(2);
+
+            character.questCompletedCorrectly = false;
+
+            StartCoroutine(waitForNextQuest());
+        }
+        else if(character.questCompletedWrongly)
+        {
+            currentQuest.isCompleted = true;
+            
+            Debug.Log("Quest completata: " + currentQuest.description);
+            currentQuestID++;
+            SoundManager.instance.PlaySoundFX(3);
+
+            character.questCompletedWrongly = false;
+
+            StartCoroutine(waitForNextQuestWrong());
+        }
     }
 
     private IEnumerator waitForNextQuest()
     {
         textMeshPro.color = Color.green;
+        yield return new WaitForSeconds(2);
+        StartCoroutine(TextLerp(false));
+        yield return new WaitForSeconds(2);
+        textMeshPro.color = Color.white;
+        StartCoroutine(TextLerp(true));
+    }
+
+    private IEnumerator waitForNextQuestWrong()
+    {
+        textMeshPro.color = Color.red;
         yield return new WaitForSeconds(2);
         StartCoroutine(TextLerp(false));
         yield return new WaitForSeconds(2);

@@ -14,44 +14,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - questID: 0
-    description: "Take off \u304F\u3064"
+    description: "Take off \u304F\u3064 (kutsu)"
     tokenSentence: Take off shoes
     requiredVerb: Kneel
     requiredNoun: 
     isCompleted: 1
+    lastQuest: 0
   - questID: 1
-    description: "Pet the \u306D\u3053"
+    description: "Pet the \u306D\u3053 (neko)"
     tokenSentence: Pet the cat
     requiredVerb: Pet
     requiredNoun: Mimmo
     isCompleted: 1
+    lastQuest: 0
   - questID: 2
-    description: "Drink \u307F\u305A"
+    description: "Drink \u307F\u305A (mizu)"
     tokenSentence: Drink water
     requiredVerb: Eat
     requiredNoun: Bottle
     isCompleted: 1
+    lastQuest: 0
   - questID: 3
-    description: "\u304A\u3069\u308A\u307E\u3059"
+    description: "\u304A\u3069\u308A\u307E\u3059 (odorimasu)"
     tokenSentence: Dance
     requiredVerb: Dance
     requiredNoun: 
     isCompleted: 1
+    lastQuest: 0
   - questID: 4
-    description: "Eat the \u3054\u306F\u3093"
+    description: "Eat the \u3054\u306F\u3093 (gohan)"
     tokenSentence: Eat the rice
     requiredVerb: Eat
     requiredNoun: RiceAll
     isCompleted: 1
+    lastQuest: 0
   - questID: 5
-    description: "Grab the \u3075\u304F"
+    description: "Grab the \u3075\u304F (fuku)"
     tokenSentence: Grab the clothes
     requiredVerb: GetObject
     requiredNoun: Clothes
     isCompleted: 1
+    lastQuest: 0
   - questID: 6
-    description: "Bring clothes to the \u3057\u3093\u3057\u3064"
+    description: "Bring clothes to the \u3057\u3093\u3057\u3064 (shinshitsu)"
     tokenSentence: Bring clothes to the bedroom
     requiredVerb: BringObjectsToCheckout
     requiredNoun: Closet
     isCompleted: 1
+    lastQuest: 1

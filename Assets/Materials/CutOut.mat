@@ -56,7 +56,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _CutOutSize: 0.1
-    - _CutoutSize: 0.1
+    - _CutoutSize: 0.15
     - _FallOutSize: 0.05
     - _FalloffSize: 0.05
     - _QueueControl: 0

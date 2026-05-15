@@ -13,24 +13,27 @@ MonoBehaviour:
   m_Name: JapaneseIdeoArray
   m_EditorClassIdentifier: 
   ideos:
-  - word: gohan
-    traduzione: rice
-    ideosInWord:
-    - {fileID: 21300000, guid: 8ec8e0ee3efbb57469bf814901095dbc, type: 3}
-    - {fileID: 21300000, guid: 231c7d99fed12d3448c3956eac29b037, type: 3}
-    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
-  - word: shinshitsu
-    traduzione: bedroom
-    ideosInWord:
-    - {fileID: 21300000, guid: df64d516f9f675c4d92ab7ebfa20ef2d, type: 3}
-    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
-    - {fileID: 21300000, guid: df64d516f9f675c4d92ab7ebfa20ef2d, type: 3}
-    - {fileID: 21300000, guid: 34f5e9248e047854b80de422e86a8ca4, type: 3}
   - word: kutsu
     traduzione: shoes
     ideosInWord:
     - {fileID: 21300000, guid: 8ec23330a4eb7514b8ca35501b476c56, type: 3}
     - {fileID: 21300000, guid: 34f5e9248e047854b80de422e86a8ca4, type: 3}
+    hiraganaWord: "\u304F\u3064"
+    wordAudio: {fileID: 8300000, guid: 8d0a5a0628d60404ea684ce76701ef45, type: 3}
+  - word: neko
+    traduzione: cat
+    ideosInWord:
+    - {fileID: 21300000, guid: 55f8c062d399aad409364894b9feca13, type: 3}
+    - {fileID: 21300000, guid: 32d201484cc9ad64e99f5cfe2aa8c58d, type: 3}
+    hiraganaWord: "\u306D\u3053"
+    wordAudio: {fileID: 8300000, guid: 8d596a60f1c57f64fa2b3a7ceb364f9d, type: 3}
+  - word: mizu
+    traduzione: water
+    ideosInWord:
+    - {fileID: 21300000, guid: 4ba43605b1ca7c84d97da51c60cfeb8b, type: 3}
+    - {fileID: 21300000, guid: cdb939e0f6c10f144a4b7059ae5bb38f, type: 3}
+    hiraganaWord: "\u307F\u305A"
+    wordAudio: {fileID: 8300000, guid: b60ee8e715d2a104a8bc64e0acaf39ee, type: 3}
   - word: odorimasu
     traduzione: dance
     ideosInWord:
@@ -39,19 +42,30 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 15142d0820da25a47ad51f380f83eb4f, type: 3}
     - {fileID: 21300000, guid: 88695dc0f7fe60c4582c91b2232a1e9a, type: 3}
     - {fileID: 21300000, guid: d917018a574d7cc4ea5d21dedfed3fd5, type: 3}
+    hiraganaWord: "\u304A\u3069\u308A\u307E\u3059"
+    wordAudio: {fileID: 8300000, guid: 8842461d67d8aee48a044a42e9407256, type: 3}
+  - word: gohan
+    traduzione: rice
+    ideosInWord:
+    - {fileID: 21300000, guid: 8ec8e0ee3efbb57469bf814901095dbc, type: 3}
+    - {fileID: 21300000, guid: 231c7d99fed12d3448c3956eac29b037, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
+    hiraganaWord: "\u3054\u306F\u3093"
+    wordAudio: {fileID: 8300000, guid: 331919f74300c174db030e101fb0c0a4, type: 3}
   - word: fuku
     traduzione: clothes
     ideosInWord:
     - {fileID: 21300000, guid: d6cbba58f7f082545be5f262d99f2482, type: 3}
     - {fileID: 21300000, guid: 8ec23330a4eb7514b8ca35501b476c56, type: 3}
-  - word: neko
-    traduzione: cat
+    hiraganaWord: "\u3075\u304F"
+    wordAudio: {fileID: 8300000, guid: 289e4929e61943240a2674db256ca37c, type: 3}
+  - word: shinshitsu
+    traduzione: bedroom
     ideosInWord:
-    - {fileID: 21300000, guid: 55f8c062d399aad409364894b9feca13, type: 3}
-    - {fileID: 21300000, guid: 32d201484cc9ad64e99f5cfe2aa8c58d, type: 3}
-  - word: mizu
-    traduzione: water
-    ideosInWord:
-    - {fileID: 21300000, guid: 4ba43605b1ca7c84d97da51c60cfeb8b, type: 3}
-    - {fileID: 21300000, guid: cdb939e0f6c10f144a4b7059ae5bb38f, type: 3}
+    - {fileID: 21300000, guid: df64d516f9f675c4d92ab7ebfa20ef2d, type: 3}
+    - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
+    - {fileID: 21300000, guid: df64d516f9f675c4d92ab7ebfa20ef2d, type: 3}
+    - {fileID: 21300000, guid: 34f5e9248e047854b80de422e86a8ca4, type: 3}
+    hiraganaWord: "\u3057\u3093\u3057\u3064"
+    wordAudio: {fileID: 8300000, guid: cbf1bc2ffcc024147a574af77ea7bc5b, type: 3}
   numbers: []

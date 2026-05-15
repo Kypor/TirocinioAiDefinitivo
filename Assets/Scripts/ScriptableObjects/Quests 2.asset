@@ -14,38 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - questID: 0
-    description: "Tell \u3053\u3093\u306B\u3061\u306F to the clerk"
+    description: "Tell \u3053\u3093\u306B\u3061\u306F (konnichiwa) to the clerk"
     tokenSentence: Tell hello to the clerk
     requiredVerb: Greet
     requiredNoun: Clerk
-    isCompleted: 1
+    isCompleted: 0
+    lastQuest: 0
   - questID: 1
-    description: "Take \u308A\u3093\u3054"
+    description: "Take \u308A\u3093\u3054 (ringo)"
     tokenSentence: Take apples
     requiredVerb: GetObject
     requiredNoun: Apple
-    isCompleted: 1
+    isCompleted: 0
+    lastQuest: 0
   - questID: 2
-    description: "Take \u306B\u304F"
+    description: "Take \u306B\u304F (niku)"
     tokenSentence: Take meat
     requiredVerb: GetObject
     requiredNoun: Meat
-    isCompleted: 1
+    isCompleted: 0
+    lastQuest: 0
   - questID: 3
-    description: "Take \u3084\u3055\u3044"
+    description: "Take \u3084\u3055\u3044 (yasai)"
     tokenSentence: Take vegetable
     requiredVerb: GetObject
     requiredNoun: Vegetable
-    isCompleted: 1
+    isCompleted: 0
+    lastQuest: 0
   - questID: 4
-    description: "Take \u3055\u304B\u306A"
+    description: "Take \u3055\u304B\u306A (sakana)"
     tokenSentence: Take fish
     requiredVerb: GetObject
     requiredNoun: Fish
-    isCompleted: 1
+    isCompleted: 0
+    lastQuest: 0
   - questID: 5
-    description: "\u306F\u3089\u3044\u307E\u3059"
+    description: "\u306F\u3089\u3044\u307E\u3059 (haraimasu)"
     tokenSentence: Pay
     requiredVerb: BringObjectsToCheckout
     requiredNoun: Checkout
-    isCompleted: 1
+    isCompleted: 0
+    lastQuest: 1

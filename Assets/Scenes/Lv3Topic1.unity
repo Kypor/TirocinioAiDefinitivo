@@ -211,7 +211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -600, y: 400}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 737.5, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &47728929
@@ -1599,8 +1599,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -9.972146, y: 6.0130053, z: -5.818146}
+  m_LocalRotation: {x: 0.26230887, y: 0.50494945, z: -0.164389, w: 0.80572724}
+  m_LocalPosition: {x: -11.438617, y: 6.877151, z: -3.5344024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2261,7 +2261,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 50}
+  m_AnchoredPosition: {x: -230, y: 50}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &456403716
@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Porta i vestiti in camera da letto
+  m_text: "Bring clothes to the bedroom (\u3057\u3093\u3057\u3064) "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e8e9b8fc0d59f45419838df70af05f2f, type: 2}
   m_sharedMaterial: {fileID: -9057063263922470647, guid: e8e9b8fc0d59f45419838df70af05f2f, type: 2}
@@ -2311,15 +2311,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
+  m_fontSize: 62.95
   m_fontSizeBase: 65
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2458,7 +2458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -600, y: 400}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &479655800
@@ -4825,6 +4825,8 @@ MonoBehaviour:
   sleepPosition: {fileID: 0}
   catInteractionPoint: {fileID: 0}
   catInteraction: 0
+  questCompletedCorrectly: 0
+  questCompletedWrongly: 0
   actionsList:
   - sentence: Hello
     verb: Idle
@@ -6696,6 +6698,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e101d2fbe4d1e074ab5e66aaf92b293a, type: 3}
   - {fileID: 8300000, guid: d04b5dc50a827a944942648524bdd629, type: 3}
   - {fileID: 8300000, guid: e47597c2b31e1c64ea1ca53f2310a419, type: 3}
+  - {fileID: 8300000, guid: 74d3cc47bd2d90f49969104e5c3615c1, type: 3}
   victoryMusic: {fileID: 8300000, guid: 9507be2c0dc2e014f8e08217f44935ab, type: 3}
   soundFXobj: {fileID: 816089350777060507, guid: abc7509bf5f4116459286f6817a95643, type: 3}
 --- !u!1001 &1143513858
@@ -8368,7 +8371,7 @@ MonoBehaviour:
   CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0, y: 0.22314715}
+    ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 0
       Size: {x: 0.13, y: 0.26111114}
@@ -8377,7 +8380,7 @@ MonoBehaviour:
       Size: {x: 0.94, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 0.75, z: 0}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 0
@@ -8435,8 +8438,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464612473}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -9.972146, y: 6.0130053, z: -5.818146}
+  m_LocalRotation: {x: 0.26230887, y: 0.50494945, z: -0.164389, w: 0.80572724}
+  m_LocalPosition: {x: -11.438617, y: 6.877151, z: -3.5344024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10114,9 +10117,11 @@ MonoBehaviour:
   currentQuest:
     questID: 0
     description: 
+    tokenSentence: 
     requiredVerb: 
     requiredNoun: 
     isCompleted: 0
+    lastQuest: 0
   textMeshPro: {fileID: 456403716}
   questPanel: {fileID: 473695725}
 --- !u!4 &1711242260
@@ -10785,6 +10790,8 @@ MonoBehaviour:
   sleepPosition: {fileID: 743134477}
   catInteractionPoint: {fileID: 1158541813}
   catInteraction: 0
+  questCompletedCorrectly: 0
+  questCompletedWrongly: 0
   actionsList:
   - sentence: Dance
     verb: Dance
@@ -11363,6 +11370,7 @@ GameObject:
   - component: {fileID: 1950095543}
   - component: {fileID: 1950095544}
   - component: {fileID: 1950095545}
+  - component: {fileID: 1950095546}
   m_Layer: 0
   m_Name: GeneralManager
   m_TagString: Untagged
@@ -11406,9 +11414,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950095542}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51c7ab7242b2da34eb940830758f617d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsPanel: {fileID: 1948110000}
+  firstClose: 1
+--- !u!114 &1950095546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950095542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1f0a3c30dce614dbc86e55c3fbb270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 1948110000}

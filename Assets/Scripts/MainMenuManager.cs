@@ -10,8 +10,8 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
     GameObject backgroundPanel, mainPanel, topicPanel, levelPanel, blackCanvas, saveFilePanel;
-    public float minPointsLv1Top1, minPointsLv2Top1, minPointsLv3Top1;
-    public float minPointsLv1Top2, minPointsLv2Top2, minPointsLv3Top2;
+    public float minPointsLv1Top1, minPointsLv2Top1, minPointsLv3Top1;  //default values: 500, 500, 500
+    public float minPointsLv1Top2, minPointsLv2Top2, minPointsLv3Top2; //default values: 400, 400, 400
     [SerializeField]
     private JapaneseIdeoArray IdeoArrayT1, IdeoArrayT2;
     [SerializeField]

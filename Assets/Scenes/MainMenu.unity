@@ -540,12 +540,12 @@ MonoBehaviour:
   levelPanel: {fileID: 1343966459}
   blackCanvas: {fileID: 27900743}
   saveFilePanel: {fileID: 880887044}
-  minPointsLv1Top1: 500
-  minPointsLv2Top1: 500
-  minPointsLv3Top1: 500
-  minPointsLv1Top2: 400
-  minPointsLv2Top2: 400
-  minPointsLv3Top2: 400
+  minPointsLv1Top1: 0
+  minPointsLv2Top1: 0
+  minPointsLv3Top1: 0
+  minPointsLv1Top2: 0
+  minPointsLv2Top2: 0
+  minPointsLv3Top2: 0
   IdeoArrayT1: {fileID: 11400000, guid: 982fe451a6101f84b97bc3570f21a942, type: 2}
   IdeoArrayT2: {fileID: 11400000, guid: cef6923cc52036c4faedd31e6bab62ab, type: 2}
   WordArrayT1: {fileID: 11400000, guid: 696383c20a86e31469dbdea52e80cf44, type: 2}

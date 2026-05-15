@@ -184,7 +184,7 @@ namespace Whisper.Samples
             else
             {
                 StopAllCoroutines();
-                
+
                 StartCoroutine(pointsManagerScript.ShowResults());
 
             }
@@ -192,13 +192,34 @@ namespace Whisper.Samples
 
         private IEnumerator WrongWordCoroutine()
         {
+            SavePlayerDataManager.AddErrorCount(1, MainMenuManager.topicChosen, JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce[JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce[arrayIndex].pronunce.Count - 1], wrongWordCount);
             SoundManager.instance.PlaySoundFX(2);
             pointsManagerScript.SubPoints(1);
             randomWord.color = Color.red;
             yield return new WaitForSeconds(0.50f);
             randomWord.color = Color.white;
             wrongWordCount++;
-            if (wrongWordCount == 5)
+
+            if (wrongWordCount == 3)
+            {
+                if (arrayIndex < JapaneseWords[MainMenuManager.topicChosen - 1].paroleConPronunce.Count - 1)
+                {
+                    randomWord.text = GetText();
+                    wordMeaning.text = WordMeaningFunction();
+                    wordRomaji.text = WordRomajiFunction();
+                }
+                else
+                {
+                    StopAllCoroutines();
+
+                    StartCoroutine(pointsManagerScript.ShowResults());
+
+                }
+                wrongWordCount = 0;
+            }
+
+            if (Random.Range(0, 100) == 3)
+            
             {
                 StartCoroutine(Fade(1, sensei.GetComponent<CanvasGroup>()));
                 SoundManager.instance.PlaySoundFX(4);

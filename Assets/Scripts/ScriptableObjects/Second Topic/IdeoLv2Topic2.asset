@@ -19,23 +19,31 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 15142d0820da25a47ad51f380f83eb4f, type: 3}
     - {fileID: 21300000, guid: 5c9b8af010854f34781e5ce83f1f4626, type: 3}
     - {fileID: 21300000, guid: 8ec8e0ee3efbb57469bf814901095dbc, type: 3}
+    hiraganaWord: "\u308A\u3093\u3054"
+    wordAudio: {fileID: 8300000, guid: 0a5d9b763b32dac4fb0ad76641cfa772, type: 3}
   - word: niku
     traduzione: meat
     ideosInWord:
     - {fileID: 21300000, guid: c516247d2e098a141b2ef1215dbef9ee, type: 3}
     - {fileID: 21300000, guid: 8ec23330a4eb7514b8ca35501b476c56, type: 3}
+    hiraganaWord: "\u306B\u304F"
+    wordAudio: {fileID: 8300000, guid: 5030e1185e4cd2e4693ccd1c493d84c1, type: 3}
   - word: sakana
     traduzione: fish
     ideosInWord:
     - {fileID: 21300000, guid: e8db161597a0f6b46af47b2b5d967bbd, type: 3}
     - {fileID: 21300000, guid: da7d73fa50b940347b9ffe6fe65149f6, type: 3}
     - {fileID: 21300000, guid: 717e43d3a73c64a499db309efcb9f29d, type: 3}
+    hiraganaWord: "\u3055\u304B\u306A"
+    wordAudio: {fileID: 8300000, guid: 4da8e0d3cc2b8cf4e8818085d155500d, type: 3}
   - word: yasai
     traduzione: vegetable
     ideosInWord:
     - {fileID: 21300000, guid: 541e53c36e70b6647bb24779d46124b7, type: 3}
     - {fileID: 21300000, guid: e8db161597a0f6b46af47b2b5d967bbd, type: 3}
     - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
+    hiraganaWord: "\u3084\u3055\u3044"
+    wordAudio: {fileID: 8300000, guid: e5a6fddb2626e214389c6b10f23a52d2, type: 3}
   - word: haraimasu
     traduzione: pay
     ideosInWord:
@@ -44,6 +52,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 0fb8a442df63902498105459b713dd68, type: 3}
     - {fileID: 21300000, guid: 88695dc0f7fe60c4582c91b2232a1e9a, type: 3}
     - {fileID: 21300000, guid: d917018a574d7cc4ea5d21dedfed3fd5, type: 3}
+    hiraganaWord: "\u306F\u3089\u3044\u307E\u3059"
+    wordAudio: {fileID: 8300000, guid: 2fb6f66e04d44664e82e0687ee468261, type: 3}
   - word: konnichiwa
     traduzione: hi
     ideosInWord:
@@ -52,4 +62,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c516247d2e098a141b2ef1215dbef9ee, type: 3}
     - {fileID: 21300000, guid: 230a95421dc033e48953404011eadc6b, type: 3}
     - {fileID: 21300000, guid: 231c7d99fed12d3448c3956eac29b037, type: 3}
+    hiraganaWord: "\u3053\u3093\u306B\u3061\u306F"
+    wordAudio: {fileID: 8300000, guid: 62ae165528435c1499d5f52df295babf, type: 3}
   numbers: []

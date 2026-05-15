@@ -19,6 +19,8 @@ public class CharacterBehaviour : MonoBehaviour
 
     PointsManagerScript pointsManagerScript;
 
+    private int errorCount = 0;
+
     public string currentVerb { get; private set; }
     public string currentNoun { get; private set; }
     public string currentNumber { get; private set; }
@@ -38,7 +40,7 @@ public class CharacterBehaviour : MonoBehaviour
     }
 
     [SerializeField] GameObject shoes;
-    private int errorCount = 0;
+
     QuestManager questManager;
     SoundManager soundManager;
     private bool audioPlaying;
@@ -56,6 +58,9 @@ public class CharacterBehaviour : MonoBehaviour
 
     private Animator animator;
 
+    public bool questCompletedCorrectly = false;
+    public bool questCompletedWrongly = false;
+
 
 
     [Header("Robot list of actions")]
@@ -70,7 +75,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
 
 
-
+        Debug.Log("QuestManager instance: " + gameObject.name);
         pointsManagerScript = FindAnyObjectByType<PointsManagerScript>();
         gameFinished = false;
         audioPlaying = false;
@@ -287,22 +292,38 @@ public class CharacterBehaviour : MonoBehaviour
         if (score > 0.85f)
         {
             goalObject = GameObject.Find(questManager.currentQuest.requiredNoun);
-            currentVerb = questManager.currentQuest.requiredVerb;
-            currentNoun = questManager.currentQuest.requiredNoun;
-            
+
+            questCompletedCorrectly = true;
+            //currentVerb = questManager.currentQuest.requiredVerb;
+            //currentNoun = questManager.currentQuest.requiredNoun;
+
             pointsManagerScript.AddPoints(3);
             SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
             errorCount = 0;
-            state = (State)System.Enum.Parse(typeof(State), currentVerb, true);
+            state = (State)System.Enum.Parse(typeof(State), questManager.currentQuest.requiredVerb, true);
 
 
         }
         else
         {
+
             Debug.Log("Quest sbagliata");
             pointsManagerScript.SubPoints(3);
             errorCount++;
+            soundManager.PlaySoundFX(3);
+            if (errorCount == 3)
+            {
+                questCompletedWrongly = true;
+                //currentVerb = questManager.currentQuest.requiredVerb;
+                //currentNoun = questManager.currentQuest.requiredNoun;
+                SavePlayerDataManager.AddErrorCount(3, MainMenuManager.topicChosen, questManager.currentQuest.description, errorCount);
+                errorCount = 0;
+                state = State.Puzzled;
+                
+            }
             state = State.Puzzled;
+            
+            
         }
     }
     private void Greeting(GameObject gameObject)
